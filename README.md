@@ -6,12 +6,12 @@ utilizando ao máximo o seu potencial.
 
 ## Requisitos 
 
-![## Documento de Requisitos CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/Model/Requisitos1.png)
-![## Documento de Requisitos CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/Model/Requisitos2.png)
+![## Documento de Requisitos WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/Model/Requisitos1.png)
+![## Documento de Requisitos WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/Model/Requisitos2.png)
 
 ## Diagrama de Entidade e Relacionamento 
 
-![## Diagrama de Entidade e Relacionamento CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/Model/EERDiagram.png)
+![## Diagrama de Entidade e Relacionamento WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/Model/EERDiagram.png)
 
 ## Arquitetura do sistema em três camadas
 
