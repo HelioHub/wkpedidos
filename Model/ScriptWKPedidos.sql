@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `WKPedidos`.`Cliente` (
   `CidadeCliente` VARCHAR(80) NULL,
   `UFCliente` VARCHAR(2) NULL,
   PRIMARY KEY (`CodigoCliente`),
-  INDEX `INDEX_NOME` (`NomeCliente` ASC) VISIBLE)
+  INDEX `INDEX_NOME` (`NomeCliente` ASC))
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `WKPedidos`.`Produto` (
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `WKPedidos`.`Produto` (
   `DescricaoProduto` VARCHAR(100) NULL,
   `PrecoVendaProduto` DOUBLE NULL,
   PRIMARY KEY (`CodigoProduto`),
-  INDEX `INDEX_DESCRICAO` (`DescricaoProduto` ASC) INVISIBLE)
+  INDEX `INDEX_DESCRICAO` (`DescricaoProduto` ASC))
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `WKPedidos`.`Pedido` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `WKPedidos`.`Pedido` (
   `ClientePedido` INT NULL,
   `ValorTotalPedido` DOUBLE NULL,
   PRIMARY KEY (`NumeroPedido`),
-  INDEX `FK_CLIENTE_idx` (`ClientePedido` ASC) VISIBLE,
+  INDEX `FK_CLIENTE_idx` (`ClientePedido` ASC) ,
   CONSTRAINT `FK_CLIENTE`
     FOREIGN KEY (`ClientePedido`)
     REFERENCES `WKPedidos`.`Cliente` (`CodigoCliente`)
@@ -53,8 +53,8 @@ CREATE TABLE IF NOT EXISTS `WKPedidos`.`ProdutoPedido` (
   `VlrUnitarioProdutoPedido` DOUBLE NULL,
   `VrlTotalProdutoPedido` DOUBLE NULL,
   PRIMARY KEY (`idProdutoPedido`),
-  INDEX `FK_PEDIDO_idx` (`PedidoProdutoPedido` ASC) VISIBLE,
-  INDEX `FK_PRODUTO_idx` (`ProdutoProdutoPedido` ASC) VISIBLE,
+  INDEX `FK_PEDIDO_idx` (`PedidoProdutoPedido` ASC),
+  INDEX `FK_PRODUTO_idx` (`ProdutoProdutoPedido` ASC),
   CONSTRAINT `FK_PEDIDO`
     FOREIGN KEY (`PedidoProdutoPedido`)
     REFERENCES `WKPedidos`.`Pedido` (`NumeroPedido`)

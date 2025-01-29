@@ -29,10 +29,11 @@ utilizando ao máximo o seu potencial.
 
 ## PW DB MySQL
 
-	MySQL Installer 8.0.41
+	MySQL Installer 5.7.44
 	https://dev.mysql.com/downloads/installer/
 	root/wk@123
-	Service Name: MySQL80
+	Service Name: MySQL57
+	DataBase: WKPedidos
 
 ## Clean Code
 
@@ -50,11 +51,10 @@ utilizando ao máximo o seu potencial.
 
 	# ==== Criação das tables e indexes === #
 	#---------------------------------------#
-	DROP TABLE `WKPedidos`.`ProdutoPedido` cascade;
-	DROP TABLE `WKPedidos`.`Pedido` cascade;
-	DROP TABLE `WKPedidos`.`Cliente` cascade;
-	DROP TABLE `WKPedidos`.`Produto` cascade;
-
+	#DROP TABLE `WKPedidos`.`ProdutoPedido` cascade;
+	#DROP TABLE `WKPedidos`.`Pedido` cascade;
+	#DROP TABLE `WKPedidos`.`Cliente` cascade;
+	#DROP TABLE `WKPedidos`.`Produto` cascade;
 
 	CREATE TABLE IF NOT EXISTS `WKPedidos`.`Cliente` (
 	  `CodigoCliente` INT NOT NULL,
@@ -62,7 +62,7 @@ utilizando ao máximo o seu potencial.
 	  `CidadeCliente` VARCHAR(80) NULL,
 	  `UFCliente` VARCHAR(2) NULL,
 	  PRIMARY KEY (`CodigoCliente`),
-	  INDEX `INDEX_NOME` (`NomeCliente` ASC) VISIBLE)
+	  INDEX `INDEX_NOME` (`NomeCliente` ASC) )
 	ENGINE = InnoDB;
 
 	CREATE TABLE IF NOT EXISTS `WKPedidos`.`Produto` (
@@ -70,7 +70,7 @@ utilizando ao máximo o seu potencial.
 	  `DescricaoProduto` VARCHAR(100) NULL,
 	  `PrecoVendaProduto` DOUBLE NULL,
 	  PRIMARY KEY (`CodigoProduto`),
-	  INDEX `INDEX_DESCRICAO` (`DescricaoProduto` ASC) INVISIBLE)
+	  INDEX `INDEX_DESCRICAO` (`DescricaoProduto` ASC) )
 	ENGINE = InnoDB;
 
 	CREATE TABLE IF NOT EXISTS `WKPedidos`.`Pedido` (
@@ -79,7 +79,7 @@ utilizando ao máximo o seu potencial.
 	  `ClientePedido` INT NULL,
 	  `ValorTotalPedido` DOUBLE NULL,
 	  PRIMARY KEY (`NumeroPedido`),
-	  INDEX `FK_CLIENTE_idx` (`ClientePedido` ASC) VISIBLE,
+	  INDEX `FK_CLIENTE_idx` (`ClientePedido` ASC),
 	  CONSTRAINT `FK_CLIENTE`
 		FOREIGN KEY (`ClientePedido`)
 		REFERENCES `WKPedidos`.`Cliente` (`CodigoCliente`)
@@ -95,8 +95,8 @@ utilizando ao máximo o seu potencial.
 	  `VlrUnitarioProdutoPedido` DOUBLE NULL,
 	  `VrlTotalProdutoPedido` DOUBLE NULL,
 	  PRIMARY KEY (`idProdutoPedido`),
-	  INDEX `FK_PEDIDO_idx` (`PedidoProdutoPedido` ASC) VISIBLE,
-	  INDEX `FK_PRODUTO_idx` (`ProdutoProdutoPedido` ASC) VISIBLE,
+	  INDEX `FK_PEDIDO_idx` (`PedidoProdutoPedido` ASC),
+	  INDEX `FK_PRODUTO_idx` (`ProdutoProdutoPedido` ASC),
 	  CONSTRAINT `FK_PEDIDO`
 		FOREIGN KEY (`PedidoProdutoPedido`)
 		REFERENCES `WKPedidos`.`Pedido` (`NumeroPedido`)
@@ -156,8 +156,47 @@ utilizando ao máximo o seu potencial.
 	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('19', 'Camera HD', '100');
 	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('20', 'Pad-Mouse', '5.5');
 
-![## Script do Banco de Dados WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/Model/ScriptWKPedidos.sql)
-
-
+## Connection FIREDAC com MySQL 
+	
+	O FireDac do Delphi 12 32bits só funciona com MySQL 5.7.44 32 bits, DLL específica:
+	.\DLL\libmysql.dll
+	
+	================================
+	definition parameters
+	================================
+	Port=3306
+	Database=wkpedidos
+	User_Name=root
+	Password=*****
+	Server=localhost
+	DriverID=MySQL
+	Name=WKConnection
+	================================
+	FireDAC info
+	================================
+	Tool = RAD Studio 12
+	FireDAC = 29.0.51961.7529
+	Platform = Windows 32 bit
+	Defines = FireDAC_NOLOCALE_META;FireDAC_MONITOR;
+	  FireDAC_SynEdit
+	================================
+	Client info
+	================================
+	Loading driver MySQL ...
+	DLL = C:\program files (x86)\embarcadero\studio\23.0\bin\libmysql.dll
+	Client version = 500270000
+	================================
+	Session info
+	================================
+	Checking session ...
+	  Warning: The client [5.0.27.0.0] version or less does not support multiple result sets or output parameters of prepared statement.
+	Current catalog = 
+	Current schema = 
+	Server info = 5.7.44-log
+	Client info = 5.0.27
+	Characterset name = latin1
+	Host info = localhost via TCP/IP
+	Name modes = CILCTD
+	SSL Cipher = 
 
 
