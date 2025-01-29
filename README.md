@@ -34,7 +34,15 @@ utilizando ao máximo o seu potencial.
 	root/wk@123
 	Service Name: MySQL57
 	DataBase: WKPedidos
+	
+## GITHub
 
+	git init
+	git remote add origin git@github.com:HelioHub/wkpedidos.git
+	git add .
+	git commit -m "Firts commit"
+	git push -u origin main
+	
 ## Clean Code
 
 	https://balta.io/artigos/clean-code	
@@ -46,65 +54,65 @@ utilizando ao máximo o seu potencial.
 
 	# ==== Criação do Banco === #
 	#---------------------------#
-	create database WKPedidos;
-	use WKPedidos;
+	#Create database WKPedidos;
+	#use WKPedidos;
 
 	# ==== Criação das tables e indexes === #
 	#---------------------------------------#
-	#DROP TABLE `WKPedidos`.`ProdutoPedido` cascade;
-	#DROP TABLE `WKPedidos`.`Pedido` cascade;
-	#DROP TABLE `WKPedidos`.`Cliente` cascade;
-	#DROP TABLE `WKPedidos`.`Produto` cascade;
+	#DROP TABLE `WKPedidos`.`ItensPedido` cascade;
+	#DROP TABLE `WKPedidos`.`Pedidos` cascade;
+	#DROP TABLE `WKPedidos`.`Clientes` cascade;
+	#DROP TABLE `WKPedidos`.`Produtos` cascade;
 
-	CREATE TABLE IF NOT EXISTS `WKPedidos`.`Cliente` (
-	  `CodigoCliente` INT NOT NULL,
-	  `NomeCliente` VARCHAR(100) NULL,
-	  `CidadeCliente` VARCHAR(80) NULL,
-	  `UFCliente` VARCHAR(2) NULL,
-	  PRIMARY KEY (`CodigoCliente`),
-	  INDEX `INDEX_NOME` (`NomeCliente` ASC) )
+	CREATE TABLE IF NOT EXISTS `WKPedidos`.`Clientes` (
+	  `CodigoClientes` INT NOT NULL AUTO_INCREMENT,
+	  `NomeClientes` VARCHAR(80) NULL,
+	  `CidadeClientes` VARCHAR(50) NULL,
+	  `UFClientes` VARCHAR(2) NULL,
+	  PRIMARY KEY (`CodigoClientes`),
+	  INDEX `INDEX_NOME` (`NomeClientes` ASC) )
 	ENGINE = InnoDB;
 
-	CREATE TABLE IF NOT EXISTS `WKPedidos`.`Produto` (
-	  `CodigoProduto` INT NOT NULL,
-	  `DescricaoProduto` VARCHAR(100) NULL,
-	  `PrecoVendaProduto` DOUBLE NULL,
-	  PRIMARY KEY (`CodigoProduto`),
-	  INDEX `INDEX_DESCRICAO` (`DescricaoProduto` ASC) )
+	CREATE TABLE IF NOT EXISTS `WKPedidos`.`Produtos` (
+	  `CodigoProdutos` INT NOT NULL AUTO_INCREMENT,
+	  `DescricaoProdutos` VARCHAR(80) NULL,
+	  `PrecoVendaProdutos` DOUBLE NULL,
+	  PRIMARY KEY (`CodigoProdutos`),
+	  INDEX `INDEX_DESCRICAO` (`DescricaoProdutos` ASC) )
 	ENGINE = InnoDB;
 
-	CREATE TABLE IF NOT EXISTS `WKPedidos`.`Pedido` (
-	  `NumeroPedido` INT NOT NULL,
-	  `DataEmissaoPedido` DATETIME NULL,
-	  `ClientePedido` INT NULL,
-	  `ValorTotalPedido` DOUBLE NULL,
-	  PRIMARY KEY (`NumeroPedido`),
-	  INDEX `FK_CLIENTE_idx` (`ClientePedido` ASC),
+	CREATE TABLE IF NOT EXISTS `WKPedidos`.`Pedidos` (
+	  `NumeroPedidos` INT NOT NULL AUTO_INCREMENT,
+	  `DataEmissaoPedidos` DATETIME NULL,
+	  `ClientePedidos` INT NULL,
+	  `ValorTotalPedidos` DECIMAL(17,3) NULL,
+	  PRIMARY KEY (`NumeroPedidos`),
+	  INDEX `FK_CLIENTE_idx` (`ClientePedidos` ASC),
 	  CONSTRAINT `FK_CLIENTE`
-		FOREIGN KEY (`ClientePedido`)
-		REFERENCES `WKPedidos`.`Cliente` (`CodigoCliente`)
+		FOREIGN KEY (`ClientePedidos`)
+		REFERENCES `WKPedidos`.`Clientes` (`CodigoClientes`)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION)
 	ENGINE = InnoDB;
 
-	CREATE TABLE IF NOT EXISTS `WKPedidos`.`ProdutoPedido` (
-	  `idProdutoPedido` INT NOT NULL AUTO_INCREMENT,
-	  `PedidoProdutoPedido` INT NULL,
-	  `ProdutoProdutoPedido` INT NULL,
-	  `QtdProdutoPedido` DOUBLE NULL,
-	  `VlrUnitarioProdutoPedido` DOUBLE NULL,
-	  `VrlTotalProdutoPedido` DOUBLE NULL,
-	  PRIMARY KEY (`idProdutoPedido`),
-	  INDEX `FK_PEDIDO_idx` (`PedidoProdutoPedido` ASC),
-	  INDEX `FK_PRODUTO_idx` (`ProdutoProdutoPedido` ASC),
+	CREATE TABLE IF NOT EXISTS `WKPedidos`.`ItensPedido` (
+	  `idItensPedido` INT NOT NULL AUTO_INCREMENT,
+	  `PedidoItensPedido` INT NULL,
+	  `ProdutoItensPedido` INT NULL,
+	  `QuantidadeItensPedido` INT NULL,
+	  `VlrUnitarioItensPedido` DECIMAL(17,3) NULL,
+	  `VlrTotalItensPedido` DECIMAL(17,3) NULL,
+	  PRIMARY KEY (`idItensPedido`),
+	  INDEX `FK_PEDIDO_idx` (`PedidoItensPedido` ASC),
+	  INDEX `FK_PRODUTO_idx` (`ProdutoItensPedido` ASC),
 	  CONSTRAINT `FK_PEDIDO`
-		FOREIGN KEY (`PedidoProdutoPedido`)
-		REFERENCES `WKPedidos`.`Pedido` (`NumeroPedido`)
+		FOREIGN KEY (`PedidoItensPedido`)
+		REFERENCES `WKPedidos`.`Pedidos` (`NumeroPedidos`)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,
 	  CONSTRAINT `FK_PRODUTO`
-		FOREIGN KEY (`ProdutoProdutoPedido`)
-		REFERENCES `WKPedidos`.`Produto` (`CodigoProduto`)
+		FOREIGN KEY (`ProdutoItensPedido`)
+		REFERENCES `WKPedidos`.`Produtos` (`CodigoProdutos`)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION)
 	ENGINE = InnoDB;
@@ -113,48 +121,48 @@ utilizando ao máximo o seu potencial.
 	#-----------------------------------#
 
 	#CLIENTES#
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (1,'Helio Marques','Fortaleza','CE');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (2,'Paulo Souza','Fortaleza','CE');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (3,'Maria Joana','São Paulo','SP');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (4,'Pedro Davi','Paraná','PR');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (5,'Jose João','Minas Gerais','MG');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (6,'Davi Montes','Florianópolis','SC');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (7,'Andressa','Florianópolis','SC');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (8,'Felipe Paulo','Florianópolis','SC');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (9,'Ana','Florianópolis','SC');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (10,'Carlos','São Paulo','SP');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (11,'Artur','São Paulo','SP');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (12,'Pedro Paulo','São Paulo','SP');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (13,'Ana Maria','São Paulo','SP');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (14,'Henrique','São Paulo','SP');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (15,'Bastos','Fortaleza','CE');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (16,'Vagner','Fortaleza','CE');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (17,'Carlos Felipe','Fortaleza','CE');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (18,'Ana Bela','Fortaleza','CE');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (19,'Girleide','Paraná','PR');
-	INSERT INTO `wkpedidos`.`cliente` (`CodigoCliente`, `NomeCliente`, `CidadeCliente`, `UFCliente`) VALUES (20,'Marques','Paraná','PR');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Helio Marques','Fortaleza','CE');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Paulo Souza','Fortaleza','CE');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Maria Joana','São Paulo','SP');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Pedro Davi','Paraná','PR');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Jose João','Minas Gerais','MG');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Davi Montes','Florianópolis','SC');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Andressa','Florianópolis','SC');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Felipe Paulo','Florianópolis','SC');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Ana','Florianópolis','SC');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Carlos','São Paulo','SP');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Artur','São Paulo','SP');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Pedro Paulo','São Paulo','SP');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Ana Maria','São Paulo','SP');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Henrique','São Paulo','SP');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Bastos','Fortaleza','CE');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Vagner','Fortaleza','CE');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Carlos Felipe','Fortaleza','CE');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Ana Bela','Fortaleza','CE');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Girleide','Paraná','PR');
+	INSERT INTO `wkpedidos`.`clientes` ( `NomeClientes`, `CidadeClientes`, `UFClientes`) VALUES ('Marques','Paraná','PR');
 
 	#PRODUTOS#
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('1', 'Mouse', '15');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('2', 'Monitor 14p', '200');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('3', 'CPU Intel i5', '2000');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('4', 'Teclado', '25');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('5', 'Placa-Mãe X', '500');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('6', 'Placa-Mãe Y', '600');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('7', 'Placa-Mãe W', '700');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('8', 'Placa-Vídeo X', '300');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('9', 'Placa-Vídeo Y', '400');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('10', 'Placa-Vídeo W', '500');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('11', 'Processador i3', '600');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('12', 'Processador i5', '800');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('13', 'Processador i9', '1000');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('14', 'CPU i3', '1000');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('15 ', 'CPU i9', '2000');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('16', 'Gabinete X', '90');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('17', 'Gabinete Y', '100');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('18', 'Gabinete W', '110');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('19', 'Camera HD', '100');
-	INSERT INTO `wkpedidos`.`produto` (`CodigoProduto`, `DescricaoProduto`, `PrecoVendaProduto`) VALUES ('20', 'Pad-Mouse', '5.5');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Mouse', '15');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Monitor 14p', '200');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'CPU Intel i5', '2000');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Teclado', '25');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Placa-Mãe X', '500');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Placa-Mãe Y', '600');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Placa-Mãe W', '700');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Placa-Vídeo X', '300');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Placa-Vídeo Y', '400');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Placa-Vídeo W', '500');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Processador i3', '600');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Processador i5', '800');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Processador i9', '1000');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'CPU i3', '1000');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'CPU i9', '2000');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Gabinete X', '90');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Gabinete Y', '100');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Gabinete W', '110');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Camera HD', '100');
+	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Pad-Mouse', '5.5');
 
 ## Connection FIREDAC com MySQL 
 	

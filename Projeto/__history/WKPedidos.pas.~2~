@@ -1,0 +1,45 @@
+unit WKPedidos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.ExtCtrls, Winapi.ShellApi;
+
+type
+  TFCliCadPessoa = class(TForm)
+    BBCadPessoas: TBitBtn;
+    BBFechar: TBitBtn;
+    PHost: TPanel;
+    EHostName: TEdit;
+    LWK: TLabel;
+    procedure BBFecharClick(Sender: TObject);
+    procedure LWKClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FCliCadPessoa: TFCliCadPessoa;
+
+const curlWK = '';
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TFCliCadPessoa.BBFecharClick(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+procedure TFCliCadPessoa.LWKClick(Sender: TObject);
+begin
+  ShellExecute(Handle, nil, PChar(curlWK), nil, nil, SW_SHOWNORMAL);
+end;
+
+end.

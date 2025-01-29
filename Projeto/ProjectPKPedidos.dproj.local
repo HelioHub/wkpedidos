@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2025/01/29 15:44:35.956,=C:\Users\hislindo\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2025/01/29 15:45:32.326,C:\Users\hislindo\Documents\Embarcadero\Studio\Projects\ProjectPKPedidos.dproj=C:\Users\hislindo\Documents\Embarcadero\Studio\Projects\Project2.dproj</Transaction>
+    <Transaction>2025/01/29 15:46:49.543,C:\WKPedido\Projeto\View\UViewPedidos.pas=C:\Users\hislindo\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2025/01/29 15:46:49.543,C:\WKPedido\Projeto\View\UViewPedidos.dfm=C:\Users\hislindo\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2025/01/29 15:46:58.866,C:\WKPedido\Projeto\ProjectPKPedidos.dproj=C:\Users\hislindo\Documents\Embarcadero\Studio\Projects\ProjectPKPedidos.dproj</Transaction>
+    <Transaction>2025/01/29 15:47:43.624,=C:\WKPedido\Projeto\WKPedidos.pas</Transaction>
+  </Transactions>
+</BorlandProject>
