@@ -20,7 +20,7 @@ object FConsultaClientes: TFConsultaClientes
     Width = 481
     Height = 41
     Align = alBottom
-    TabOrder = 2
+    TabOrder = 0
     ExplicitTop = 270
     ExplicitWidth = 599
     DesignSize = (
@@ -45,7 +45,7 @@ object FConsultaClientes: TFConsultaClientes
       OnClick = BBSairClick
       ExplicitLeft = 513
     end
-    object BBSelecionar: TBitBtn
+    object BBGravar: TBitBtn
       Left = 303
       Top = 6
       Width = 86
@@ -118,13 +118,13 @@ object FConsultaClientes: TFConsultaClientes
         end>
     end
   end
-  object PHead: TPanel
+  object Panel1: TPanel
     Left = 0
     Top = 0
     Width = 481
     Height = 41
     Align = alTop
-    TabOrder = 0
+    TabOrder = 2
     ExplicitTop = 172
     DesignSize = (
       481
@@ -141,7 +141,7 @@ object FConsultaClientes: TFConsultaClientes
       TabOrder = 0
       Text = ''
     end
-    object BBFiltrar: TBitBtn
+    object BBAtualizar: TBitBtn
       Left = 397
       Top = 3
       Width = 75

@@ -20,9 +20,9 @@ object FConsultaProdutos: TFConsultaProdutos
     Width = 456
     Height = 41
     Align = alBottom
-    TabOrder = 0
-    ExplicitTop = 270
-    ExplicitWidth = 599
+    TabOrder = 2
+    ExplicitLeft = 1
+    ExplicitTop = 256
     DesignSize = (
       456
       41)
@@ -45,7 +45,7 @@ object FConsultaProdutos: TFConsultaProdutos
       OnClick = BBSairClick
       ExplicitLeft = 513
     end
-    object BBGravar: TBitBtn
+    object BBSelecionar: TBitBtn
       Left = 278
       Top = 6
       Width = 86
@@ -113,19 +113,19 @@ object FConsultaProdutos: TFConsultaProdutos
         end>
     end
   end
-  object Panel1: TPanel
+  object PHead: TPanel
     Left = 0
     Top = 0
     Width = 456
     Height = 41
     Align = alTop
-    TabOrder = 2
+    TabOrder = 0
     ExplicitTop = 247
     ExplicitWidth = 488
     DesignSize = (
       456
       41)
-    object LEFiltroNomeCliente: TLabeledEdit
+    object LEFiltroDescricaoItem: TLabeledEdit
       Left = 148
       Top = 10
       Width = 213
@@ -137,7 +137,7 @@ object FConsultaProdutos: TFConsultaProdutos
       TabOrder = 0
       Text = ''
     end
-    object BBAtualizar: TBitBtn
+    object BBFiltrar: TBitBtn
       Left = 370
       Top = 3
       Width = 75

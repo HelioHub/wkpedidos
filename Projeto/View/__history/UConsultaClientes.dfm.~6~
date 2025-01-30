@@ -118,7 +118,7 @@ object FConsultaClientes: TFConsultaClientes
         end>
     end
   end
-  object PHead: TPanel
+  object Panel1: TPanel
     Left = 0
     Top = 0
     Width = 481

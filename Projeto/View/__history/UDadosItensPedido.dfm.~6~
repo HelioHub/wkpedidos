@@ -20,7 +20,7 @@ object FDadosItensPedido: TFDadosItensPedido
     Width = 398
     Height = 41
     Align = alBottom
-    TabOrder = 1
+    TabOrder = 0
     ExplicitTop = 270
     ExplicitWidth = 599
     DesignSize = (
@@ -70,10 +70,10 @@ object FDadosItensPedido: TFDadosItensPedido
     Width = 398
     Height = 152
     Align = alClient
-    TabOrder = 0
+    TabOrder = 1
     ExplicitWidth = 599
     ExplicitHeight = 270
-    object SBF2: TSpeedButton
+    object SpeedButton1: TSpeedButton
       Left = 183
       Top = 9
       Width = 107
@@ -94,7 +94,7 @@ object FDadosItensPedido: TFDadosItensPedido
       TabOrder = 0
       Text = ''
     end
-    object LEDescricao: TLabeledEdit
+    object LabeledEdit1: TLabeledEdit
       Left = 116
       Top = 37
       Width = 269
@@ -107,7 +107,7 @@ object FDadosItensPedido: TFDadosItensPedido
       TabOrder = 1
       Text = ''
     end
-    object LEQtd: TLabeledEdit
+    object LabeledEdit2: TLabeledEdit
       Left = 116
       Top = 64
       Width = 109
@@ -120,9 +120,8 @@ object FDadosItensPedido: TFDadosItensPedido
       NumbersOnly = True
       TabOrder = 2
       Text = ''
-      OnExit = LEQtdExit
     end
-    object LEPreco: TLabeledEdit
+    object LabeledEdit3: TLabeledEdit
       Left = 116
       Top = 91
       Width = 109
@@ -136,7 +135,7 @@ object FDadosItensPedido: TFDadosItensPedido
       TabOrder = 3
       Text = ''
     end
-    object LEValor: TLabeledEdit
+    object LabeledEdit4: TLabeledEdit
       Left = 116
       Top = 118
       Width = 109

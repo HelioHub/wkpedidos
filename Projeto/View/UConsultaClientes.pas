@@ -12,11 +12,11 @@ type
     PRodape: TPanel;
     PDados: TPanel;
     BBSair: TBitBtn;
-    BBGravar: TBitBtn;
-    Panel1: TPanel;
+    BBSelecionar: TBitBtn;
+    PHead: TPanel;
     DBGView: TDBGrid;
     LEFiltroNomeCliente: TLabeledEdit;
-    BBAtualizar: TBitBtn;
+    BBFiltrar: TBitBtn;
     procedure BBSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private

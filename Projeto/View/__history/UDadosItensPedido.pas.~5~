@@ -47,7 +47,7 @@ end;
 
 procedure TFDadosItensPedido.LEQtdExit(Sender: TObject);
 begin
-  LEQtd.Text := FormatFloat('###,##0.00',StrToFloatDef(LEQtd.Text,10));
+  LEQtd.Text := Format('###,##0.00',StrToFloatDef(LEQtd.Text,10,2))
 end;
 
 end.
