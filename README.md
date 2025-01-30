@@ -7,6 +7,7 @@ utilizando ao máximo o seu potencial.
 ## Agrecimento pela Oportunidade
 
 ![## Atenção WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/Atencao3.png)
+
 ![## Atenção WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/Atencao.png)
 
 ## Requisitos 
@@ -212,7 +213,7 @@ utilizando ao máximo o seu potencial.
 	Name modes = CILCTD
 	SSL Cipher = 
 
-## Criação das Telas do Sistemas 
+## Criação das Telas do Sistema WKPedidos
 
-![## Telas do Sistema WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/Model/EstruturasdasTelas.png)
+![## Telas do Sistema WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/EstruturasdasTelas.png)
 
