@@ -119,28 +119,28 @@ object FViewPedidos: TFViewPedidos
   end
   object PRodape: TPanel
     Left = 0
-    Top = 305
+    Top = 412
     Width = 641
-    Height = 24
+    Height = 22
     Align = alBottom
-    Alignment = taLeftJustify
-    Caption = '   Itens do Pedido:'
-    TabOrder = 4
-    ExplicitTop = 336
+    TabOrder = 1
+    ExplicitWidth = 807
   end
-  object PViewPedidos: TPanel
+  object PView: TPanel
     Left = 0
     Top = 94
     Width = 641
-    Height = 211
+    Height = 318
     Align = alClient
     TabOrder = 2
-    ExplicitHeight = 242
+    ExplicitTop = 44
+    ExplicitWidth = 807
+    ExplicitHeight = 368
     object DBGView: TDBGrid
       Left = 1
       Top = 1
       Width = 639
-      Height = 209
+      Height = 316
       Hint = 'Duplo Click para Consultar o Pedido...'
       Align = alClient
       DataSource = DSViewPedidos
@@ -155,7 +155,6 @@ object FViewPedidos: TFViewPedidos
       TitleFont.Style = []
       Columns = <
         item
-          Color = clWheat
           Expanded = False
           Title.Caption = 'N'#250'mero do Pedido'
           Width = 103
@@ -181,7 +180,6 @@ object FViewPedidos: TFViewPedidos
           Visible = True
         end
         item
-          Color = clWheat
           Expanded = False
           Title.Alignment = taRightJustify
           Title.Caption = 'Total do Pedido'
@@ -196,7 +194,7 @@ object FViewPedidos: TFViewPedidos
     Width = 641
     Height = 50
     Align = alTop
-    TabOrder = 1
+    TabOrder = 3
     ExplicitWidth = 807
     DesignSize = (
       641
@@ -223,6 +221,7 @@ object FViewPedidos: TFViewPedidos
       EditLabel.Height = 21
       EditLabel.Caption = 'Filtrar por Nome do Cliente:'
       LabelPosition = lpLeft
+      NumbersOnly = True
       TabOrder = 1
       Text = ''
     end
@@ -240,69 +239,6 @@ object FViewPedidos: TFViewPedidos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
-    end
-  end
-  object PViewItensPedido: TPanel
-    Left = 0
-    Top = 329
-    Width = 641
-    Height = 105
-    Align = alBottom
-    TabOrder = 3
-    ExplicitTop = 335
-    object DBGrid1: TDBGrid
-      Left = 1
-      Top = 1
-      Width = 639
-      Height = 103
-      Hint = 'Duplo Click para Consultar o Pedido...'
-      Align = alClient
-      DataSource = DSViewPedidos
-      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 0
-      TitleFont.Charset = DEFAULT_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'Tahoma'
-      TitleFont.Style = []
-      Columns = <
-        item
-          Color = clSnow
-          Expanded = False
-          Title.Caption = 'Item'
-          Width = 56
-          Visible = True
-        end
-        item
-          Expanded = False
-          Title.Caption = 'Descri'#231#227'o do Item'
-          Width = 266
-          Visible = True
-        end
-        item
-          Expanded = False
-          Title.Alignment = taRightJustify
-          Title.Caption = 'Quantidade'
-          Width = 89
-          Visible = True
-        end
-        item
-          Expanded = False
-          Title.Alignment = taRightJustify
-          Title.Caption = 'Pre'#231'o Unit'#225'rio'
-          Width = 101
-          Visible = True
-        end
-        item
-          Color = clSnow
-          Expanded = False
-          Title.Alignment = taRightJustify
-          Title.Caption = 'Valor Total'
-          Width = 90
-          Visible = True
-        end>
     end
   end
   object DSViewPedidos: TDataSource

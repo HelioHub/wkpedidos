@@ -11,7 +11,7 @@ type
   TFViewPedidos = class(TForm)
     PHead: TPanel;
     PRodape: TPanel;
-    PViewPedidos: TPanel;
+    PView: TPanel;
     BBIncluir: TBitBtn;
     BBAlterar: TBitBtn;
     BBExcluir: TBitBtn;
@@ -24,8 +24,6 @@ type
     LEFiltroNumeroPedido: TLabeledEdit;
     LEFiltroNomeCliente: TLabeledEdit;
     BBAtualizar: TBitBtn;
-    PViewItensPedido: TPanel;
-    DBGrid1: TDBGrid;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BBSairClick(Sender: TObject);
   private

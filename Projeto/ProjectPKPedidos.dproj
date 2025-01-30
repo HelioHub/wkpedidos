@@ -125,12 +125,28 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="View\UViewPedidos.pas">
-            <Form>Form2</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="WKPedidos.pas">
             <Form>FWKPedidos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\UViewPedidos.pas">
+            <Form>FViewPedidos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\UConsultaClientes.pas">
+            <Form>FConsultaClientes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\UConsultaProdutos.pas">
+            <Form>FConsultaProdutos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\UDadosItensPedido.pas">
+            <Form>FDadosItensPedido</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\UDadosPedidos.pas">
+            <Form>FDadosPedidos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

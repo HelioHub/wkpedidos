@@ -125,7 +125,7 @@ object FViewPedidos: TFViewPedidos
     Align = alBottom
     Alignment = taLeftJustify
     Caption = '   Itens do Pedido:'
-    TabOrder = 4
+    TabOrder = 1
     ExplicitTop = 336
   end
   object PViewPedidos: TPanel
@@ -196,7 +196,7 @@ object FViewPedidos: TFViewPedidos
     Width = 641
     Height = 50
     Align = alTop
-    TabOrder = 1
+    TabOrder = 3
     ExplicitWidth = 807
     DesignSize = (
       641
@@ -223,6 +223,7 @@ object FViewPedidos: TFViewPedidos
       EditLabel.Height = 21
       EditLabel.Caption = 'Filtrar por Nome do Cliente:'
       LabelPosition = lpLeft
+      NumbersOnly = True
       TabOrder = 1
       Text = ''
     end
@@ -248,7 +249,7 @@ object FViewPedidos: TFViewPedidos
     Width = 641
     Height = 105
     Align = alBottom
-    TabOrder = 3
+    TabOrder = 4
     ExplicitTop = 335
     object DBGrid1: TDBGrid
       Left = 1
@@ -271,13 +272,13 @@ object FViewPedidos: TFViewPedidos
         item
           Color = clSnow
           Expanded = False
-          Title.Caption = 'Item'
+          Title.Caption = 'Produto'
           Width = 56
           Visible = True
         end
         item
           Expanded = False
-          Title.Caption = 'Descri'#231#227'o do Item'
+          Title.Caption = 'Descri'#231#227'o do Produto'
           Width = 266
           Visible = True
         end
@@ -291,7 +292,7 @@ object FViewPedidos: TFViewPedidos
         item
           Expanded = False
           Title.Alignment = taRightJustify
-          Title.Caption = 'Pre'#231'o Unit'#225'rio'
+          Title.Caption = 'Valor Unit'#225'rio'
           Width = 101
           Visible = True
         end
