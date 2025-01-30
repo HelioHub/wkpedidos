@@ -6,8 +6,8 @@ utilizando ao máximo o seu potencial.
 
 ## Agrecimento pela Oportunidade
 
-![## Atenção WK](https://github.com/HelioHub/wkpedidos/blob/main/Model/Atencao3.png)
-![## Muito Grato!](https://github.com/HelioHub/wkpedidos/blob/main/Model/Atencao.png)
+![## Atenção WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/Atencao3.png)
+![## Atenção WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/Atencao.png)
 
 ## Requisitos 
 
