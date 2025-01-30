@@ -9,13 +9,14 @@ uses
 
 type
   TFWKPedidos = class(TForm)
-    BBCadPessoas: TBitBtn;
+    BBCadPedidos: TBitBtn;
     BBFechar: TBitBtn;
     PHost: TPanel;
     EHostName: TEdit;
     LWK: TLabel;
     procedure BBFecharClick(Sender: TObject);
     procedure LWKClick(Sender: TObject);
+    procedure BBCadPedidosClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,9 +32,26 @@ implementation
 
 {$R *.dfm}
 
+uses UViewPedidos, UViewAtencao;
+
+
+procedure TFWKPedidos.BBCadPedidosClick(Sender: TObject);
+var
+  Formulario: TFViewPedidos;
+begin
+  //FViewAtencao := TFViewAtencao.Create(Application);
+  //FViewAtencao.ShowModal;
+
+  Formulario := TFViewPedidos.Create(Application);
+  Formulario.ShowModal;
+end;
 
 procedure TFWKPedidos.BBFecharClick(Sender: TObject);
+var
+  i : integer;
 begin
+  FViewAtencao := TFViewAtencao.Create(Application);
+  FViewAtencao.ShowModal;
   Application.Terminate;
 end;
 

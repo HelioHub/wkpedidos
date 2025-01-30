@@ -1,6 +1,7 @@
 object FConsultaProdutos: TFConsultaProdutos
   Left = 0
   Top = 0
+  ActiveControl = LEFiltroDescricaoItem
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Consulta Produtos'
@@ -32,13 +33,13 @@ object FConsultaProdutos: TFConsultaProdutos
       Width = 75
       Height = 25
       Anchors = [akRight]
+      Cancel = True
       Caption = '&Fechar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
-      Kind = bkClose
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 1
@@ -79,7 +80,7 @@ object FConsultaProdutos: TFConsultaProdutos
       Top = 1
       Width = 454
       Height = 208
-      Hint = 'Duplo Click para Consultar o Pedido...'
+      Hint = 'Duplo Click para Selecionar o Produto...'
       Align = alClient
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentShowHint = False
@@ -99,7 +100,7 @@ object FConsultaProdutos: TFConsultaProdutos
         end
         item
           Expanded = False
-          Title.Caption = 'Descri'#231#227'o do Item'
+          Title.Caption = 'Descri'#231#227'o do Produto'
           Width = 258
           Visible = True
         end
@@ -130,9 +131,9 @@ object FConsultaProdutos: TFConsultaProdutos
       Top = 10
       Width = 213
       Height = 21
-      EditLabel.Width = 140
+      EditLabel.Width = 137
       EditLabel.Height = 21
-      EditLabel.Caption = 'Filtrar por Descri'#231#227'o do Item:'
+      EditLabel.Caption = 'Filtrar Descri'#231#227'o do Produto:'
       LabelPosition = lpLeft
       TabOrder = 0
       Text = ''

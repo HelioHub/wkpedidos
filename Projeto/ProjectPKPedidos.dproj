@@ -149,6 +149,10 @@
             <Form>FDadosPedidos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="View\UViewAtencao.pas">
+            <Form>FViewAtencao</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

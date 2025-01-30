@@ -25,9 +25,10 @@ type
     LEFiltroNomeCliente: TLabeledEdit;
     BBAtualizar: TBitBtn;
     PViewItensPedido: TPanel;
-    DBGrid1: TDBGrid;
+    DBGViewItens: TDBGrid;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BBSairClick(Sender: TObject);
+    procedure BBIncluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,9 +42,19 @@ implementation
 
 {$R *.dfm}
 
+uses UDadosPedidos;
+
+procedure TFViewPedidos.BBIncluirClick(Sender: TObject);
+var
+  Formulario: TFDadosPedidos;
+begin
+  Formulario := TFDadosPedidos.Create(Application);
+  Formulario.ShowModal;
+end;
+
 procedure TFViewPedidos.BBSairClick(Sender: TObject);
 begin
-  DSViewPedidos.DataSet.Close;
+  //DSViewPedidos.DataSet.Close;
   Close;
 end;
 

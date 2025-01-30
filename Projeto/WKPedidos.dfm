@@ -18,6 +18,7 @@ object FWKPedidos: TFWKPedidos
     Top = 0
     Width = 662
     Height = 46
+    Cursor = crHandPoint
     Hint = 'Click para acessa nosso Site. Seja Bem-Vindo!!'
     Align = alTop
     Alignment = taCenter
@@ -35,14 +36,15 @@ object FWKPedidos: TFWKPedidos
     OnClick = LWKClick
     ExplicitWidth = 295
   end
-  object BBCadPessoas: TBitBtn
+  object BBCadPedidos: TBitBtn
     Left = 0
     Top = 46
     Width = 662
     Height = 291
+    Cursor = crHandPoint
     Hint = 'Acessa Cadastro de Pedidos'
     Align = alTop
-    Caption = 'Cadastro de Pedidos'
+    Caption = 'Cadastro de &Pedidos'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -6383,6 +6385,7 @@ object FWKPedidos: TFWKPedidos
     ParentShowHint = False
     ShowHint = True
     TabOrder = 0
+    OnClick = BBCadPedidosClick
     ExplicitTop = 40
   end
   object BBFechar: TBitBtn
@@ -6390,9 +6393,11 @@ object FWKPedidos: TFWKPedidos
     Top = 337
     Width = 662
     Height = 60
+    Cursor = crHandPoint
     Hint = 'Fecha aplica'#231#227'o.'
     Align = alClient
-    Caption = 'Fechar'
+    Cancel = True
+    Caption = '&Fechar Aplica'#231#227'o.'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16

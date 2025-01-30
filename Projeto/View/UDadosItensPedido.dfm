@@ -1,9 +1,10 @@
 object FDadosItensPedido: TFDadosItensPedido
   Left = 0
   Top = 0
+  ActiveControl = LECodigoProduto
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'Dados Itens Pedidos'
+  Caption = 'Dados Itens(Produtos) Pedidos'
   ClientHeight = 193
   ClientWidth = 398
   Color = clBtnFace
@@ -12,7 +13,9 @@ object FDadosItensPedido: TFDadosItensPedido
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OnClose = FormClose
+  OnKeyDown = FormKeyDown
   TextHeight = 13
   object PRodape: TPanel
     Left = 0
@@ -32,13 +35,13 @@ object FDadosItensPedido: TFDadosItensPedido
       Width = 75
       Height = 25
       Anchors = [akRight]
+      Cancel = True
       Caption = '&Fechar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
-      Kind = bkClose
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 1
@@ -76,10 +79,11 @@ object FDadosItensPedido: TFDadosItensPedido
     object SBF2: TSpeedButton
       Left = 183
       Top = 9
-      Width = 107
+      Width = 113
       Height = 22
-      Caption = 'F2 -Concultar Cliente'
+      Caption = 'F2 -Concultar Produto'
       StyleName = 'Windows'
+      OnClick = SBF2Click
     end
     object LECodigoProduto: TLabeledEdit
       Left = 116
@@ -102,6 +106,7 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Width = 106
       EditLabel.Height = 21
       EditLabel.Caption = 'Descri'#231#227'o do Produto:'
+      Enabled = False
       LabelPosition = lpLeft
       NumbersOnly = True
       TabOrder = 1
@@ -117,10 +122,10 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Height = 21
       EditLabel.Caption = 'Quantidade:'
       LabelPosition = lpLeft
-      NumbersOnly = True
       TabOrder = 2
       Text = ''
-      OnExit = LEQtdExit
+      OnExit = LEPrecoExit
+      OnKeyPress = LEQtdKeyPress
     end
     object LEPreco: TLabeledEdit
       Left = 116
@@ -132,9 +137,10 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Height = 21
       EditLabel.Caption = 'Pre'#231'o Unit'#225'rio:'
       LabelPosition = lpLeft
-      NumbersOnly = True
       TabOrder = 3
       Text = ''
+      OnExit = LEPrecoExit
+      OnKeyPress = LEQtdKeyPress
     end
     object LEValor: TLabeledEdit
       Left = 116
@@ -145,8 +151,8 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Width = 55
       EditLabel.Height = 21
       EditLabel.Caption = 'Valor Total:'
+      Enabled = False
       LabelPosition = lpLeft
-      NumbersOnly = True
       TabOrder = 4
       Text = ''
     end

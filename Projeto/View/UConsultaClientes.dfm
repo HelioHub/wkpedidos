@@ -1,6 +1,7 @@
 object FConsultaClientes: TFConsultaClientes
   Left = 0
   Top = 0
+  ActiveControl = LEFiltroNomeCliente
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Consulta Clientes'
@@ -32,13 +33,13 @@ object FConsultaClientes: TFConsultaClientes
       Width = 75
       Height = 25
       Anchors = [akRight]
+      Cancel = True
       Caption = '&Fechar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
-      Kind = bkClose
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 1
@@ -78,7 +79,7 @@ object FConsultaClientes: TFConsultaClientes
       Top = 1
       Width = 479
       Height = 193
-      Hint = 'Duplo Click para Consultar o Pedido...'
+      Hint = 'Duplo Click para Selecionar Cliente...'
       Align = alClient
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentShowHint = False

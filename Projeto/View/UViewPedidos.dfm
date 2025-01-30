@@ -1,6 +1,9 @@
 object FViewPedidos: TFViewPedidos
   Left = 0
   Top = 0
+  ActiveControl = LEFiltroNumeroPedido
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
   Caption = 'Pedidos'
   ClientHeight = 434
   ClientWidth = 641
@@ -51,6 +54,7 @@ object FViewPedidos: TFViewPedidos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
+      OnClick = BBIncluirClick
     end
     object BBAlterar: TBitBtn
       Left = 89
@@ -65,6 +69,7 @@ object FViewPedidos: TFViewPedidos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
+      OnClick = BBIncluirClick
     end
     object BBExcluir: TBitBtn
       Left = 170
@@ -79,19 +84,20 @@ object FViewPedidos: TFViewPedidos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
+      OnClick = BBIncluirClick
     end
     object BBSair: TBitBtn
       Left = 251
       Top = 8
       Width = 75
       Height = 30
+      Cancel = True
       Caption = '&Fechar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
-      Kind = bkClose
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 3
@@ -250,7 +256,7 @@ object FViewPedidos: TFViewPedidos
     Align = alBottom
     TabOrder = 3
     ExplicitTop = 335
-    object DBGrid1: TDBGrid
+    object DBGViewItens: TDBGrid
       Left = 1
       Top = 1
       Width = 639

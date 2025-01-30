@@ -12,7 +12,9 @@ object FDadosPedidos: TFDadosPedidos
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OnClose = FormClose
+  OnKeyDown = FormKeyDown
   TextHeight = 13
   object PRodape: TPanel
     Left = 0
@@ -31,13 +33,13 @@ object FDadosPedidos: TFDadosPedidos
       Width = 75
       Height = 25
       Anchors = [akRight]
+      Cancel = True
       Caption = '&Fechar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
-      Kind = bkClose
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 1
@@ -90,6 +92,7 @@ object FDadosPedidos: TFDadosPedidos
       Height = 22
       Caption = 'F2 -Concultar Cliente'
       StyleName = 'Windows'
+      OnClick = SBF2Click
     end
     object LENumeroPedido: TLabeledEdit
       Left = 116
@@ -107,7 +110,7 @@ object FDadosPedidos: TFDadosPedidos
     object DTPDataEmissao: TDateTimePicker
       Left = 116
       Top = 37
-      Width = 133
+      Width = 85
       Height = 21
       Date = 45686.000000000000000000
       Time = 0.829977719906310100
@@ -131,8 +134,8 @@ object FDadosPedidos: TFDadosPedidos
       Top = 64
       Width = 292
       Height = 21
+      Enabled = False
       TabOrder = 3
-      Text = 'EDescCliente'
     end
     object LETotalPedido: TLabeledEdit
       Left = 116
@@ -143,10 +146,12 @@ object FDadosPedidos: TFDadosPedidos
       EditLabel.Width = 78
       EditLabel.Height = 21
       EditLabel.Caption = 'Total do Pedido:'
+      Enabled = False
       LabelPosition = lpLeft
       NumbersOnly = True
       TabOrder = 4
       Text = ''
+      OnChange = LETotalPedidoChange
     end
   end
   object PItensPedido: TPanel
@@ -187,7 +192,7 @@ object FDadosPedidos: TFDadosPedidos
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 0
-      OnClick = BBSairClick
+      OnClick = BBIncClick
     end
     object BBAlt: TBitBtn
       Left = 91
@@ -204,7 +209,7 @@ object FDadosPedidos: TFDadosPedidos
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 1
-      OnClick = BBSairClick
+      OnClick = BBIncClick
     end
     object BBExc: TBitBtn
       Left = 172
@@ -221,7 +226,7 @@ object FDadosPedidos: TFDadosPedidos
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 2
-      OnClick = BBSairClick
+      OnClick = BBIncClick
     end
   end
   object PView: TPanel
