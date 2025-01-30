@@ -37,7 +37,6 @@ type
     procedure DBGViewKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure DBGViewDblClick(Sender: TObject);
-    procedure BBExcClick(Sender: TObject);
   private
     { Private declarations }
     procedure TratarDelete;
@@ -53,11 +52,6 @@ implementation
 {$R *.dfm}
 
 uses UConsultaClientes, UDadosItensPedido;
-
-procedure TFDadosPedidos.BBExcClick(Sender: TObject);
-begin
-  TratarDelete;
-end;
 
 procedure TFDadosPedidos.BBIncClick(Sender: TObject);
 begin

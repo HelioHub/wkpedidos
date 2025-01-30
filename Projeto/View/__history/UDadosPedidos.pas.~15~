@@ -36,11 +36,10 @@ type
     procedure LETotalPedidoChange(Sender: TObject);
     procedure DBGViewKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure DBGViewDblClick(Sender: TObject);
-    procedure BBExcClick(Sender: TObject);
   private
     { Private declarations }
     procedure TratarDelete;
+    procedure TratarEnter;
   public
     { Public declarations }
   end;
@@ -54,11 +53,6 @@ implementation
 
 uses UConsultaClientes, UDadosItensPedido;
 
-procedure TFDadosPedidos.BBExcClick(Sender: TObject);
-begin
-  TratarDelete;
-end;
-
 procedure TFDadosPedidos.BBIncClick(Sender: TObject);
 begin
   FDadosItensPedido := TFDadosItensPedido.Create(Application);
@@ -70,11 +64,6 @@ begin
   Close;
 end;
 
-procedure TFDadosPedidos.DBGViewDblClick(Sender: TObject);
-begin
-  BBAlt.Click;
-end;
-
 procedure TFDadosPedidos.DBGViewKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -83,6 +72,13 @@ begin
   begin
     TratarDelete;
     Key := 0; // Evita que o DBGrid processe o DELETE automaticamente
+  end;
+
+  // Verifica se a tecla ENTER foi pressionada
+  if Key = VK_RETURN then
+  begin
+    TratarEnter;
+    Key := 0; // Evita que o DBGrid processe o ENTER automaticamente
   end;
 end;
 
@@ -115,9 +111,14 @@ begin
   if MessageDlg('Deseja realmente excluir este Item?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
     // Deleta o registro atual
-    // DBGView.DataSource.DataSet.Delete;
+    //DBGView.DataSource.DataSet.Delete;
     BBExc.Click;
   end;
+end;
+
+procedure TFDadosPedidos.TratarEnter;
+begin
+  BBAlt.Click;
 end;
 
 end.

@@ -4,6 +4,11 @@ Para que possamos avaliar o desempenho técnico, desenvolva o teste descrito nes
 documento da melhor maneira possível, aplicando técnicas de POO, MVC, Clean Code, e 
 utilizando ao máximo o seu potencial. 
 
+## Agrecimento pela Oportunidade
+
+![## Atenção WK](https://github.com/HelioHub/wkpedidos/blob/main/Model/Atencao3.png)
+![## Muito Grato!](https://github.com/HelioHub/wkpedidos/blob/main/Model/Atencao.png)
+
 ## Requisitos 
 
 ![## Documento de Requisitos WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/Model/Requisitos1.png)
@@ -76,7 +81,7 @@ utilizando ao máximo o seu potencial.
 	CREATE TABLE IF NOT EXISTS `WKPedidos`.`Produtos` (
 	  `CodigoProdutos` INT NOT NULL AUTO_INCREMENT,
 	  `DescricaoProdutos` VARCHAR(80) NULL,
-	  `PrecoVendaProdutos` DOUBLE NULL,
+	  `PrecoVendaProdutos` DECIMAL(17,3) NULL,
 	  PRIMARY KEY (`CodigoProdutos`),
 	  INDEX `INDEX_DESCRICAO` (`DescricaoProdutos` ASC) )
 	ENGINE = InnoDB;
@@ -99,7 +104,7 @@ utilizando ao máximo o seu potencial.
 	  `idItensPedido` INT NOT NULL AUTO_INCREMENT,
 	  `PedidoItensPedido` INT NULL,
 	  `ProdutoItensPedido` INT NULL,
-	  `QuantidadeItensPedido` INT NULL,
+	  `QuantidadeItensPedido` DECIMAL(10,2) NULL,
 	  `VlrUnitarioItensPedido` DECIMAL(17,3) NULL,
 	  `VlrTotalItensPedido` DECIMAL(17,3) NULL,
 	  PRIMARY KEY (`idItensPedido`),
@@ -108,12 +113,12 @@ utilizando ao máximo o seu potencial.
 	  CONSTRAINT `FK_PEDIDO`
 		FOREIGN KEY (`PedidoItensPedido`)
 		REFERENCES `WKPedidos`.`Pedidos` (`NumeroPedidos`)
-		ON DELETE NO ACTION
+		ON DELETE CASCADE
 		ON UPDATE NO ACTION,
 	  CONSTRAINT `FK_PRODUTO`
 		FOREIGN KEY (`ProdutoItensPedido`)
 		REFERENCES `WKPedidos`.`Produtos` (`CodigoProdutos`)
-		ON DELETE NO ACTION
+		ON DELETE CASCADE
 		ON UPDATE NO ACTION)
 	ENGINE = InnoDB;
 
@@ -207,4 +212,7 @@ utilizando ao máximo o seu potencial.
 	Name modes = CILCTD
 	SSL Cipher = 
 
+## Criação das Telas do Sistemas 
+
+![## Telas do Sistema WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/Model/EstruturasdasTelas.png)
 

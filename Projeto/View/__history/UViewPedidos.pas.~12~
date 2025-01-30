@@ -31,8 +31,6 @@ type
     procedure BBIncluirClick(Sender: TObject);
     procedure DBGViewKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure DBGViewDblClick(Sender: TObject);
-    procedure BBExcluirClick(Sender: TObject);
   private
     { Private declarations }
     procedure TratarDelete;
@@ -49,11 +47,6 @@ implementation
 
 uses UDadosPedidos;
 
-procedure TFViewPedidos.BBExcluirClick(Sender: TObject);
-begin
-  TratarDelete;
-end;
-
 procedure TFViewPedidos.BBIncluirClick(Sender: TObject);
 var
   Formulario: TFDadosPedidos;
@@ -66,11 +59,6 @@ procedure TFViewPedidos.BBSairClick(Sender: TObject);
 begin
   //DSViewPedidos.DataSet.Close;
   Close;
-end;
-
-procedure TFViewPedidos.DBGViewDblClick(Sender: TObject);
-begin
-  BBAlterar.Click;
 end;
 
 procedure TFViewPedidos.DBGViewKeyDown(Sender: TObject; var Key: Word;
@@ -92,7 +80,7 @@ end;
 procedure TFViewPedidos.TratarDelete;
 begin
   // Exibe uma mensagem de confirmação antes de deletar o registro
-  if MessageDlg('Deseja realmente excluir este Pedido e seus Itens?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  if MessageDlg('Deseja realmente excluir este Item?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
     // Deleta o registro atual
     // DBGView.DataSource.DataSet.Delete;

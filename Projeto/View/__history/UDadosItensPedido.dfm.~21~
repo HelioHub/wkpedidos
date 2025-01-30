@@ -4,7 +4,7 @@ object FDadosItensPedido: TFDadosItensPedido
   ActiveControl = LECodigoProduto
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'Dados do Item(Produto) do Pedido'
+  Caption = 'Dados Itens(Produtos) Pedidos'
   ClientHeight = 193
   ClientWidth = 398
   Color = clBtnFace
@@ -14,7 +14,6 @@ object FDadosItensPedido: TFDadosItensPedido
   Font.Name = 'Tahoma'
   Font.Style = []
   KeyPreview = True
-  Position = poDesktopCenter
   OnClose = FormClose
   OnKeyDown = FormKeyDown
   TextHeight = 13
@@ -134,9 +133,9 @@ object FDadosItensPedido: TFDadosItensPedido
       Width = 109
       Height = 21
       Alignment = taRightJustify
-      EditLabel.Width = 79
+      EditLabel.Width = 71
       EditLabel.Height = 21
-      EditLabel.Caption = 'Pre'#231'o de Venda:'
+      EditLabel.Caption = 'Pre'#231'o Unit'#225'rio:'
       LabelPosition = lpLeft
       TabOrder = 3
       Text = ''

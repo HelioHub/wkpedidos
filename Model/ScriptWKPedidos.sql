@@ -25,7 +25,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `WKPedidos`.`Produtos` (
   `CodigoProdutos` INT NOT NULL AUTO_INCREMENT,
   `DescricaoProdutos` VARCHAR(80) NULL,
-  `PrecoVendaProdutos` DOUBLE NULL,
+  `PrecoVendaProdutos` DECIMAL(17,3) NULL,
   PRIMARY KEY (`CodigoProdutos`),
   INDEX `INDEX_DESCRICAO` (`DescricaoProdutos` ASC) )
 ENGINE = InnoDB;
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `WKPedidos`.`ItensPedido` (
   `idItensPedido` INT NOT NULL AUTO_INCREMENT,
   `PedidoItensPedido` INT NULL,
   `ProdutoItensPedido` INT NULL,
-  `QuantidadeItensPedido` INT NULL,
+  `QuantidadeItensPedido` DECIMAL(10,2) NULL,
   `VlrUnitarioItensPedido` DECIMAL(17,3) NULL,
   `VlrTotalItensPedido` DECIMAL(17,3) NULL,
   PRIMARY KEY (`idItensPedido`),
@@ -57,12 +57,12 @@ CREATE TABLE IF NOT EXISTS `WKPedidos`.`ItensPedido` (
   CONSTRAINT `FK_PEDIDO`
     FOREIGN KEY (`PedidoItensPedido`)
     REFERENCES `WKPedidos`.`Pedidos` (`NumeroPedidos`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_PRODUTO`
     FOREIGN KEY (`ProdutoItensPedido`)
     REFERENCES `WKPedidos`.`Produtos` (`CodigoProdutos`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 

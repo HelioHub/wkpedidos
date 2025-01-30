@@ -34,13 +34,10 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BBIncClick(Sender: TObject);
     procedure LETotalPedidoChange(Sender: TObject);
-    procedure DBGViewKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-    procedure DBGViewDblClick(Sender: TObject);
-    procedure BBExcClick(Sender: TObject);
   private
     { Private declarations }
     procedure TratarDelete;
+    procedure TratarEnter;
   public
     { Public declarations }
   end;
@@ -54,11 +51,6 @@ implementation
 
 uses UConsultaClientes, UDadosItensPedido;
 
-procedure TFDadosPedidos.BBExcClick(Sender: TObject);
-begin
-  TratarDelete;
-end;
-
 procedure TFDadosPedidos.BBIncClick(Sender: TObject);
 begin
   FDadosItensPedido := TFDadosItensPedido.Create(Application);
@@ -68,22 +60,6 @@ end;
 procedure TFDadosPedidos.BBSairClick(Sender: TObject);
 begin
   Close;
-end;
-
-procedure TFDadosPedidos.DBGViewDblClick(Sender: TObject);
-begin
-  BBAlt.Click;
-end;
-
-procedure TFDadosPedidos.DBGViewKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  // Verifica se a tecla DELETE foi pressionada
-  if Key = VK_DELETE then
-  begin
-    TratarDelete;
-    Key := 0; // Evita que o DBGrid processe o DELETE automaticamente
-  end;
 end;
 
 procedure TFDadosPedidos.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -111,13 +87,12 @@ end;
 
 procedure TFDadosPedidos.TratarDelete;
 begin
-  // Exibe uma mensagem de confirmação antes de deletar o registro
-  if MessageDlg('Deseja realmente excluir este Item?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-  begin
-    // Deleta o registro atual
-    // DBGView.DataSource.DataSet.Delete;
-    BBExc.Click;
-  end;
+
+end;
+
+procedure TFDadosPedidos.TratarEnter;
+begin
+
 end;
 
 end.

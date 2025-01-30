@@ -84,7 +84,6 @@ object FViewPedidos: TFViewPedidos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
-      OnClick = BBExcluirClick
     end
     object BBSair: TBitBtn
       Left = 251

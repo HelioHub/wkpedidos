@@ -226,7 +226,7 @@ object FDadosPedidos: TFDadosPedidos
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 2
-      OnClick = BBExcClick
+      OnClick = BBIncClick
     end
   end
   object PView: TPanel
@@ -242,7 +242,7 @@ object FDadosPedidos: TFDadosPedidos
       Top = 1
       Width = 597
       Height = 126
-      Hint = 'Duplo Click para Alterar o Item do Pedido...'
+      Hint = 'Duplo Click para Consultar o Pedido...'
       Align = alClient
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentShowHint = False
@@ -253,7 +253,6 @@ object FDadosPedidos: TFDadosPedidos
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
-      OnDblClick = DBGViewDblClick
       OnKeyDown = DBGViewKeyDown
       Columns = <
         item
@@ -279,7 +278,7 @@ object FDadosPedidos: TFDadosPedidos
         item
           Expanded = False
           Title.Alignment = taRightJustify
-          Title.Caption = 'Pre'#231'o Venda'
+          Title.Caption = 'Pre'#231'o Unit'#225'rio'
           Width = 101
           Visible = True
         end

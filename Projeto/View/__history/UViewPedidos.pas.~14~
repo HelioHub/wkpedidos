@@ -32,7 +32,6 @@ type
     procedure DBGViewKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure DBGViewDblClick(Sender: TObject);
-    procedure BBExcluirClick(Sender: TObject);
   private
     { Private declarations }
     procedure TratarDelete;
@@ -48,11 +47,6 @@ implementation
 {$R *.dfm}
 
 uses UDadosPedidos;
-
-procedure TFViewPedidos.BBExcluirClick(Sender: TObject);
-begin
-  TratarDelete;
-end;
 
 procedure TFViewPedidos.BBIncluirClick(Sender: TObject);
 var

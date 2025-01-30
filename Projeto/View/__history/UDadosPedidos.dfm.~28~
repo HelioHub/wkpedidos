@@ -226,7 +226,6 @@ object FDadosPedidos: TFDadosPedidos
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 2
-      OnClick = BBExcClick
     end
   end
   object PView: TPanel

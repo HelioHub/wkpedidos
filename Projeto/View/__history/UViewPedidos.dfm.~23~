@@ -84,7 +84,6 @@ object FViewPedidos: TFViewPedidos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
-      OnClick = BBExcluirClick
     end
     object BBSair: TBitBtn
       Left = 251
@@ -159,7 +158,6 @@ object FViewPedidos: TFViewPedidos
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
-      OnDblClick = DBGViewDblClick
       OnKeyDown = DBGViewKeyDown
       Columns = <
         item
@@ -263,11 +261,12 @@ object FViewPedidos: TFViewPedidos
       Top = 1
       Width = 639
       Height = 103
+      Hint = 'Duplo Click para Consultar o Pedido...'
       Align = alClient
       DataSource = DSViewPedidos
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentShowHint = False
-      ShowHint = False
+      ShowHint = True
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
