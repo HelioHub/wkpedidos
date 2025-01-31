@@ -68,6 +68,7 @@ var
   ItensPedido: IItemPedido;
 begin
   ItensPedido := FItemPedidoController.GetItemPedido;
+  MaskEdit(LEQtd, LEPreco, LEValor);
 
   // Preenche os dados do Item do Pedido
   ItensPedido.Pedido := pNumeroPedido;

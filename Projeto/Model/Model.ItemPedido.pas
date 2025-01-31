@@ -46,6 +46,7 @@ type
     function CalcularTotalItens(const AIdPedido: Integer): Double; // Implementação do método CalcularTotalItens
 
     procedure CarregarDados(const AFDMemTable: TFDMemTable; pPedido: String); // Implementação do método CarregarDados
+    procedure MaisVendido(const AFDMemTable: TFDMemTable); // Método Mais Vendido dos Pedidos.
 end;
 
 implementation
@@ -96,6 +97,32 @@ end;
 function TItemPedido.GetValorUnitario: Double;
 begin
   Result := FValorUnitario;
+end;
+
+procedure TItemPedido.MaisVendido(const AFDMemTable: TFDMemTable);
+begin
+  try
+    // Prepara a query para selecionar os dados
+    FQuery.SQL.Clear;
+    FQuery.SQL.Add(' SELECT pr.CodigoProdutos,');
+    FQuery.SQL.Add('        pr.DescricaoProdutos,');
+    FQuery.SQL.Add('        SUM(ip.QuantidadeItensPedido) AS TotalVendido');
+    FQuery.SQL.Add(' FROM WKPedidos.ItensPedido ip');
+    FQuery.SQL.Add(' JOIN WKPedidos.Produtos pr ON ip.ProdutoItensPedido = pr.CodigoProdutos');
+    FQuery.SQL.Add(' GROUP BY pr.CodigoProdutos, pr.DescricaoProdutos');
+    FQuery.SQL.Add(' ORDER BY TotalVendido DESC');
+    FQuery.Open;
+
+    // Copia os dados para o TFDMemTable
+    AFDMemTable.Close;
+    AFDMemTable.Data := FQuery.Data;
+    AFDMemTable.Open;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Erro ao carregar dados: ' + E.Message);
+    end;
+  end;
 end;
 
 function TItemPedido.GetValorTotal: Double;

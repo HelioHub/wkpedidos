@@ -23,7 +23,8 @@ uses
   Controller.ClienteController in 'Controller\Controller.ClienteController.pas',
   Interfaces.IProduto in 'Interfaces\Interfaces.IProduto.pas',
   Model.Produto in 'Model\Model.Produto.pas',
-  Controller.ProdutoController in 'Controller\Controller.ProdutoController.pas';
+  Controller.ProdutoController in 'Controller\Controller.ProdutoController.pas',
+  UViewMaisVendido in 'View\UViewMaisVendido.pas' {FViewMaisVendido};
 
 {$R *.res}
 

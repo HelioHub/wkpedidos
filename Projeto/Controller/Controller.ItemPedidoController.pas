@@ -19,7 +19,8 @@ type
     function CalcularTotalItens(const AIdPedido: Integer): Double;
 
     procedure CarregarDadosItensPedido(const AFDMemTable: TFDMemTable; pPedido: String);
-  end;
+    procedure MaisVendido(const AFDMemTable: TFDMemTable); // Método Mais Vendido dos Pedidos.
+ end;
 
 implementation
 
@@ -41,6 +42,11 @@ end;
 function TItemPedidoController.GetItemPedido: IItemPedido;
 begin
   Result := FItemPedido;
+end;
+
+procedure TItemPedidoController.MaisVendido(const AFDMemTable: TFDMemTable);
+begin
+  FItemPedido.MaisVendido(AFDMemTable);
 end;
 
 function TItemPedidoController.CalcularTotalItens(const AIdPedido: Integer): Double;

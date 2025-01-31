@@ -51,6 +51,10 @@ type
     ItensMemTableQuantidadeItensPedido: TBCDField;
     ItensMemTableVlrUnitarioItensPedido: TBCDField;
     ItensMemTableVlrTotalItensPedido: TBCDField;
+    N2: TMenuItem;
+    ProdutomaisVendido: TMenuItem;
+    BBVendido: TBitBtn;
+    ItensMemTableDescricaoProdutos: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BBSairClick(Sender: TObject);
     procedure BBIncluirClick(Sender: TObject);
@@ -64,6 +68,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure DSViewPedidosDataChange(Sender: TObject; Field: TField);
     procedure ItensdoPedido1Click(Sender: TObject);
+    procedure ProdutomaisVendidoClick(Sender: TObject);
+    procedure BBVendidoClick(Sender: TObject);
   private
     { Private declarations }
     FPedidoController: TPedidoController;
@@ -86,7 +92,7 @@ implementation
 
 {$R *.dfm}
 
-uses UDadosPedidos;
+uses UDadosPedidos, UViewMaisVendido;
 
 constructor TFViewPedidos.Create(AOwner: TComponent);
 begin
@@ -132,6 +138,12 @@ procedure TFViewPedidos.BBSairClick(Sender: TObject);
 begin
   DSViewPedidos.DataSet.Close;
   Close;
+end;
+
+procedure TFViewPedidos.BBVendidoClick(Sender: TObject);
+begin
+  FViewMaisVendido := TFViewMaisVendido.Create(Application);
+  FViewMaisVendido.ShowModal;
 end;
 
 procedure TFViewPedidos.DBGViewDblClick(Sender: TObject);
@@ -214,6 +226,12 @@ begin
     FormPedido.ShowModal;
   end;
   pAtualizacao;
+end;
+
+procedure TFViewPedidos.ProdutomaisVendidoClick(Sender: TObject);
+begin
+  FViewMaisVendido := TFViewMaisVendido.Create(Application);
+  FViewMaisVendido.ShowModal;
 end;
 
 procedure TFViewPedidos.TratarDelete;

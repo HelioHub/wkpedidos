@@ -33,6 +33,7 @@ type
     function CalcularTotalItens(const AIdPedido: Integer): Double; // Método para calcular o total dos itens
 
     procedure CarregarDados(const AFDMemTable: TFDMemTable; pPedido: String); // Método para carregar dados
+    procedure MaisVendido(const AFDMemTable: TFDMemTable); // Método Mais Vendido dos Pedidos.
   end;
 
 implementation

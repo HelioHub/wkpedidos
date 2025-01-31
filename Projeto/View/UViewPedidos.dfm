@@ -121,6 +121,23 @@ object FViewPedidos: TFViewPedidos
       TabOrder = 4
       Text = '100'
     end
+    object BBVendido: TBitBtn
+      Left = 379
+      Top = 8
+      Width = 75
+      Height = 30
+      Cancel = True
+      Caption = '+ Vendido'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      NumGlyphs = 2
+      ParentFont = False
+      TabOrder = 5
+      OnClick = BBVendidoClick
+    end
   end
   object PRodape: TPanel
     Left = 0
@@ -376,6 +393,13 @@ object FViewPedidos: TFViewPedidos
       Caption = 'Valor Total do Pedido'
       OnClick = ValorTotaldoPedido1Click
     end
+    object N2: TMenuItem
+      Caption = '-'
+    end
+    object ProdutomaisVendido: TMenuItem
+      Caption = 'Listar Produtos mais Vendido'
+      OnClick = ProdutomaisVendidoClick
+    end
   end
   object DSItensPedido: TDataSource
     DataSet = ItensMemTable
@@ -419,6 +443,10 @@ object FViewPedidos: TFViewPedidos
       FieldName = 'VlrTotalItensPedido'
       DisplayFormat = '###,##0.00'
       Size = 3
+    end
+    object ItensMemTableDescricaoProdutos: TStringField
+      FieldName = 'DescricaoProdutos'
+      Size = 80
     end
   end
 end

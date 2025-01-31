@@ -169,6 +169,10 @@
         <DCCReference Include="Interfaces\Interfaces.IProduto.pas"/>
         <DCCReference Include="Model\Model.Produto.pas"/>
         <DCCReference Include="Controller\Controller.ProdutoController.pas"/>
+        <DCCReference Include="View\UViewMaisVendido.pas">
+            <Form>FViewMaisVendido</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

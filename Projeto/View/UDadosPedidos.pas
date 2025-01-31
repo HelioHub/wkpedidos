@@ -33,14 +33,15 @@ type
     BBAlt: TBitBtn;
     BBExc: TBitBtn;
     LETotalPedido: TLabeledEdit;
-    DSItensPedido: TDataSource;
-    ItensMemTable: TFDMemTable;
-    ItensMemTableidItensPedido: TIntegerField;
-    ItensMemTablePedidoItensPedido: TIntegerField;
-    ItensMemTableProdutoItensPedido: TIntegerField;
-    ItensMemTableQuantidadeItensPedido: TBCDField;
-    ItensMemTableVlrUnitarioItensPedido: TBCDField;
-    ItensMemTableVlrTotalItensPedido: TBCDField;
+    DSDadosItensPedido: TDataSource;
+    ItensPedidoMemTable: TFDMemTable;
+    ItensPedidoMemTableidItensPedido: TIntegerField;
+    ItensPedidoMemTablePedidoItensPedido: TIntegerField;
+    ItensPedidoMemTableProdutoItensPedido: TIntegerField;
+    ItensPedidoMemTableQuantidadeItensPedido: TBCDField;
+    ItensPedidoMemTableVlrUnitarioItensPedido: TBCDField;
+    ItensPedidoMemTableVlrTotalItensPedido: TBCDField;
+    ItensPedidoMemTableDescricaoProdutos: TStringField;
     procedure BBSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure SBF2Click(Sender: TObject);
@@ -185,19 +186,21 @@ begin
   end
   else
   begin
-    FItemPedidoController.CarregarDadosItensPedido(ItensMemTable,
+    FItemPedidoController.CarregarDadosItensPedido(ItensPedidoMemTable,
       LENumeroPedido.Text);
     BBInc.Enabled := True;
     BBAlt.Enabled := True;
     BBExc.Enabled := True;
   end;
+  LETotalPedido.Text := FormatFloat('###,##0.00',
+    FItemPedidoController.CalcularTotalItens(StrToIntDef(LENumeroPedido.Text, 0)));
 end;
 
 procedure TFDadosPedidos.pCRUD(pAcao: TAcao);
 var
   FormItensPedido: TFDadosItensPedido;
 begin
-  if (DSItensPedido.DataSet.FieldByName('ProdutoItensPedido').IsNull) and
+  if (DSDadosItensPedido.DataSet.FieldByName('ProdutoItensPedido').IsNull) and
      (pAcao <> acIncluir) then
   begin
     Beep;
@@ -208,7 +211,7 @@ begin
   if (pAcao = acExcluir) then
   begin
     if FItemPedidoController.ExcluirItemPedido(
-       DSItensPedido.DataSet.FieldByName('idItensPedido').AsInteger) then
+       DSDadosItensPedido.DataSet.FieldByName('idItensPedido').AsInteger) then
       ShowMessage('Pedido excluído com sucesso!')
     else
       ShowMessage('Erro ao excluir pedido.');
@@ -225,8 +228,11 @@ begin
     else
     begin
       FormItensPedido.Caption := FormItensPedido.Caption + '-' + cAcaoAlterar;
-      FormItensPedido.LECodigoProduto.Text := DSItensPedido.DataSet.FieldByName('PedidoItensPedido').AsString;
-      FormItensPedido.LEQtd.Text := DSItensPedido.DataSet.FieldByName('QuantidadeItensPedido').AsString;
+      FormItensPedido.LECodigoProduto.Text := DSDadosItensPedido.DataSet.FieldByName('ProdutoItensPedido').AsString;
+      FormItensPedido.LEDescricao.Text := DSDadosItensPedido.DataSet.FieldByName('DescricaoProdutos').AsString;
+      FormItensPedido.LEQtd.Text := DSDadosItensPedido.DataSet.FieldByName('QuantidadeItensPedido').AsString;
+      FormItensPedido.LEPreco.Text := DSDadosItensPedido.DataSet.FieldByName('VlrUnitarioItensPedido').AsString;
+      FormItensPedido.LEValor.Text := DSDadosItensPedido.DataSet.FieldByName('VlrTotalItensPedido').AsString;
     end;
     FormItensPedido.ShowModal;
   end;
@@ -251,7 +257,7 @@ end;
 procedure TFDadosPedidos.TratarDelete;
 begin
   // Exibe uma mensagem de confirmação antes de deletar o registro
-  if MessageDlg('Deseja realmente excluir este Item: '+DSItensPedido.DataSet.FieldByName('ProdutoItensPedido').AsString+'?',
+  if MessageDlg('Deseja realmente excluir este Item: '+DSDadosItensPedido.DataSet.FieldByName('ProdutoItensPedido').AsString+'?',
      mtConfirmation, [mbYes, mbNo], 0) = mrYes then
     pCRUD(acExcluir);
 end;
