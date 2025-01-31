@@ -14,7 +14,7 @@ type
     destructor Destroy; override;
 
     function GetProduto: IProduto;
-    procedure CarregarDadosProdutos(const AFDMemTable: TFDMemTable; pDescricaoProduto: String);
+    procedure CarregarDadosProdutos(const AFDMemTable: TFDMemTable);
   end;
 
 implementation
@@ -37,9 +37,9 @@ begin
   Result := FProduto;
 end;
 
-procedure TProdutoController.CarregarDadosProdutos(const AFDMemTable: TFDMemTable; pDescricaoProduto: String);
+procedure TProdutoController.CarregarDadosProdutos(const AFDMemTable: TFDMemTable);
 begin
-  FProduto.CarregarDados(AFDMemTable, pDescricaoProduto);
+  FProduto.CarregarDados(AFDMemTable);
 end;
 
 end.

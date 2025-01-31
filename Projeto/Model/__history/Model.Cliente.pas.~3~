@@ -32,7 +32,7 @@ type
     property CidadeClientes: string read GetCidadeClientes write SetCidadeClientes;
     property UFClientes: string read GetUFClientes write SetUFClientes;
 
-    procedure CarregarDados(const AFDMemTable: TFDMemTable; pNomeCliente: String); // Implementação do método CarregarDados
+    procedure CarregarDados(const AFDMemTable: TFDMemTable); // Implementação do método CarregarDados
   end;
 
 implementation
@@ -100,15 +100,13 @@ begin
   FUFClientes := Value;
 end;
 
-procedure TCliente.CarregarDados(const AFDMemTable: TFDMemTable; pNomeCliente: String);
+procedure TCliente.CarregarDados(const AFDMemTable: TFDMemTable);
 begin
   try
     // Prepara a query para selecionar os dados
     FQuery.SQL.Clear;
     FQuery.SQL.Add(' SELECT CodigoClientes, NomeClientes, CidadeClientes, UFClientes');
     FQuery.SQL.Add(' FROM Clientes');
-    if pNomeCliente <> EmptyStr then
-      FQuery.SQL.Add('WHERE NomeClientes LIKE '+QuotedStr(pNomeCliente+'%'));
     FQuery.SQL.Add(' ORDER BY NomeClientes');
     FQuery.Open;
 

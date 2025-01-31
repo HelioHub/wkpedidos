@@ -29,8 +29,6 @@ type
   private
     { Private declarations }
     FClienteController: TClienteController;
-
-    procedure pAtualizacao;
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
@@ -59,12 +57,15 @@ end;
 procedure TFConsultaClientes.BBFiltrarClick(Sender: TObject);
 begin
   // Carrega os dados no TFDMemTable
-  pAtualizacao;
+  FClienteController.CarregarDadosClientes(
+    FDMemTableCliente,
+    LEFiltroNomeCliente.Text
+    );
 end;
 
 procedure TFConsultaClientes.BBSairClick(Sender: TObject);
 begin
-  BBSelecionar.Click;
+  Close;
 end;
 
 procedure TFConsultaClientes.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -73,11 +74,6 @@ begin
 end;
 
 procedure TFConsultaClientes.FormShow(Sender: TObject);
-begin
-  pAtualizacao;
-end;
-
-procedure TFConsultaClientes.pAtualizacao;
 begin
   FClienteController.CarregarDadosClientes(
     FDMemTableCliente,

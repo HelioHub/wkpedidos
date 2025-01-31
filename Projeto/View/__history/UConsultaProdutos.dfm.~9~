@@ -1,12 +1,12 @@
-object FConsultaClientes: TFConsultaClientes
+object FConsultaProdutos: TFConsultaProdutos
   Left = 0
   Top = 0
-  ActiveControl = LEFiltroNomeCliente
+  ActiveControl = LEFiltroDescricaoItem
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'Consulta Clientes'
-  ClientHeight = 277
-  ClientWidth = 481
+  Caption = 'Consulta Produtos'
+  ClientHeight = 292
+  ClientWidth = 456
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,20 +14,19 @@ object FConsultaClientes: TFConsultaClientes
   Font.Name = 'Tahoma'
   Font.Style = []
   OnClose = FormClose
-  OnShow = FormShow
   TextHeight = 13
   object PRodape: TPanel
     Left = 0
-    Top = 236
-    Width = 481
+    Top = 251
+    Width = 456
     Height = 41
     Align = alBottom
     TabOrder = 2
     DesignSize = (
-      481
+      456
       41)
     object BBSair: TBitBtn
-      Left = 395
+      Left = 370
       Top = 6
       Width = 75
       Height = 25
@@ -45,7 +44,7 @@ object FConsultaClientes: TFConsultaClientes
       OnClick = BBSairClick
     end
     object BBSelecionar: TBitBtn
-      Left = 303
+      Left = 278
       Top = 6
       Width = 86
       Height = 25
@@ -65,18 +64,17 @@ object FConsultaClientes: TFConsultaClientes
   object PDados: TPanel
     Left = 0
     Top = 41
-    Width = 481
-    Height = 195
+    Width = 456
+    Height = 210
     Align = alClient
     TabOrder = 1
     object DBGView: TDBGrid
       Left = 1
       Top = 1
-      Width = 479
-      Height = 193
-      Hint = 'Duplo Click para Selecionar Cliente...'
+      Width = 454
+      Height = 208
+      Hint = 'Duplo Click para Selecionar o Produto...'
       Align = alClient
-      DataSource = DSConslutaCliente
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentShowHint = False
       ShowHint = True
@@ -86,36 +84,25 @@ object FConsultaClientes: TFConsultaClientes
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
-      OnDblClick = BBSairClick
       Columns = <
         item
           Expanded = False
-          FieldName = 'CodigoClientes'
           Title.Caption = 'C'#243'digo '
-          Width = 41
+          Width = 52
           Visible = True
         end
         item
           Expanded = False
-          FieldName = 'NomeClientes'
-          Title.Caption = 'Nome do Cliente'
-          Width = 219
+          Title.Caption = 'Descri'#231#227'o do Produto'
+          Width = 258
           Visible = True
         end
         item
+          Alignment = taRightJustify
           Expanded = False
-          FieldName = 'CidadeClientes'
-          Title.Caption = 'Cidade'
-          Width = 149
-          Visible = True
-        end
-        item
-          Alignment = taCenter
-          Expanded = False
-          FieldName = 'UFClientes'
-          Title.Alignment = taCenter
-          Title.Caption = 'UF'
-          Width = 32
+          Title.Alignment = taRightJustify
+          Title.Caption = 'Pre'#231'o de Venda'
+          Width = 109
           Visible = True
         end>
     end
@@ -123,27 +110,27 @@ object FConsultaClientes: TFConsultaClientes
   object PHead: TPanel
     Left = 0
     Top = 0
-    Width = 481
+    Width = 456
     Height = 41
     Align = alTop
     TabOrder = 0
     DesignSize = (
-      481
+      456
       41)
-    object LEFiltroNomeCliente: TLabeledEdit
-      Left = 142
+    object LEFiltroDescricaoItem: TLabeledEdit
+      Left = 148
       Top = 10
-      Width = 246
+      Width = 213
       Height = 21
-      EditLabel.Width = 132
+      EditLabel.Width = 137
       EditLabel.Height = 21
-      EditLabel.Caption = 'Filtrar por Nome do Cliente:'
+      EditLabel.Caption = 'Filtrar Descri'#231#227'o do Produto:'
       LabelPosition = lpLeft
       TabOrder = 0
       Text = ''
     end
     object BBFiltrar: TBitBtn
-      Left = 397
+      Left = 370
       Top = 3
       Width = 75
       Height = 34
@@ -158,21 +145,5 @@ object FConsultaClientes: TFConsultaClientes
       TabOrder = 1
       OnClick = BBFiltrarClick
     end
-  end
-  object DSConslutaCliente: TDataSource
-    DataSet = FDMemTableCliente
-    Left = 168
-    Top = 121
-  end
-  object FDMemTableCliente: TFDMemTable
-    FetchOptions.AssignedValues = [evMode]
-    FetchOptions.Mode = fmAll
-    ResourceOptions.AssignedValues = [rvSilentMode]
-    ResourceOptions.SilentMode = True
-    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
-    UpdateOptions.CheckRequired = False
-    UpdateOptions.AutoCommitUpdates = True
-    Left = 280
-    Top = 121
   end
 end

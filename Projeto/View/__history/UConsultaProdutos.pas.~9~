@@ -6,9 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.Mask, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  FireDAC.Comp.Client, FireDAC.Comp.DataSet, Controller.ProdutoController,
-  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
-  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf;
+  FireDAC.Comp.Client, FireDAC.Comp.DataSet, Controller.ProdutoController;
 
 type
   TFConsultaProdutos = class(TForm)
@@ -20,17 +18,12 @@ type
     LEFiltroDescricaoItem: TLabeledEdit;
     BBFiltrar: TBitBtn;
     DBGView: TDBGrid;
-    DSConslutaProduto: TDataSource;
-    FDMemTableProduto: TFDMemTable;
     procedure BBSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure DBGViewDblClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
+    procedure BBFiltrarClick(Sender: TObject);
   private
     { Private declarations }
     FProdutoController: TProdutoController;
-
-    procedure pAtualizacao;
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
@@ -50,15 +43,16 @@ begin
   FProdutoController := TProdutoController.Create('C:\caminho\para\config.ini');
 end;
 
-procedure TFConsultaProdutos.DBGViewDblClick(Sender: TObject);
-begin
-  BBSelecionar.Click;
-end;
-
 destructor TFConsultaProdutos.Destroy;
 begin
   FProdutoController.Free;
   inherited;
+end;
+
+procedure TFConsultaProdutos.BBFiltrarClick(Sender: TObject);
+begin
+ // Carrega os dados no TFDMemTable
+ //FProdutoController.CarregarDadosProdutos(FDMemTable);
 end;
 
 procedure TFConsultaProdutos.BBSairClick(Sender: TObject);
@@ -69,20 +63,6 @@ end;
 procedure TFConsultaProdutos.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   //Action := CaFree;
-end;
-
-procedure TFConsultaProdutos.FormShow(Sender: TObject);
-begin
-  pAtualizacao;
-end;
-
-procedure TFConsultaProdutos.pAtualizacao;
-begin
- // Carrega os dados no TFDMemTable
- FProdutoController.CarregarDadosProdutos(
-  FDMemTableProduto,
-  LEFiltroDescricaoItem.Text
-  );
 end;
 
 end.

@@ -131,10 +131,10 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Width = 79
       EditLabel.Height = 21
       EditLabel.Caption = 'Pre'#231'o de Venda:'
-      Enabled = False
       LabelPosition = lpLeft
       TabOrder = 3
       Text = ''
+      OnExit = LEPrecoExit
       OnKeyPress = LEQtdKeyPress
     end
     object LEValor: TLabeledEdit

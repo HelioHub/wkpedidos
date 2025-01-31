@@ -14,7 +14,6 @@ object FConsultaClientes: TFConsultaClientes
   Font.Name = 'Tahoma'
   Font.Style = []
   OnClose = FormClose
-  OnShow = FormShow
   TextHeight = 13
   object PRodape: TPanel
     Left = 0
@@ -86,7 +85,6 @@ object FConsultaClientes: TFConsultaClientes
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
-      OnDblClick = BBSairClick
       Columns = <
         item
           Expanded = False
@@ -115,7 +113,7 @@ object FConsultaClientes: TFConsultaClientes
           FieldName = 'UFClientes'
           Title.Alignment = taCenter
           Title.Caption = 'UF'
-          Width = 32
+          Width = 34
           Visible = True
         end>
     end

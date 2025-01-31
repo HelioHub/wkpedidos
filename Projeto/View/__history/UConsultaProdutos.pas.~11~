@@ -24,8 +24,6 @@ type
     FDMemTableProduto: TFDMemTable;
     procedure BBSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure DBGViewDblClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     FProdutoController: TProdutoController;
@@ -50,11 +48,6 @@ begin
   FProdutoController := TProdutoController.Create('C:\caminho\para\config.ini');
 end;
 
-procedure TFConsultaProdutos.DBGViewDblClick(Sender: TObject);
-begin
-  BBSelecionar.Click;
-end;
-
 destructor TFConsultaProdutos.Destroy;
 begin
   FProdutoController.Free;
@@ -71,18 +64,10 @@ begin
   //Action := CaFree;
 end;
 
-procedure TFConsultaProdutos.FormShow(Sender: TObject);
-begin
-  pAtualizacao;
-end;
-
 procedure TFConsultaProdutos.pAtualizacao;
 begin
  // Carrega os dados no TFDMemTable
- FProdutoController.CarregarDadosProdutos(
-  FDMemTableProduto,
-  LEFiltroDescricaoItem.Text
-  );
+ FProdutoController.CarregarDadosProdutos(FDMemTable, );
 end;
 
 end.

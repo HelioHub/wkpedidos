@@ -108,7 +108,7 @@ begin
     FQuery.SQL.Add(' SELECT CodigoClientes, NomeClientes, CidadeClientes, UFClientes');
     FQuery.SQL.Add(' FROM Clientes');
     if pNomeCliente <> EmptyStr then
-      FQuery.SQL.Add('WHERE NomeClientes LIKE '+QuotedStr(pNomeCliente+'%'));
+      FQuery.SQL.Add('WHERE NomeClientes LIKE '+pNomeCliente+'%');
     FQuery.SQL.Add(' ORDER BY NomeClientes');
     FQuery.Open;
 

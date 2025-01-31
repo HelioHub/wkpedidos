@@ -29,7 +29,7 @@ type
     property DescricaoProdutos: string read GetDescricaoProdutos write SetDescricaoProdutos;
     property PrecoVendaProdutos: Double read GetPrecoVendaProdutos write SetPrecoVendaProdutos;
 
-    procedure CarregarDados(const AFDMemTable: TFDMemTable; pDescricaoProduto: String); // Implementação do método CarregarDados
+    procedure CarregarDados(const AFDMemTable: TFDMemTable); // Implementação do método CarregarDados
   end;
 
 implementation
@@ -87,16 +87,13 @@ begin
   FPrecoVendaProdutos := Value;
 end;
 
-procedure TProduto.CarregarDados(const AFDMemTable: TFDMemTable; pDescricaoProduto: String);
+procedure TProduto.CarregarDados(const AFDMemTable: TFDMemTable);
 begin
   try
     // Prepara a query para selecionar os dados
     FQuery.SQL.Clear;
     FQuery.SQL.Add('SELECT CodigoProdutos, DescricaoProdutos, PrecoVendaProdutos');
     FQuery.SQL.Add('FROM Produtos');
-    if pDescricaoProduto <> EmptyStr then
-      FQuery.SQL.Add('WHERE DescricaoProdutos LIKE '+QuotedStr(pDescricaoProduto+'%'));
-    FQuery.SQL.Add('ORDER BY DescricaoProdutos');
     FQuery.Open;
 
     // Copia os dados para o TFDMemTable

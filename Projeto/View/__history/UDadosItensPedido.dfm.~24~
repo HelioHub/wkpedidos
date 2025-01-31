@@ -1,6 +1,7 @@
 object FDadosItensPedido: TFDadosItensPedido
   Left = 0
   Top = 0
+  ActiveControl = LECodigoProduto
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Dados do Item(Produto) do Pedido'
@@ -24,6 +25,8 @@ object FDadosItensPedido: TFDadosItensPedido
     Height = 41
     Align = alBottom
     TabOrder = 1
+    ExplicitTop = 270
+    ExplicitWidth = 599
     DesignSize = (
       398
       41)
@@ -44,6 +47,7 @@ object FDadosItensPedido: TFDadosItensPedido
       ParentFont = False
       TabOrder = 1
       OnClick = BBSairClick
+      ExplicitLeft = 513
     end
     object BBGravar: TBitBtn
       Left = 229
@@ -61,6 +65,7 @@ object FDadosItensPedido: TFDadosItensPedido
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 0
+      ExplicitLeft = 430
     end
   end
   object PDados: TPanel
@@ -70,6 +75,8 @@ object FDadosItensPedido: TFDadosItensPedido
     Height = 152
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 599
+    ExplicitHeight = 270
     object SBF2: TSpeedButton
       Left = 183
       Top = 9
@@ -87,7 +94,6 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Width = 96
       EditLabel.Height = 21
       EditLabel.Caption = ' C'#243'digo do Produto:'
-      Enabled = False
       LabelPosition = lpLeft
       NumbersOnly = True
       TabOrder = 0
@@ -131,10 +137,10 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Width = 79
       EditLabel.Height = 21
       EditLabel.Caption = 'Pre'#231'o de Venda:'
-      Enabled = False
       LabelPosition = lpLeft
       TabOrder = 3
       Text = ''
+      OnExit = LEPrecoExit
       OnKeyPress = LEQtdKeyPress
     end
     object LEValor: TLabeledEdit

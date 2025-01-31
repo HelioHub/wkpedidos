@@ -168,7 +168,6 @@ begin
     LECodigoCliente.Text := FConsultaClientes.DSConslutaCliente.DataSet.FieldByName('CodigoClientes').AsString;
     EDescCliente.Text := FConsultaClientes.DSConslutaCliente.DataSet.FieldByName('NomeClientes').AsString;
   end;
-  FConsultaClientes.Free;
 end;
 
 procedure TFDadosPedidos.TratarDelete;

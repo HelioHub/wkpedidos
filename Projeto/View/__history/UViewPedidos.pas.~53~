@@ -163,14 +163,8 @@ begin
   else
   begin
     FormPedido := TFDadosPedidos.Create(Application);
-    if (pAcao = acIncluir) then
+    if (pAcao <> acIncluir) then
     begin
-      FormPedido.Caption := FormPedido.Caption + '-' + cAcaoIncluir;
-      FormPedido.DTPDataEmissao.DateTime := Now;
-    end
-    else
-    begin
-      FormPedido.Caption := FormPedido.Caption + '-' + cAcaoAlterar;
       FormPedido.LENumeroPedido.Text := DSViewPedidos.DataSet.FieldByName('NumeroPedidos').AsString;
       FormPedido.DTPDataEmissao.DateTime := DSViewPedidos.DataSet.FieldByName('DataEmissaoPedidos').AsDateTime;
       FormPedido.LECodigoCliente.Text := DSViewPedidos.DataSet.FieldByName('ClientePedidos').AsString;

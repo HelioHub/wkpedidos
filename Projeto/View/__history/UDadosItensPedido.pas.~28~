@@ -49,6 +49,12 @@ begin
   Close;
 end;
 
+procedure TFDadosItensPedido.ConsultProduct;
+begin
+  FConsultaProdutos := TFConsultaProdutos.Create(Application);
+  FConsultaProdutos.ShowModal;
+end;
+
 procedure TFDadosItensPedido.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := CaFree;
@@ -113,19 +119,6 @@ end;
 procedure TFDadosItensPedido.TakePoint(var LEdit: TLabeledEdit);
 begin
   LEdit.Text := StringReplace(LEdit.Text, '.', '', [rfReplaceAll, rfIgnoreCase]);
-end;
-
-procedure TFDadosItensPedido.ConsultProduct;
-begin
-  FConsultaProdutos := TFConsultaProdutos.Create(Application);
-  if FConsultaProdutos.ShowModal = mrOK then
-  begin
-    LECodigoProduto.Text := FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('CodigoProdutos').AsString;
-    LEDescricao.Text := FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('DescricaoProdutos').AsString;
-    LEPreco.Text := FormatFloat('###,##0.00',
-      FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('PrecoVendaProdutos').AsFloat);
-  end;
-  FConsultaProdutos.Free;
 end;
 
 end.

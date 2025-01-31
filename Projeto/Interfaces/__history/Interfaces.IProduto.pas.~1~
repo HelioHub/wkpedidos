@@ -19,7 +19,7 @@ type
     property DescricaoProdutos: string read GetDescricaoProdutos write SetDescricaoProdutos;
     property PrecoVendaProdutos: Double read GetPrecoVendaProdutos write SetPrecoVendaProdutos;
 
-    procedure CarregarDados(const AFDMemTable: TFDMemTable; pDescricaoProduto: String); // Método para carregar dados
+    procedure CarregarDados(const AFDMemTable: TFDMemTable); // Método para carregar dados
   end;
 
 implementation

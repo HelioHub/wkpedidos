@@ -163,12 +163,7 @@ end;
 procedure TFDadosPedidos.SBF2Click(Sender: TObject);
 begin
   FConsultaClientes := TFConsultaClientes.Create(Application);
-  if FConsultaClientes.ShowModal = mrOK then
-  begin
-    LECodigoCliente.Text := FConsultaClientes.DSConslutaCliente.DataSet.FieldByName('CodigoClientes').AsString;
-    EDescCliente.Text := FConsultaClientes.DSConslutaCliente.DataSet.FieldByName('NomeClientes').AsString;
-  end;
-  FConsultaClientes.Free;
+  FConsultaClientes.ShowModal;
 end;
 
 procedure TFDadosPedidos.TratarDelete;

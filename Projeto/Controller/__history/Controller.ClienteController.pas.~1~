@@ -10,22 +10,20 @@ type
   private
     FCliente: ICliente;
   public
-    constructor Create;
+    constructor Create(const IniFileName: string);
     destructor Destroy; override;
 
     function GetCliente: ICliente;
-    procedure CarregarDadosClientes(const AFDMemTable: TFDMemTable; pNomeCliente: String);
+    procedure CarregarDadosClientes(const AFDMemTable: TFDMemTable);
   end;
 
 implementation
 
 { TClienteController }
 
-uses WKConst;
-
-constructor TClienteController.Create;
+constructor TClienteController.Create(const IniFileName: string);
 begin
-  FCliente := TCliente.Create(cPATH_INI);
+  FCliente := TCliente.Create(IniFileName);
 end;
 
 destructor TClienteController.Destroy;
@@ -39,9 +37,9 @@ begin
   Result := FCliente;
 end;
 
-procedure TClienteController.CarregarDadosClientes(const AFDMemTable: TFDMemTable; pNomeCliente: String);
+procedure TClienteController.CarregarDadosClientes(const AFDMemTable: TFDMemTable);
 begin
-  FCliente.CarregarDados(AFDMemTable, pNomeCliente);
+  FCliente.CarregarDados(AFDMemTable);
 end;
 
 end.

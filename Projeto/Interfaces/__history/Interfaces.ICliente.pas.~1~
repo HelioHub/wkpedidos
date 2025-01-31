@@ -22,7 +22,7 @@ type
     property CidadeClientes: string read GetCidadeClientes write SetCidadeClientes;
     property UFClientes: string read GetUFClientes write SetUFClientes;
 
-    procedure CarregarDados(const AFDMemTable: TFDMemTable; pNomeCliente: String); // Método para carregar dados
+    procedure CarregarDados(const AFDMemTable: TFDMemTable); // Método para carregar dados
   end;
 
 implementation

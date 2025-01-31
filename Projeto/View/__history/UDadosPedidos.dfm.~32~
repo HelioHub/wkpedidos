@@ -1,7 +1,6 @@
 object FDadosPedidos: TFDadosPedidos
   Left = 0
   Top = 0
-  ActiveControl = DTPDataEmissao
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Dados do Pedido'
@@ -127,7 +126,6 @@ object FDadosPedidos: TFDadosPedidos
       EditLabel.Width = 88
       EditLabel.Height = 21
       EditLabel.Caption = 'C'#243'digo do Cliente:'
-      Enabled = False
       LabelPosition = lpLeft
       NumbersOnly = True
       TabOrder = 2
