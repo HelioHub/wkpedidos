@@ -41,13 +41,8 @@ type
     property ValorUnitario: Double read GetValorUnitario write SetValorUnitario;
     property ValorTotal: Double read GetValorTotal write SetValorTotal;
 
-    function Salvar: Boolean; // Implementação do método Salvar
-    function Excluir(const AId: Integer): Boolean; // Implementação do método Excluir
     function CalcularTotalItens(const AIdPedido: Integer): Double; // Implementação do método CalcularTotalItens
-
-    procedure CarregarDados(const AFDMemTable: TFDMemTable); // Implementação do método CarregarDados
-
-end;
+  end;
 
 implementation
 
@@ -153,101 +148,6 @@ begin
     on E: Exception do
     begin
       ShowMessage('Erro ao calcular total dos itens: ' + E.Message);
-    end;
-  end;
-end;
-
-function TItemPedido.Salvar: Boolean;
-begin
-  Result := False;
-  try
-    // Prepara a query para inserir ou atualizar o item de pedido
-    FQuery.SQL.Clear;
-    if FIdItemPedido = 0 then
-    begin
-      // Inserir novo item de pedido
-      FQuery.SQL.Add('INSERT INTO ItensPedido (PedidoItensPedido, ProdutoItensPedido, QuantidadeItensPedido, VlrUnitarioItensPedido, VlrTotalItensPedido)');
-      FQuery.SQL.Add('VALUES (:Pedido, :Produto, :Quantidade, :ValorUnitario, :ValorTotal)');
-    end
-    else
-    begin
-      // Atualizar item de pedido existente
-      FQuery.SQL.Add('UPDATE ItensPedido SET');
-      FQuery.SQL.Add('PedidoItensPedido = :Pedido,');
-      FQuery.SQL.Add('ProdutoItensPedido = :Produto,');
-      FQuery.SQL.Add('QuantidadeItensPedido = :Quantidade,');
-      FQuery.SQL.Add('VlrUnitarioItensPedido = :ValorUnitario,');
-      FQuery.SQL.Add('VlrTotalItensPedido = :ValorTotal');
-      FQuery.SQL.Add('WHERE idItensPedido = :IdItemPedido');
-      FQuery.ParamByName('IdItemPedido').AsInteger := FIdItemPedido;
-    end;
-
-    // Define os parâmetros da query
-    FQuery.ParamByName('Pedido').AsInteger := FPedido;
-    FQuery.ParamByName('Produto').AsInteger := FProduto;
-    FQuery.ParamByName('Quantidade').AsFloat := FQuantidade;
-    FQuery.ParamByName('ValorUnitario').AsFloat := FValorUnitario;
-    FQuery.ParamByName('ValorTotal').AsFloat := FValorTotal;
-
-    // Executa a query
-    FQuery.ExecSQL;
-
-    // Se for uma inserção, recupera o ID gerado
-    if FIdItemPedido = 0 then
-    begin
-      FQuery.SQL.Clear;
-      FQuery.SQL.Add('SELECT LAST_INSERT_ID() AS LastID');
-      FQuery.Open;
-      FIdItemPedido := FQuery.FieldByName('LastID').AsInteger;
-    end;
-
-    Result := True; // Indica que o item de pedido foi salvo com sucesso
-  except
-    on E: Exception do
-    begin
-      ShowMessage('Erro ao salvar item de pedido: ' + E.Message);
-    end;
-  end;
-end;
-
-procedure TItemPedido.CarregarDados(const AFDMemTable: TFDMemTable);
-begin
-  try
-    // Prepara a query para selecionar os dados
-    FQuery.SQL.Clear;
-    FQuery.SQL.Add('SELECT idItensPedido, PedidoItensPedido, ProdutoItensPedido, QuantidadeItensPedido, VlrUnitarioItensPedido, VlrTotalItensPedido');
-    FQuery.SQL.Add('FROM ItensPedido');
-    FQuery.Open;
-
-    // Copia os dados para o TFDMemTable
-    AFDMemTable.Close;
-    AFDMemTable.Data := FQuery.Data;
-    AFDMemTable.Open;
-  except
-    on E: Exception do
-    begin
-      ShowMessage('Erro ao carregar dados: ' + E.Message);
-    end;
-  end;
-end;
-
-function TItemPedido.Excluir(const AId: Integer): Boolean;
-begin
-  Result := False;
-  try
-    // Prepara a query para excluir o item de pedido
-    FQuery.SQL.Clear;
-    FQuery.SQL.Add('DELETE FROM ItensPedido WHERE idItensPedido = :IdItemPedido');
-    FQuery.ParamByName('IdItemPedido').AsInteger := AId;
-
-    // Executa a query
-    FQuery.ExecSQL;
-
-    Result := True; // Indica que o item de pedido foi excluído com sucesso
-  except
-    on E: Exception do
-    begin
-      ShowMessage('Erro ao excluir item de pedido: ' + E.Message);
     end;
   end;
 end;

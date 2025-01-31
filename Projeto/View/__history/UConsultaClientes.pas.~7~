@@ -20,14 +20,10 @@ type
     BBFiltrar: TBitBtn;
     procedure BBSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure BBFiltrarClick(Sender: TObject);
   private
     { Private declarations }
-    FClienteController: TClienteController;
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent); override;
-    destructor Destroy; override;
   end;
 
 var
@@ -36,24 +32,6 @@ var
 implementation
 
 {$R *.dfm}
-
-constructor TFConsultaClientes.Create(AOwner: TComponent);
-begin
-  inherited;
-  FClienteController := TClienteController.Create('C:\caminho\para\config.ini');
-end;
-
-destructor TFConsultaClientes.Destroy;
-begin
-  FClienteController.Free;
-  inherited;
-end;
-
-procedure TFConsultaClientes.BBFiltrarClick(Sender: TObject);
-begin
-  // Carrega os dados no TFDMemTable
-  //FClienteController.CarregarDadosClientes(FDMemTable);
-end;
 
 procedure TFConsultaClientes.BBSairClick(Sender: TObject);
 begin

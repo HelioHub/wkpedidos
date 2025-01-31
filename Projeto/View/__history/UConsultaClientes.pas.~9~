@@ -51,7 +51,6 @@ end;
 
 procedure TFConsultaClientes.BBFiltrarClick(Sender: TObject);
 begin
-  // Carrega os dados no TFDMemTable
   //FClienteController.CarregarDadosClientes(FDMemTable);
 end;
 

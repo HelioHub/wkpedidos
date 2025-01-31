@@ -163,6 +163,12 @@
         <DCCReference Include="Interfaces\Interfaces.IItemPedido.pas"/>
         <DCCReference Include="Model\Model.ItemPedido.pas"/>
         <DCCReference Include="Controller\Controller.ItemPedidoController.pas"/>
+        <DCCReference Include="Interfaces\Interfaces.ICliente.pas"/>
+        <DCCReference Include="Model\Model.Cliente.pas"/>
+        <DCCReference Include="Controller\Controller.ClienteController.pas"/>
+        <DCCReference Include="Interfaces\Interfaces.IProduto.pas"/>
+        <DCCReference Include="Model\Model.Produto.pas"/>
+        <DCCReference Include="Controller\Controller.ProdutoController.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

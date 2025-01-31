@@ -6,12 +6,13 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls,
   Vcl.Buttons, Vcl.ExtCtrls, Data.DB, Vcl.Mask, System.UITypes,
-  Interfaces.IPedido, WKConst, FireDAC.Stan.Intf,
+  Interfaces.IPedido, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.StorageBin,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Menus,
   Controller.PedidoController,
-  Controller.ItemPedidoController;
+  Controller.ItemPedidoController,
+  WKConst;
 
 type
   TFViewPedidos = class(TForm)

@@ -48,31 +48,4 @@ begin
   Result := FItemPedido.CalcularTotalItens(AIdPedido);
 end;
 
-function TItemPedidoController.SalvarItemPedido(AItemPedido: IItemPedido): Boolean;
-begin
-  Result := AItemPedido.Salvar;
-  {
-  if Result then
-    ShowMessage('Item de pedido salvo com sucesso!')
-  else
-    ShowMessage('Erro ao salvar item de pedido.');
-  }
-end;
-
-procedure TItemPedidoController.CarregarDadosItensPedido(const AFDMemTable: TFDMemTable);
-begin
-  FItemPedido.CarregarDados(AFDMemTable);
-end;
-
-function TItemPedidoController.ExcluirItemPedido(const AId: Integer): Boolean;
-begin
-  Result := FItemPedido.Excluir(AId);
-  {
-  if Result then
-    ShowMessage('Item de pedido excluído com sucesso!')
-  else
-    ShowMessage('Erro ao excluir item de pedido.');
-  }
-end;
-
 end.

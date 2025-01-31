@@ -6,7 +6,9 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.ComCtrls, System.UITypes,
-  Controller.PedidoController, Interfaces.IPedido;
+  Controller.PedidoController, Interfaces.IPedido,
+  Controller.ItemPedidoController,
+  WKConst;
 
 type
   TFDadosPedidos = class(TForm)
@@ -43,8 +45,11 @@ type
   private
     { Private declarations }
     FPedidoController: TPedidoController;
+    FItemPedidoController: TItemPedidoController;
 
     procedure TratarDelete;
+    procedure pCRUD(pAcao: TAcao);
+    procedure pAtualizacao;
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
@@ -64,11 +69,13 @@ constructor TFDadosPedidos.Create(AOwner: TComponent);
 begin
   inherited;
   FPedidoController := TPedidoController.Create;
+  FItemPedidoController := TItemPedidoController.Create;
 end;
 
 destructor TFDadosPedidos.Destroy;
 begin
   FPedidoController.Free;
+  FItemPedidoController.Free;
   inherited;
 end;
 
@@ -141,6 +148,16 @@ end;
 procedure TFDadosPedidos.LETotalPedidoChange(Sender: TObject);
 begin
   LETotalPedido.Text := FormatFloat('###,##0.00',StrToFloatDef(LETotalPedido.Text,0));
+end;
+
+procedure TFDadosPedidos.pAtualizacao;
+begin
+  //
+end;
+
+procedure TFDadosPedidos.pCRUD(pAcao: TAcao);
+begin
+  //
 end;
 
 procedure TFDadosPedidos.SBF2Click(Sender: TObject);

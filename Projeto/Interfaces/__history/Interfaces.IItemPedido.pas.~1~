@@ -3,7 +3,7 @@ unit Interfaces.IItemPedido;
 interface
 
 uses
-  System.SysUtils, FireDAC.Comp.Client;
+  System.SysUtils;
 
 type
   IItemPedido = interface
@@ -28,11 +28,7 @@ type
     property ValorUnitario: Double read GetValorUnitario write SetValorUnitario;
     property ValorTotal: Double read GetValorTotal write SetValorTotal;
 
-    function Salvar: Boolean; // Método para salvar o item de pedido
-    function Excluir(const AId: Integer): Boolean; // Método para excluir um item de pedido
     function CalcularTotalItens(const AIdPedido: Integer): Double; // Método para calcular o total dos itens
-
-    procedure CarregarDados(const AFDMemTable: TFDMemTable); // Método para carregar dados
   end;
 
 implementation

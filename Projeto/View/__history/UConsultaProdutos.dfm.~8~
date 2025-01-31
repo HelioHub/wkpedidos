@@ -143,7 +143,6 @@ object FConsultaProdutos: TFConsultaProdutos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
-      OnClick = BBFiltrarClick
     end
   end
 end

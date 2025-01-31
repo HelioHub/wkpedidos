@@ -17,13 +17,7 @@ uses
   Utils.IniFileHelper in 'Utils\Utils.IniFileHelper.pas',
   Interfaces.IItemPedido in 'Interfaces\Interfaces.IItemPedido.pas',
   Model.ItemPedido in 'Model\Model.ItemPedido.pas',
-  Controller.ItemPedidoController in 'Controller\Controller.ItemPedidoController.pas',
-  Interfaces.ICliente in 'Interfaces\Interfaces.ICliente.pas',
-  Model.Cliente in 'Model\Model.Cliente.pas',
-  Controller.ClienteController in 'Controller\Controller.ClienteController.pas',
-  Interfaces.IProduto in 'Interfaces\Interfaces.IProduto.pas',
-  Model.Produto in 'Model\Model.Produto.pas',
-  Controller.ProdutoController in 'Controller\Controller.ProdutoController.pas';
+  Controller.ItemPedidoController in 'Controller\Controller.ItemPedidoController.pas';
 
 {$R *.res}
 

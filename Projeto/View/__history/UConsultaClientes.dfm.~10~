@@ -1,12 +1,12 @@
-object FConsultaProdutos: TFConsultaProdutos
+object FConsultaClientes: TFConsultaClientes
   Left = 0
   Top = 0
-  ActiveControl = LEFiltroDescricaoItem
+  ActiveControl = LEFiltroNomeCliente
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'Consulta Produtos'
-  ClientHeight = 292
-  ClientWidth = 456
+  Caption = 'Consulta Clientes'
+  ClientHeight = 277
+  ClientWidth = 481
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,16 +17,16 @@ object FConsultaProdutos: TFConsultaProdutos
   TextHeight = 13
   object PRodape: TPanel
     Left = 0
-    Top = 251
-    Width = 456
+    Top = 236
+    Width = 481
     Height = 41
     Align = alBottom
     TabOrder = 2
     DesignSize = (
-      456
+      481
       41)
     object BBSair: TBitBtn
-      Left = 370
+      Left = 395
       Top = 6
       Width = 75
       Height = 25
@@ -44,7 +44,7 @@ object FConsultaProdutos: TFConsultaProdutos
       OnClick = BBSairClick
     end
     object BBSelecionar: TBitBtn
-      Left = 278
+      Left = 303
       Top = 6
       Width = 86
       Height = 25
@@ -64,16 +64,16 @@ object FConsultaProdutos: TFConsultaProdutos
   object PDados: TPanel
     Left = 0
     Top = 41
-    Width = 456
-    Height = 210
+    Width = 481
+    Height = 195
     Align = alClient
     TabOrder = 1
     object DBGView: TDBGrid
       Left = 1
       Top = 1
-      Width = 454
-      Height = 208
-      Hint = 'Duplo Click para Selecionar o Produto...'
+      Width = 479
+      Height = 193
+      Hint = 'Duplo Click para Selecionar Cliente...'
       Align = alClient
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentShowHint = False
@@ -88,21 +88,27 @@ object FConsultaProdutos: TFConsultaProdutos
         item
           Expanded = False
           Title.Caption = 'C'#243'digo '
-          Width = 52
+          Width = 41
           Visible = True
         end
         item
           Expanded = False
-          Title.Caption = 'Descri'#231#227'o do Produto'
-          Width = 258
+          Title.Caption = 'Nome do Cliente'
+          Width = 219
           Visible = True
         end
         item
-          Alignment = taRightJustify
           Expanded = False
-          Title.Alignment = taRightJustify
-          Title.Caption = 'Pre'#231'o de Venda'
-          Width = 109
+          Title.Caption = 'Cidade'
+          Width = 149
+          Visible = True
+        end
+        item
+          Alignment = taCenter
+          Expanded = False
+          Title.Alignment = taCenter
+          Title.Caption = 'UF'
+          Width = 34
           Visible = True
         end>
     end
@@ -110,27 +116,27 @@ object FConsultaProdutos: TFConsultaProdutos
   object PHead: TPanel
     Left = 0
     Top = 0
-    Width = 456
+    Width = 481
     Height = 41
     Align = alTop
     TabOrder = 0
     DesignSize = (
-      456
+      481
       41)
-    object LEFiltroDescricaoItem: TLabeledEdit
-      Left = 148
+    object LEFiltroNomeCliente: TLabeledEdit
+      Left = 142
       Top = 10
-      Width = 213
+      Width = 246
       Height = 21
-      EditLabel.Width = 137
+      EditLabel.Width = 132
       EditLabel.Height = 21
-      EditLabel.Caption = 'Filtrar Descri'#231#227'o do Produto:'
+      EditLabel.Caption = 'Filtrar por Nome do Cliente:'
       LabelPosition = lpLeft
       TabOrder = 0
       Text = ''
     end
     object BBFiltrar: TBitBtn
-      Left = 370
+      Left = 397
       Top = 3
       Width = 75
       Height = 34
@@ -143,7 +149,6 @@ object FConsultaProdutos: TFConsultaProdutos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
-      OnClick = BBFiltrarClick
     end
   end
 end

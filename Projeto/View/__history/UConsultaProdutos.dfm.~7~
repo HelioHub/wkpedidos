@@ -22,6 +22,8 @@ object FConsultaProdutos: TFConsultaProdutos
     Height = 41
     Align = alBottom
     TabOrder = 2
+    ExplicitLeft = 1
+    ExplicitTop = 256
     DesignSize = (
       456
       41)
@@ -42,6 +44,7 @@ object FConsultaProdutos: TFConsultaProdutos
       ParentFont = False
       TabOrder = 1
       OnClick = BBSairClick
+      ExplicitLeft = 513
     end
     object BBSelecionar: TBitBtn
       Left = 278
@@ -59,6 +62,7 @@ object FConsultaProdutos: TFConsultaProdutos
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 0
+      ExplicitLeft = 310
     end
   end
   object PDados: TPanel
@@ -68,6 +72,9 @@ object FConsultaProdutos: TFConsultaProdutos
     Height = 210
     Align = alClient
     TabOrder = 1
+    ExplicitTop = 0
+    ExplicitWidth = 599
+    ExplicitHeight = 270
     object DBGView: TDBGrid
       Left = 1
       Top = 1
@@ -114,6 +121,8 @@ object FConsultaProdutos: TFConsultaProdutos
     Height = 41
     Align = alTop
     TabOrder = 0
+    ExplicitTop = 247
+    ExplicitWidth = 488
     DesignSize = (
       456
       41)
@@ -143,7 +152,6 @@ object FConsultaProdutos: TFConsultaProdutos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
-      OnClick = BBFiltrarClick
     end
   end
 end

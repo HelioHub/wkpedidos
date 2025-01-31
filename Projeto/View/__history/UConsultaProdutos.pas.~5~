@@ -20,14 +20,11 @@ type
     DBGView: TDBGrid;
     procedure BBSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure BBFiltrarClick(Sender: TObject);
   private
     { Private declarations }
     FProdutoController: TProdutoController;
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent); override;
-    destructor Destroy; override;
   end;
 
 var
@@ -36,24 +33,6 @@ var
 implementation
 
 {$R *.dfm}
-
-constructor TFConsultaProdutos.Create(AOwner: TComponent);
-begin
-  inherited;
-  FProdutoController := TProdutoController.Create('C:\caminho\para\config.ini');
-end;
-
-destructor TFConsultaProdutos.Destroy;
-begin
-  FProdutoController.Free;
-  inherited;
-end;
-
-procedure TFConsultaProdutos.BBFiltrarClick(Sender: TObject);
-begin
- // Carrega os dados no TFDMemTable
- //FProdutoController.CarregarDadosProdutos(FDMemTable);
-end;
 
 procedure TFConsultaProdutos.BBSairClick(Sender: TObject);
 begin

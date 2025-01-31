@@ -5,7 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.ComCtrls;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.ComCtrls, System.UITypes,
+  Controller.PedidoController, Interfaces.IPedido,
+  Controller.ItemPedidoController,
+  WKConst;
 
 type
   TFDadosPedidos = class(TForm)
@@ -37,11 +40,18 @@ type
     procedure DBGViewKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure DBGViewDblClick(Sender: TObject);
+    procedure BBExcClick(Sender: TObject);
+    procedure BBGravarClick(Sender: TObject);
   private
     { Private declarations }
+    FPedidoController: TPedidoController;
+    FItemPedidoController: TItemPedidoController;
+
     procedure TratarDelete;
   public
     { Public declarations }
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
   end;
 
 var
@@ -52,6 +62,47 @@ implementation
 {$R *.dfm}
 
 uses UConsultaClientes, UDadosItensPedido;
+
+constructor TFDadosPedidos.Create(AOwner: TComponent);
+begin
+  inherited;
+  FPedidoController := TPedidoController.Create;
+  FItemPedidoController := TItemPedidoController.Create;
+end;
+
+destructor TFDadosPedidos.Destroy;
+begin
+  FPedidoController.Free;
+  FItemPedidoController.Free;
+  inherited;
+end;
+
+procedure TFDadosPedidos.BBExcClick(Sender: TObject);
+begin
+  TratarDelete;
+end;
+
+procedure TFDadosPedidos.BBGravarClick(Sender: TObject);
+var
+  Pedido: IPedido;
+begin
+  Pedido := FPedidoController.GetPedido;
+
+  // Preenche os dados do pedido
+  Pedido.NumeroPedido := StrToIntDef(LENumeroPedido.Text, 0);
+  Pedido.DataEmissao := DTPDataEmissao.DateTime;
+  Pedido.Cliente := StrToIntDef(LECodigoCliente.Text, 0);
+  Pedido.ValorTotal := StrToFloatDef(LETotalPedido.Text, 0);
+
+  // Salva o pedido
+  if FPedidoController.SalvarPedido(Pedido) then
+  begin
+    // Atualiza o campo NumeroPedido com o ID gerado
+    LENumeroPedido.Text := IntToStr(Pedido.NumeroPedido);
+
+    ShowMessage('Sucesso na Gravação do Pedido '+LENumeroPedido.Text+'.');
+  end;
+end;
 
 procedure TFDadosPedidos.BBIncClick(Sender: TObject);
 begin
