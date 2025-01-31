@@ -481,3 +481,24 @@ utilizando ao máximo o seu potencial.
 
 		Testabilidade:
 			A classe TDatabaseConnection pode ser facilmente mockada em testes unitários.
+			
+	8. Melhorias Futuras
+		Injeção de Dependência:
+			Use um contêiner de DI para gerenciar a instância de TDatabaseConnection e injetá-la nos Models.
+
+		Pool de Conexões:
+			Implemente um pool de conexões para melhorar o desempenho em aplicações com alta concorrência.			
+			
+	9. Utilizando arquivo Externo .INI
+		Configuração Externa:
+			Os parâmetros de conexão e o caminho da DLL são armazenados em um arquivo .INI, facilitando a manutenção.
+
+		Flexibilidade:
+			Você pode alterar os parâmetros de conexão sem recompilar o código.
+
+		Reutilização:
+			A classe TDatabaseConnection pode ser usada por todos os Models que precisam de acesso ao banco de dados.
+
+		Facilidade de Manutenção:
+			Se a configuração da conexão precisar ser alterada, basta modificar o arquivo .INI.			
+	

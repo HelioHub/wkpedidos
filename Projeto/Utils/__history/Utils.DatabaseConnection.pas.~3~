@@ -11,12 +11,10 @@ type
   private
     FConnection: TFDConnection;
     FIniFileHelper: TIniFileHelper;
-
     function GetConnection: TFDConnection;
   public
     constructor Create(const IniFileName: string);
     destructor Destroy; override;
-
     property Connection: TFDConnection read GetConnection;
   end;
 

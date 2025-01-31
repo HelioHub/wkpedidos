@@ -8,7 +8,6 @@ type
 
 const
   curlWK = 'https://wktechnology.com.br/';
-  cPATH_INI = 'C:\WKPedido\config.ini';
   cHostServidorWK = '127.0.0.1';
   cEOL = #13;
   cTabServerINI = 'SERVIDOR';

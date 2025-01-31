@@ -158,6 +158,7 @@
         <DCCReference Include="Model\Model.Pedido.pas"/>
         <DCCReference Include="Controller\Controller.PedidoController.pas"/>
         <DCCReference Include="Utils\Utils.DatabaseConnection.pas"/>
+        <DCCReference Include="Utils\Utils.IniFileHelper.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
