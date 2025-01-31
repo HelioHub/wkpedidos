@@ -25,7 +25,8 @@ type
 
     function Salvar: Boolean; // Método para salvar o pedido
     function Excluir(const AId: Integer): Boolean; // Método para excluir um pedido
-    procedure CarregarDados(const AFDMemTable: TFDMemTable); // Método para carregar dados
+    procedure CarregarDados(const AFDMemTable: TFDMemTable;
+      pNumeroPedido, pNomeCliente, pLimite: String); // Método para carregar dados
   end;
 
 implementation

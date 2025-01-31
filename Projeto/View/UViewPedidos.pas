@@ -48,6 +48,7 @@ type
     procedure BBAtualizarClick(Sender: TObject);
     procedure BBAlterarClick(Sender: TObject);
     procedure ValorTotaldoPedido1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     FPedidoController: TPedidoController;
@@ -133,11 +134,17 @@ begin
   Action := CaFree;
 end;
 
+procedure TFViewPedidos.FormShow(Sender: TObject);
+begin
+  pAtualizacao;
+end;
+
 procedure TFViewPedidos.pAtualizacao;
 begin
-  PedidosMemTable.Close;
-  FPedidoController.CarregarDadosPedidos(PedidosMemTable);
-  PedidosMemTable.Open;
+  FPedidoController.CarregarDadosPedidos(PedidosMemTable,
+    LEFiltroNumeroPedido.Text,
+    LEFiltroNomeCliente.Text,
+    ENR.Text);
 end;
 
 procedure TFViewPedidos.pCRUD(pAcao: TAcao);
@@ -166,6 +173,7 @@ begin
     if (pAcao = acIncluir) then
     begin
       FormPedido.Caption := FormPedido.Caption + '-' + cAcaoIncluir;
+      FormPedido.LENumeroPedido.Clear;
       FormPedido.DTPDataEmissao.DateTime := Now;
     end
     else
@@ -207,8 +215,8 @@ begin
     // Calcula o total dos itens do pedido
     TotalItens := FItemPedidoController.CalcularTotalItens(IdPedido);
     ShowMessage('Valor Total do Pedido '+
-                DSViewPedidos.DataSet.FieldByName('NumeroPedidos').AsString+
-                ': ' + FormatFloat('###,##0.00',TotalItens));
+                  DSViewPedidos.DataSet.FieldByName('NumeroPedidos').AsString+
+                    ': ' + FormatFloat('###,##0.00',TotalItens));
   end
   else
     ShowMessage('ID do pedido inválido.');

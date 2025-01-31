@@ -165,8 +165,12 @@ begin
   FConsultaClientes := TFConsultaClientes.Create(Application);
   if FConsultaClientes.ShowModal = mrOK then
   begin
-    LECodigoCliente.Text := FConsultaClientes.DSConslutaCliente.DataSet.FieldByName('CodigoClientes').AsString;
-    EDescCliente.Text := FConsultaClientes.DSConslutaCliente.DataSet.FieldByName('NomeClientes').AsString;
+    LECodigoCliente.Text := FConsultaClientes.
+      DSConslutaCliente.
+        DataSet.FieldByName('CodigoClientes').AsString;
+    EDescCliente.Text := FConsultaClientes.
+      DSConslutaCliente.
+        DataSet.FieldByName('NomeClientes').AsString;
   end;
   FConsultaClientes.Free;
 end;

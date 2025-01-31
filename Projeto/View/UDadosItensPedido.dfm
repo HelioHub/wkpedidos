@@ -119,7 +119,7 @@ object FDadosItensPedido: TFDadosItensPedido
       LabelPosition = lpLeft
       TabOrder = 2
       Text = ''
-      OnExit = LEPrecoExit
+      OnExit = LEQtdExit
       OnKeyPress = LEQtdKeyPress
     end
     object LEPreco: TLabeledEdit

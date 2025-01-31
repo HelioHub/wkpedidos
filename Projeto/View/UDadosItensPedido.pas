@@ -23,8 +23,8 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure SBF2Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure LEPrecoExit(Sender: TObject);
     procedure LEQtdKeyPress(Sender: TObject; var Key: Char);
+    procedure LEQtdExit(Sender: TObject);
   private
     { Private declarations }
     procedure OnlyNumber(var Key: char; ETextEdit: String);
@@ -61,7 +61,7 @@ begin
     ConsultProduct;
 end;
 
-procedure TFDadosItensPedido.LEPrecoExit(Sender: TObject);
+procedure TFDadosItensPedido.LEQtdExit(Sender: TObject);
 begin
   MaskEdit(LEQtd, LEPreco, LEValor);
 end;

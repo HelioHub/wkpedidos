@@ -14,6 +14,7 @@ object FViewPedidos: TFViewPedidos
   Font.Name = 'Tahoma'
   Font.Style = []
   OnClose = FormClose
+  OnShow = FormShow
   TextHeight = 13
   object PHead: TPanel
     Left = 0
