@@ -1,6 +1,7 @@
 object FViewPedidos: TFViewPedidos
   Left = 0
   Top = 0
+  ActiveControl = LEFiltroNumeroPedido
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Pedidos'
@@ -68,6 +69,7 @@ object FViewPedidos: TFViewPedidos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
+      OnClick = BBIncluirClick
     end
     object BBExcluir: TBitBtn
       Left = 170
@@ -82,19 +84,20 @@ object FViewPedidos: TFViewPedidos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
+      OnClick = BBExcluirClick
     end
     object BBSair: TBitBtn
       Left = 251
       Top = 8
       Width = 75
       Height = 30
+      Cancel = True
       Caption = '&Fechar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
-      Kind = bkClose
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 3
@@ -144,7 +147,7 @@ object FViewPedidos: TFViewPedidos
       Top = 1
       Width = 639
       Height = 209
-      Hint = 'Duplo Click para Consultar o Pedido...'
+      Hint = 'Duplo Click para Alterar o Pedido...'
       Align = alClient
       DataSource = DSViewPedidos
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -156,6 +159,8 @@ object FViewPedidos: TFViewPedidos
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      OnDblClick = DBGViewDblClick
+      OnKeyDown = DBGViewKeyDown
       Columns = <
         item
           Color = clWheat
@@ -258,12 +263,11 @@ object FViewPedidos: TFViewPedidos
       Top = 1
       Width = 639
       Height = 103
-      Hint = 'Duplo Click para Consultar o Pedido...'
       Align = alClient
       DataSource = DSViewPedidos
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentShowHint = False
-      ShowHint = True
+      ShowHint = False
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -294,7 +298,7 @@ object FViewPedidos: TFViewPedidos
         item
           Expanded = False
           Title.Alignment = taRightJustify
-          Title.Caption = 'Pre'#231'o Unit'#225'rio'
+          Title.Caption = 'Pre'#231'o Venda'
           Width = 101
           Visible = True
         end

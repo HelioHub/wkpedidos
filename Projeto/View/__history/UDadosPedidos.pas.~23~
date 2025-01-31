@@ -60,13 +60,13 @@ implementation
 
 uses UConsultaClientes, UDadosItensPedido;
 
-constructor TFDadosPedidos.Create(AOwner: TComponent);
+constructor TFormPedido.Create(AOwner: TComponent);
 begin
   inherited;
   FPedidoController := TPedidoController.Create;
 end;
 
-destructor TFDadosPedidos.Destroy;
+destructor TFormPedido.Destroy;
 begin
   FPedidoController.Free;
   inherited;

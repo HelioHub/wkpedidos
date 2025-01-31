@@ -9,10 +9,7 @@ uses
   UDadosItensPedido in 'View\UDadosItensPedido.pas' {FDadosItensPedido},
   UDadosPedidos in 'View\UDadosPedidos.pas' {FDadosPedidos},
   UViewAtencao in 'View\UViewAtencao.pas' {FViewAtencao},
-  WKConst in 'WKConst.pas',
-  Interfaces.IPedido in 'Interfaces\Interfaces.IPedido.pas',
-  Model.Pedido in 'Model\Model.Pedido.pas',
-  Controller.PedidoController in 'Controller\Controller.PedidoController.pas';
+  WKConst in 'WKConst.pas';
 
 {$R *.res}
 

@@ -11,8 +11,7 @@ uses
   UViewAtencao in 'View\UViewAtencao.pas' {FViewAtencao},
   WKConst in 'WKConst.pas',
   Interfaces.IPedido in 'Interfaces\Interfaces.IPedido.pas',
-  Model.Pedido in 'Model\Model.Pedido.pas',
-  Controller.PedidoController in 'Controller\Controller.PedidoController.pas';
+  Model.Pedido in 'Model\Model.Pedido.pas';
 
 {$R *.res}
 

@@ -27,6 +27,10 @@ type
     procedure LEQtdKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
+    procedure OnlyNumber(var Key: char; ETextEdit: String);
+    procedure MaskEdit(var LEAmount, LEPrice, LEValue: TLabeledEdit);
+    procedure TakePoint(var LEdit: TLabeledEdit);
+    procedure ConsultProduct;
   public
     { Public declarations }
   end;
@@ -45,6 +49,12 @@ begin
   Close;
 end;
 
+procedure TFDadosItensPedido.ConsultProduct;
+begin
+  FConsultaProdutos := TFConsultaProdutos.Create(Application);
+  FConsultaProdutos.ShowModal;
+end;
+
 procedure TFDadosItensPedido.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := CaFree;
@@ -54,45 +64,62 @@ procedure TFDadosItensPedido.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if key = vk_F2 then
-    SBF2.Click;
+    ConsultProduct;
 end;
 
 procedure TFDadosItensPedido.LEPrecoExit(Sender: TObject);
-var
-  dQtd, dPreco : Double;
 begin
-  dQtd := StrToFloatDef(LEQtd.Text,0);
-  dPreco := StrToFloatDef(LEPreco.Text,0);
-  LEQtd.Text := FormatFloat('###,##0.00',dQtd);
-  LEPreco.Text := FormatFloat('###,##0.00',dPreco);
-  LEValor.Text := FormatFloat('###,##0.00',dQtd*dPreco);
+  MaskEdit(LEQtd, LEPreco, LEValor);
 end;
 
 procedure TFDadosItensPedido.LEQtdKeyPress(Sender: TObject; var Key: Char);
 var
   edText : String;
 begin
-  edText := (Sender as TEdit).Text;
+  edText := (Sender as TLabeledEdit).Text;
+  OnlyNumber(Key, edText);
+end;
 
-  // Permite apenas números (0-9), ponto decimal (.) e teclas de controle (Backspace, Delete, etc.)
-  if not (Key in ['0'..'9', '.', #8, #46]) then
+procedure TFDadosItensPedido.MaskEdit(var LEAmount, LEPrice, LEValue: TLabeledEdit);
+var
+  dAmount, dPrice : Double;
+begin
+  TakePoint(LEAmount);
+  TakePoint(LEPreco);
+
+  dAmount := StrToFloatDef(LEAmount.Text,0);
+  dPrice := StrToFloatDef(LEPreco.Text,0);
+  LEAmount.Text := FormatFloat('###,##0.00',dAmount);
+  LEPrice.Text := FormatFloat('###,##0.00',dPrice);
+  LEValue.Text := FormatFloat('###,##0.00',dAmount*dPrice);
+end;
+
+procedure TFDadosItensPedido.OnlyNumber(var Key: char; ETextEdit: String);
+begin
+  // Permite apenas números (0-9), decimal (,) e teclas de controle (Backspace, Delete, etc.)
+  //if not (Key in ['0'..'9', ',', #8, #46]) then
+  if not CharInSet(Key, ['0'..'9', ',', #8, #46]) then
   begin
-    Key := #0; // Ignora a tecla pressionada
+    Key := #0;
     Exit;
   end;
 
-  // Verifica se já existe um ponto decimal no texto
-  if (Key = '.') and (Pos('.', edText) > 0) then
+  // Verifica se já existe um decimal no texto
+  if (Key = ',') and (Pos(',', ETextEdit) > 0) then
   begin
-    Key := #0; // Ignora a tecla pressionada se já houver um ponto decimal
+    Key := #0;
     Exit;
   end;
 end;
 
 procedure TFDadosItensPedido.SBF2Click(Sender: TObject);
 begin
-  FConsultaProdutos := TFConsultaProdutos.Create(Application);
-  FConsultaProdutos.ShowModal;
+  ConsultProduct;
+end;
+
+procedure TFDadosItensPedido.TakePoint(var LEdit: TLabeledEdit);
+begin
+  LEdit.Text := StringReplace(LEdit.Text, '.', '', [rfReplaceAll, rfIgnoreCase]);
 end;
 
 end.

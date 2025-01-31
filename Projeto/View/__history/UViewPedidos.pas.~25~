@@ -58,7 +58,7 @@ uses UDadosPedidos;
 
 procedure TFViewPedidos.BBAtualizarClick(Sender: TObject);
 begin
-  //FPedidoController.SalvarPedido()
+  //FPedidoController.ListarPedidos;
 end;
 
 procedure TFViewPedidos.BBExcluirClick(Sender: TObject);

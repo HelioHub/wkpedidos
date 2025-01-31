@@ -248,6 +248,7 @@ object FViewPedidos: TFViewPedidos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
+      OnClick = BBAtualizarClick
     end
   end
   object PViewItensPedido: TPanel

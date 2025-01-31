@@ -97,7 +97,6 @@ end;
 procedure TFDadosItensPedido.OnlyNumber(var Key: char; ETextEdit: String);
 begin
   // Permite apenas números (0-9), decimal (,) e teclas de controle (Backspace, Delete, etc.)
-  //if not (Key in ['0'..'9', ',', #8, #46]) then
   if not CharInSet(Key, ['0'..'9', ',', #8, #46]) then
   begin
     Key := #0;

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.ComCtrls;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.ComCtrls, System.UITypes;
 
 type
   TFDadosPedidos = class(TForm)
@@ -33,8 +33,14 @@ type
     procedure SBF2Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BBIncClick(Sender: TObject);
+    procedure LETotalPedidoChange(Sender: TObject);
+    procedure DBGViewKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure DBGViewDblClick(Sender: TObject);
+    procedure BBExcClick(Sender: TObject);
   private
     { Private declarations }
+    procedure TratarDelete;
   public
     { Public declarations }
   end;
@@ -46,17 +52,38 @@ implementation
 
 {$R *.dfm}
 
-uses UConsultaClientes, UConsultaProdutos;
+uses UConsultaClientes, UDadosItensPedido;
+
+procedure TFDadosPedidos.BBExcClick(Sender: TObject);
+begin
+  TratarDelete;
+end;
 
 procedure TFDadosPedidos.BBIncClick(Sender: TObject);
 begin
-  FConsultaProdutos := TFConsultaProdutos.Create(Application);
-  FConsultaProdutos.ShowModal;
+  FDadosItensPedido := TFDadosItensPedido.Create(Application);
+  FDadosItensPedido.ShowModal;
 end;
 
 procedure TFDadosPedidos.BBSairClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TFDadosPedidos.DBGViewDblClick(Sender: TObject);
+begin
+  BBAlt.Click;
+end;
+
+procedure TFDadosPedidos.DBGViewKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  // Verifica se a tecla DELETE foi pressionada
+  if Key = VK_DELETE then
+  begin
+    TratarDelete;
+    Key := 0; // Evita que o DBGrid processe o DELETE automaticamente
+  end;
 end;
 
 procedure TFDadosPedidos.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -71,10 +98,26 @@ begin
     SBF2.Click;
 end;
 
+procedure TFDadosPedidos.LETotalPedidoChange(Sender: TObject);
+begin
+  LETotalPedido.Text := FormatFloat('###,##0.00',StrToFloatDef(LETotalPedido.Text,0));
+end;
+
 procedure TFDadosPedidos.SBF2Click(Sender: TObject);
 begin
   FConsultaClientes := TFConsultaClientes.Create(Application);
   FConsultaClientes.ShowModal;
+end;
+
+procedure TFDadosPedidos.TratarDelete;
+begin
+  // Exibe uma mensagem de confirmação antes de deletar o registro
+  if MessageDlg('Deseja realmente excluir este Item?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+    // Deleta o registro atual
+    // DBGView.DataSource.DataSet.Delete;
+    BBExc.Click;
+  end;
 end;
 
 end.

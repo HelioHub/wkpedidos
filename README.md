@@ -435,3 +435,37 @@ utilizando ao máximo o seu potencial.
 
 ![## Telas do Sistema WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/EstruturasdasTelas.png)
 
+## Padrão MVC (Model-View-Controller) e Programação Orientada a Interface (POI)
+    
+   Seguindo padrão MVC e POI. Vou estruturar o código de forma modular e com boas práticas de desenvolvimento.
+
+	1. Estrutura do Projeto
+		Vamos organizar o projeto da seguinte forma:
+		Pastas:
+			Model: Contém as classes que representam as entidades do banco de dados.
+			Controller: Contém as classes que gerenciam a lógica de negócio e a interação com o banco de dados.
+			Interfaces: Contém as interfaces que definem os contratos para as classes.
+			View: Contém as interfaces gráficas (forms) que interagem com o usuário.
+
+		Classes:
+			Cada tabela do banco de dados terá uma classe no Model.
+			Cada classe do Model terá uma interface correspondente no Interfaces.
+			O Controller fará a mediação entre o Model e a View.
+
+	2. Interfaces
+		Vamos definir interfaces para garantir o desacoplamento e a flexibilidade do código.   
+		
+	3. Model
+		Aqui estão as classes que representam as entidades do banco de dados.		
+		
+	4. Controller
+		Aqui estão as classes que gerenciam a lógica de negócio.		
+	   
+	5. View
+		Aqui está um exemplo de como usar o Controller e o Model em um formulário.		
+		
+	6. Boas Práticas
+		Injeção de Dependência: Contêineres de DI para gerenciar as dependências.
+		Testes Unitários: Testes para as classes do Model e Controller.
+		Validações: Adicione validações nos métodos do Controller.		
+

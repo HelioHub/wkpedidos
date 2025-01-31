@@ -154,6 +154,9 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="WKConst.pas"/>
+        <DCCReference Include="Interfaces\Interfaces.IPedido.pas"/>
+        <DCCReference Include="Model\Model.Pedido.pas"/>
+        <DCCReference Include="Controller\Controller.PedidoController.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
