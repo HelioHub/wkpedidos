@@ -35,7 +35,6 @@ type
 
     function Salvar: Boolean; // Implementação do método Salvar
     function Excluir(const AId: Integer): Boolean; // Implementação do método Excluir
-    function CalcularTotalItens(const AIdPedido: Integer): Double; // Implementação do método CalcularTotalItens
     procedure CarregarDados(const AFDMemTable: TFDMemTable); // Implementação do método CarregarDados
   end;
 
@@ -202,29 +201,6 @@ begin
     on E: Exception do
     begin
       ShowMessage('Erro ao excluir pedido: ' + E.Message);
-    end;
-  end;
-end;
-
-function TPedido.CalcularTotalItens(const AIdPedido: Integer): Double;
-begin
-  Result := 0;
-  try
-    // Prepara a query para calcular o total dos itens do pedido
-    FQuery.SQL.Clear;
-    FQuery.SQL.Add(' SELECT SUM(VlrTotalItensPedido) AS TotalItens');
-    FQuery.SQL.Add(' FROM ItensPedido');
-    FQuery.SQL.Add(' WHERE PedidoItensPedido = :Pedido');
-    FQuery.ParamByName('Pedido').AsInteger := AIdPedido;
-    FQuery.Open;
-
-    // Retorna o total dos itens
-    if not FQuery.FieldByName('TotalItens').IsNull then
-      Result := FQuery.FieldByName('TotalItens').AsFloat;
-  except
-    on E: Exception do
-    begin
-      ShowMessage('Erro ao calcular total dos itens: ' + E.Message);
     end;
   end;
 end;

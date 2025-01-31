@@ -16,7 +16,6 @@ type
     function GetPedido: IPedido;
     function SalvarPedido(APedido: IPedido) : Boolean;
     function ExcluirPedido(const AId: Integer): Boolean;
-    function CalcularTotalItens(const AIdPedido: Integer): Double;
     procedure CarregarDadosPedidos(const AFDMemTable: TFDMemTable);
   end;
 
@@ -55,11 +54,6 @@ end;
 function TPedidoController.ExcluirPedido(const AId: Integer): Boolean;
 begin
   Result := FPedido.Excluir(AId);
-end;
-
-function TPedidoController.CalcularTotalItens(const AIdPedido: Integer): Double;
-begin
-  Result := FPedido.CalcularTotalItens(AIdPedido);
 end;
 
 end.
