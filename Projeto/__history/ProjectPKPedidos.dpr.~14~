@@ -12,8 +12,7 @@ uses
   WKConst in 'WKConst.pas',
   Interfaces.IPedido in 'Interfaces\Interfaces.IPedido.pas',
   Model.Pedido in 'Model\Model.Pedido.pas',
-  Controller.PedidoController in 'Controller\Controller.PedidoController.pas',
-  Utils.DatabaseConnection in 'Utils\Utils.DatabaseConnection.pas';
+  Controller.PedidoController in 'Controller\Controller.PedidoController.pas';
 
 {$R *.res}
 

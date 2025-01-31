@@ -29,5 +29,7 @@
     <Transaction>2025/01/30 23:52:44.933,C:\WKPedido\Projeto\Model\Model.Pedido.pas=C:\WKPedido\Projeto\Unit1.pas</Transaction>
     <Transaction>2025/01/30 23:58:23.154,=C:\WKPedido\Projeto\Unit1.pas</Transaction>
     <Transaction>2025/01/30 23:59:07.505,C:\WKPedido\Projeto\Controller\Controller.PedidoController.pas=C:\WKPedido\Projeto\Unit1.pas</Transaction>
+    <Transaction>2025/01/31 01:57:52.784,=C:\WKPedido\Projeto\Unit1.pas</Transaction>
+    <Transaction>2025/01/31 01:59:38.862,C:\WKPedido\Projeto\Utils\Utils.DatabaseConnection.pas=C:\WKPedido\Projeto\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

@@ -469,3 +469,15 @@ utilizando ao máximo o seu potencial.
 		Testes Unitários: Testes para as classes do Model e Controller.
 		Validações: Adicione validações nos métodos do Controller.		
 
+	7. Outras Vantagens SOLID:
+		Reutilização:
+			A classe TDatabaseConnection pode ser usada por todos os Models que precisam de acesso ao banco de dados.
+
+		Facilidade de Manutenção:
+			Se a configuração da conexão precisar ser alterada, basta modificar a classe TDatabaseConnection.
+
+		Desacoplamento:
+			Os Models não precisam saber como a conexão é configurada, apenas usam a conexão fornecida.
+
+		Testabilidade:
+			A classe TDatabaseConnection pode ser facilmente mockada em testes unitários.
