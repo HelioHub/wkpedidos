@@ -16,5 +16,6 @@
     <Transaction>2025/01/30 08:55:22.040,=C:\WKPedido\Projeto\Unit1.pas</Transaction>
     <Transaction>2025/01/30 09:34:39.307,C:\WKPedido\Projeto\View\UViewAtencao.pas=C:\WKPedido\Projeto\Unit1.pas</Transaction>
     <Transaction>2025/01/30 09:34:39.307,C:\WKPedido\Projeto\View\UViewAtencao.dfm=C:\WKPedido\Projeto\Unit1.dfm</Transaction>
+    <Transaction>2025/01/30 21:38:06.904,=C:\WKPedido\Projeto\WKConst.pas</Transaction>
   </Transactions>
 </BorlandProject>

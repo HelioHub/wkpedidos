@@ -26,29 +26,23 @@ type
 var
   FWKPedidos: TFWKPedidos;
 
-const curlWK = '';
-
 implementation
 
 {$R *.dfm}
 
-uses UViewPedidos, UViewAtencao;
+uses UViewPedidos, UViewAtencao, WKConst;
 
 
 procedure TFWKPedidos.BBCadPedidosClick(Sender: TObject);
-var
-  Formulario: TFViewPedidos;
 begin
   //FViewAtencao := TFViewAtencao.Create(Application);
   //FViewAtencao.ShowModal;
 
-  Formulario := TFViewPedidos.Create(Application);
-  Formulario.ShowModal;
+  FViewPedidos := TFViewPedidos.Create(Application);
+  FViewPedidos.ShowModal;
 end;
 
 procedure TFWKPedidos.BBFecharClick(Sender: TObject);
-var
-  i : integer;
 begin
   FViewAtencao := TFViewAtencao.Create(Application);
   FViewAtencao.ShowModal;

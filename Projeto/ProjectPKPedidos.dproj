@@ -153,6 +153,7 @@
             <Form>FViewAtencao</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="WKConst.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

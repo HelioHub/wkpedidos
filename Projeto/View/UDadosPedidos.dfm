@@ -179,9 +179,9 @@ object FDadosPedidos: TFDadosPedidos
       27)
     object BBInc: TBitBtn
       Left = 10
-      Top = 3
+      Top = 2
       Width = 75
-      Height = 20
+      Height = 22
       Anchors = [akRight]
       Caption = '&Incluir'
       Font.Charset = DEFAULT_CHARSET
@@ -196,9 +196,9 @@ object FDadosPedidos: TFDadosPedidos
     end
     object BBAlt: TBitBtn
       Left = 91
-      Top = 3
+      Top = 2
       Width = 75
-      Height = 20
+      Height = 22
       Anchors = [akRight]
       Caption = '&Alterar'
       Font.Charset = DEFAULT_CHARSET
@@ -213,9 +213,9 @@ object FDadosPedidos: TFDadosPedidos
     end
     object BBExc: TBitBtn
       Left = 172
-      Top = 3
+      Top = 2
       Width = 75
-      Height = 20
+      Height = 22
       Anchors = [akRight]
       Caption = '&Excluir'
       Font.Charset = DEFAULT_CHARSET
