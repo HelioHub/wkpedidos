@@ -169,6 +169,225 @@ utilizando ao máximo o seu potencial.
 	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Camera HD', '100');
 	INSERT INTO `wkpedidos`.`produtos` ( `DescricaoProdutos`, `PrecoVendaProdutos`) VALUES ( 'Pad-Mouse', '5.5');
 
+## Sugestões para otimizar o Banco de dados MySQL WKPedidos:
+
+   Com Índices já Existentes, com Índices Adicionais e com Consultas SQL performáticas. 
+   Considerando boas práticas e para melhorar o desempenho das consultas.
+
+	1. Índices Sugeridos
+	#-----------------------------------#
+		Tabela Clientes
+		Índice composto para consultas por cidade e estado:
+			CREATE INDEX `INDEX_CIDADE_UF` ON `WKPedidos`.`Clientes` 
+			  (`CidadeClientes` ASC, `UFClientes` ASC);
+
+		Tabela Produtos
+		Índice para consultas por preço:
+			CREATE INDEX `INDEX_PRECO` ON `WKPedidos`.`Produtos` 
+			  (`PrecoVendaProdutos` ASC);
+
+		Tabela Pedidos
+		Índice para consultas por data de emissão:
+			CREATE INDEX `INDEX_DATA_EMISSAO` ON `WKPedidos`.`Pedidos` 
+			  (`DataEmissaoPedidos` ASC);
+
+		Tabela ItensPedido
+		Índice composto para consultas por pedido e produto:
+			CREATE INDEX `INDEX_PEDIDO_PRODUTO` ON `WKPedidos`.`ItensPedido` 
+			  (`PedidoItensPedido` ASC, `ProdutoItensPedido` ASC);
+		  
+	2. Consultas SQL Performáticas
+	#-----------------------------------#
+		Aqui estão exemplos de consultas SQL otimizadas para acessar os dados:
+
+		Consulta 1: Listar todos os pedidos de um cliente
+			SELECT 
+				p.NumeroPedidos, 
+				p.DataEmissaoPedidos, 
+				p.ValorTotalPedidos, 
+				c.NomeClientes 
+			FROM 
+				WKPedidos.Pedidos p
+			JOIN 
+				WKPedidos.Clientes c ON p.ClientePedidos = c.CodigoClientes
+			WHERE 
+				c.CodigoClientes = ?;
+			Índices utilizados:
+				FK_CLIENTE (já existe na tabela Pedidos).
+				INDEX_NOME (já existe na tabela Clientes).
+
+		Consulta 2: Listar todos os itens de um pedido
+			SELECT 
+				ip.idItensPedido, 
+				ip.QuantidadeItensPedido, 
+				ip.VlrUnitarioItensPedido, 
+				ip.VlrTotalItensPedido, 
+				pr.DescricaoProdutos 
+			FROM 
+				WKPedidos.ItensPedido ip
+			JOIN 
+				WKPedidos.Produtos pr ON ip.ProdutoItensPedido = pr.CodigoProdutos
+			WHERE 
+				ip.PedidoItensPedido = ?;
+			Índices utilizados:
+				FK_PEDIDO (já existe na tabela ItensPedido).
+				INDEX_DESCRICAO (já existe na tabela Produtos).
+
+		Consulta 3: Listar todos os pedidos emitidos em um período
+			SELECT 
+				p.NumeroPedidos, 
+				p.DataEmissaoPedidos, 
+				p.ValorTotalPedidos, 
+				c.NomeClientes 
+			FROM 
+				WKPedidos.Pedidos p
+			JOIN 
+				WKPedidos.Clientes c ON p.ClientePedidos = c.CodigoClientes
+			WHERE 
+				p.DataEmissaoPedidos BETWEEN ? AND ?;
+			Índices utilizados:
+				INDEX_DATA_EMISSAO (sugerido acima).
+				FK_CLIENTE (já existe na tabela Pedidos).
+
+		Consulta 4: Listar os produtos mais vendidos
+			SELECT 
+				pr.DescricaoProdutos, 
+				SUM(ip.QuantidadeItensPedido) AS TotalVendido 
+			FROM 
+				WKPedidos.ItensPedido ip
+			JOIN 
+				WKPedidos.Produtos pr ON ip.ProdutoItensPedido = pr.CodigoProdutos
+			GROUP BY 
+				pr.DescricaoProdutos
+			ORDER BY 
+				TotalVendido DESC;
+			Índices utilizados:
+				FK_PRODUTO (já existe na tabela ItensPedido).
+				INDEX_DESCRICAO (já existe na tabela Produtos).
+
+		Consulta 5: Listar clientes de uma cidade e estado
+			SELECT 
+				CodigoClientes, 
+				NomeClientes 
+			FROM 
+				WKPedidos.Clientes
+			WHERE 
+				CidadeClientes = ? AND UFClientes = ?;
+			Índices utilizados:
+				INDEX_CIDADE_UF (sugerido acima).	  
+			
+	3. Boas Práticas
+	#-----------------------------------#
+		Usar JOIN ao invés de subconsultas:
+			Sempre que possível, prefirir JOIN para unir tabelas, pois é mais eficiente do que subconsultas.
+			
+		Evitar SELECT *:
+			Liste apenas as colunas necessárias para reduzir a quantidade de dados processados.
+
+		Use LIMIT em consultas grandes:
+			Se a consulta retornar muitos registros, usar LIMIT para paginar os resultados.
+
+		Mantenha os índices atualizados:
+			Executar ANALYZE TABLE periodicamente para atualizar as estatísticas dos índices.
+
+		Considere particionamento de tabelas:
+			Para tabelas muito grandes (ex: Pedidos), considerar particionar por data ou outro critério relevante		
+				Exemplo de particionamento por intervalo (RANGE):
+				#-----------------------------------------------#
+				Particionar a tabela Pedidos por ano de emissão (DataEmissaoPedidos):
+
+				Passo 1: Criar a tabela particionada
+					CREATE TABLE WKPedidos.Pedidos (
+						NumeroPedidos INT NOT NULL AUTO_INCREMENT,
+						DataEmissaoPedidos DATETIME NOT NULL,
+						ClientePedidos INT NOT NULL,
+						ValorTotalPedidos DECIMAL(17,3) NOT NULL,
+						PRIMARY KEY (NumeroPedidos, DataEmissaoPedidos), -- Chave primária composta
+						INDEX FK_CLIENTE_idx (ClientePedidos ASC),
+						CONSTRAINT FK_CLIENTE
+							FOREIGN KEY (ClientePedidos)
+							REFERENCES WKPedidos.Clientes (CodigoClientes)
+							ON DELETE NO ACTION
+							ON UPDATE NO ACTION
+					)
+					PARTITION BY RANGE (YEAR(DataEmissaoPedidos)) (
+						PARTITION p2020 VALUES LESS THAN (2021),
+						PARTITION p2021 VALUES LESS THAN (2022),
+						PARTITION p2022 VALUES LESS THAN (2023),
+						PARTITION p2023 VALUES LESS THAN (2024),
+						PARTITION pFuture VALUES LESS THAN MAXVALUE
+					);
+				Explicação:
+				A tabela é particionada por ano (YEAR(DataEmissaoPedidos)).
+				Cada partição contém os pedidos de um ano específico.
+				A partição pFuture armazena pedidos com datas superiores a 2023.
+
+	4. Exemplo de Consulta com Paginação
+	#-----------------------------------#
+		Aqui está um exemplo de consulta paginada para listar pedidos:
+			SELECT 
+				p.NumeroPedidos, 
+				p.DataEmissaoPedidos, 
+				p.ValorTotalPedidos, 
+				c.NomeClientes 
+			FROM 
+				WKPedidos.Pedidos p
+			JOIN 
+				WKPedidos.Clientes c ON p.ClientePedidos = c.CodigoClientes
+			ORDER BY 
+				p.DataEmissaoPedidos DESC
+			LIMIT 10 OFFSET 0; -- Página 1 (10 primeiros registros)
+			Índices utilizados:
+				INDEX_DATA_EMISSAO (sugerido acima).
+				FK_CLIENTE (já existe na tabela Pedidos).
+				
+	5. Exemplo de Consulta com Filtro Composto
+	#-----------------------------------#
+		Aqui está um exemplo de consulta com filtro composto (cidade e estado):
+			SELECT 
+				CodigoClientes, 
+				NomeClientes 
+			FROM 
+				WKPedidos.Clientes
+			WHERE 
+				CidadeClientes = 'São Paulo' AND UFClientes = 'SP';			
+			Índices utilizados:
+				INDEX_CIDADE_UF (sugerido acima).
+
+	6. Exemplo de Consulta com Agregação
+	#-----------------------------------#
+		Aqui está um exemplo de consulta agregada para calcular o valor total de pedidos por cliente:
+			SELECT 
+				c.NomeClientes, 
+				SUM(p.ValorTotalPedidos) AS TotalPedidos 
+			FROM 
+				WKPedidos.Pedidos p
+			JOIN 
+				WKPedidos.Clientes c ON p.ClientePedidos = c.CodigoClientes
+			GROUP BY 
+				c.NomeClientes
+			ORDER BY 
+				TotalPedidos DESC;
+			Índices utilizados:
+				FK_CLIENTE (já existe na tabela Pedidos).
+				INDEX_NOME (já existe na tabela Clientes).
+
+	7. Conceito de Páginação LIMIT e OFFSET no SELECT
+	#-----------------------------------#
+		A combinação de LIMIT e OFFSET é usada para dividir os resultados em "páginas". Por exemplo:
+
+		Página 1:
+			SELECT * FROM WKPedidos.Pedidos LIMIT 10 OFFSET 0;
+			Retorna os registros 1 a 10.
+
+		Página 2:
+			SELECT * FROM WKPedidos.Pedidos LIMIT 10 OFFSET 10;
+			Retorna os registros 11 a 20.
+
+		Página 3:
+			SELECT * FROM WKPedidos.Pedidos LIMIT 10 OFFSET 20;
+			Retorna os registros 21 a 30.
+
 ## Connection FIREDAC com MySQL 
 	
 	O FireDac do Delphi 12 32bits só funciona com MySQL 5.7.44 32 bits, DLL específica:
