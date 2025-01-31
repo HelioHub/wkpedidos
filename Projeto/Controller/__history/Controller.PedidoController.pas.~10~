@@ -1,0 +1,48 @@
+unit Controller.PedidoController;
+
+interface
+
+uses
+  Interfaces.IPedido, Model.Pedido;
+
+type
+  TPedidoController = class
+  private
+    FPedido: IPedido;
+  public
+    constructor Create;
+    destructor Destroy; override;
+
+    function GetPedido: IPedido;
+    function SalvarPedido(APedido: IPedido) : Boolean;
+    function ListarPedidos(pLimite: String) : TCLI;
+  end;
+
+implementation
+
+{ TPedidoController }
+
+uses WKConst;
+
+constructor TPedidoController.Create;
+begin
+  FPedido := TPedido.Create(cPATH_INI);
+end;
+
+destructor TPedidoController.Destroy;
+begin
+  FPedido := nil;
+  inherited;
+end;
+
+function TPedidoController.GetPedido: IPedido;
+begin
+  Result := FPedido;
+end;
+
+function TPedidoController.SalvarPedido(APedido: IPedido) : Boolean;
+begin
+  result := APedido.Salvar;
+end;
+
+end.

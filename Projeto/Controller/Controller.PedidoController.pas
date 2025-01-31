@@ -3,7 +3,7 @@ unit Controller.PedidoController;
 interface
 
 uses
-  Interfaces.IPedido, Model.Pedido;
+  Interfaces.IPedido, Model.Pedido, FireDAC.Comp.Client;
 
 type
   TPedidoController = class
@@ -14,7 +14,10 @@ type
     destructor Destroy; override;
 
     function GetPedido: IPedido;
-    procedure SalvarPedido(APedido: IPedido);
+    function SalvarPedido(APedido: IPedido) : Boolean;
+    function ExcluirPedido(const AId: Integer): Boolean;
+    function CalcularTotalItens(const AIdPedido: Integer): Double;
+    procedure CarregarDadosPedidos(const AFDMemTable: TFDMemTable);
   end;
 
 implementation
@@ -39,12 +42,24 @@ begin
   Result := FPedido;
 end;
 
-procedure TPedidoController.SalvarPedido(APedido: IPedido);
+function TPedidoController.SalvarPedido(APedido: IPedido) : Boolean;
 begin
-  if APedido.Salvar then
-    //ShowMessage('Pedido salvo com sucesso!')
-  else
-    //ShowMessage('Erro ao salvar pedido.');
+  result := APedido.Salvar;
+end;
+
+procedure TPedidoController.CarregarDadosPedidos(const AFDMemTable: TFDMemTable);
+begin
+  FPedido.CarregarDados(AFDMemTable);
+end;
+
+function TPedidoController.ExcluirPedido(const AId: Integer): Boolean;
+begin
+  Result := FPedido.Excluir(AId);
+end;
+
+function TPedidoController.CalcularTotalItens(const AIdPedido: Integer): Double;
+begin
+  Result := FPedido.CalcularTotalItens(AIdPedido);
 end;
 
 end.

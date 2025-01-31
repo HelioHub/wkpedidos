@@ -34,6 +34,9 @@ type
     property ValorTotal: Double read GetValorTotal write SetValorTotal;
 
     function Salvar: Boolean; // Implementação do método Salvar
+    function Excluir(const AId: Integer): Boolean; // Implementação do método Excluir
+    function CalcularTotalItens(const AIdPedido: Integer): Double; // Implementação do método CalcularTotalItens
+    procedure CarregarDados(const AFDMemTable: TFDMemTable); // Implementação do método CarregarDados
   end;
 
 implementation
@@ -110,17 +113,17 @@ begin
     if FNumeroPedido = 0 then
     begin
       // Inserir novo pedido
-      FQuery.SQL.Add('INSERT INTO Pedidos (DataEmissaoPedidos, ClientePedidos, ValorTotalPedidos)');
-      FQuery.SQL.Add('VALUES (:DataEmissao, :Cliente, :ValorTotal)');
+      FQuery.SQL.Add(' INSERT INTO Pedidos (DataEmissaoPedidos, ClientePedidos, ValorTotalPedidos)');
+      FQuery.SQL.Add(' VALUES (:DataEmissao, :Cliente, :ValorTotal)');
     end
     else
     begin
       // Atualizar pedido existente
-      FQuery.SQL.Add('UPDATE Pedidos SET');
-      FQuery.SQL.Add('DataEmissaoPedidos = :DataEmissao,');
-      FQuery.SQL.Add('ClientePedidos = :Cliente,');
-      FQuery.SQL.Add('ValorTotalPedidos = :ValorTotal');
-      FQuery.SQL.Add('WHERE NumeroPedidos = :NumeroPedido');
+      FQuery.SQL.Add(' UPDATE Pedidos SET');
+      FQuery.SQL.Add(' DataEmissaoPedidos = :DataEmissao,');
+      FQuery.SQL.Add(' ClientePedidos = :Cliente,');
+      FQuery.SQL.Add(' ValorTotalPedidos = :ValorTotal');
+      FQuery.SQL.Add(' WHERE NumeroPedidos = :NumeroPedido');
       FQuery.ParamByName('NumeroPedido').AsInteger := FNumeroPedido;
     end;
 
@@ -146,6 +149,82 @@ begin
     on E: Exception do
     begin
       ShowMessage('Erro ao salvar pedido: ' + E.Message);
+    end;
+  end;
+end;
+
+procedure TPedido.CarregarDados(const AFDMemTable: TFDMemTable);
+begin
+  try
+    // Prepara a query para selecionar os dados
+    FQuery.SQL.Clear;
+    FQuery.SQL.Add('	SELECT');
+    FQuery.SQL.Add('		p.NumeroPedidos,');
+    FQuery.SQL.Add('		p.DataEmissaoPedidos,');
+    FQuery.SQL.Add('		p.ValorTotalPedidos,');
+    FQuery.SQL.Add('    p.ClientePedidos,');
+    FQuery.SQL.Add('		c.NomeClientes');
+    FQuery.SQL.Add('	FROM');
+    FQuery.SQL.Add('		WKPedidos.Pedidos p');
+    FQuery.SQL.Add('	JOIN');
+    FQuery.SQL.Add('		WKPedidos.Clientes c ON p.ClientePedidos = c.CodigoClientes');
+    FQuery.SQL.Add('	ORDER BY');
+    FQuery.SQL.Add('		p.DataEmissaoPedidos DESC');
+    FQuery.SQL.Add('	LIMIT 100 OFFSET 0;');
+    FQuery.Open;
+
+    // Copia os dados para o TFDMemTable
+    AFDMemTable.Close;
+    AFDMemTable.Data := FQuery.Data;
+    AFDMemTable.Open;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Erro ao carregar dados: ' + E.Message);
+    end;
+  end;
+end;
+
+function TPedido.Excluir(const AId: Integer): Boolean;
+begin
+  Result := False;
+  try
+    // Prepara a query para excluir o pedido
+    FQuery.SQL.Clear;
+    FQuery.SQL.Add(' DELETE FROM Pedidos WHERE NumeroPedidos = :NumeroPedido');
+    FQuery.ParamByName('NumeroPedido').AsInteger := AId;
+
+    // Executa a query
+    FQuery.ExecSQL;
+
+    Result := True; // Indica que o pedido foi excluído com sucesso
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Erro ao excluir pedido: ' + E.Message);
+    end;
+  end;
+end;
+
+function TPedido.CalcularTotalItens(const AIdPedido: Integer): Double;
+begin
+  Result := 0;
+  try
+    // Prepara a query para calcular o total dos itens do pedido
+    FQuery.SQL.Clear;
+    FQuery.SQL.Add(' SELECT SUM(VlrTotalItensPedido) AS TotalItens');
+    FQuery.SQL.Add(' FROM ItensPedido');
+    FQuery.SQL.Add(' WHERE PedidoItensPedido = :Pedido');
+    FQuery.ParamByName('Pedido').AsInteger := AIdPedido;
+    FQuery.Open;
+
+    // Retorna o total dos itens
+    if not FQuery.FieldByName('TotalItens').IsNull then
+      Result := FQuery.FieldByName('TotalItens').AsFloat;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Erro ao calcular total dos itens: ' + E.Message);
     end;
   end;
 end;

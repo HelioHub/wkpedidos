@@ -90,10 +90,13 @@ begin
   Pedido.ValorTotal := StrToFloatDef(LETotalPedido.Text, 0);
 
   // Salva o pedido
-  FPedidoController.SalvarPedido(Pedido);
+  if FPedidoController.SalvarPedido(Pedido) then
+  begin
+    // Atualiza o campo NumeroPedido com o ID gerado
+    LENumeroPedido.Text := IntToStr(Pedido.NumeroPedido);
 
-  // Atualiza o campo NumeroPedido com o ID gerado
-  LENumeroPedido.Text := IntToStr(Pedido.NumeroPedido);
+    ShowMessage('Sucesso na Gravação do Pedido '+LENumeroPedido.Text+'.');
+  end;
 end;
 
 procedure TFDadosPedidos.BBIncClick(Sender: TObject);

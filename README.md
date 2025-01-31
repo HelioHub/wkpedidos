@@ -318,9 +318,17 @@ utilizando ao máximo o seu potencial.
 						PARTITION pFuture VALUES LESS THAN MAXVALUE
 					);
 				Explicação:
-				A tabela é particionada por ano (YEAR(DataEmissaoPedidos)).
-				Cada partição contém os pedidos de um ano específico.
-				A partição pFuture armazena pedidos com datas superiores a 2023.
+					A tabela é particionada por ano (YEAR(DataEmissaoPedidos)).
+					Cada partição contém os pedidos de um ano específico.
+					A partição pFuture armazena pedidos com datas superiores a 2023.
+				Quando usar particionamento?
+					Tabelas muito grandes: Quando a tabela tem milhões de registros.
+					Consultas com filtros específicos: Quando as consultas frequentemente filtram por uma coluna (ex: data, região).
+					Necessidade de manutenção granular: Quando você precisa gerenciar partes específicas dos dados (ex: excluir dados antigos).
+				Limitações:
+					Chave primária: A coluna usada no particionamento deve fazer parte da chave primária.
+					Índices globais: Índices que abrangem todas as partições podem ser menos eficientes.
+					Complexidade: O particionamento aumenta a complexidade do banco de dados.
 
 	4. Exemplo de Consulta com Paginação
 	#-----------------------------------#
@@ -379,14 +387,21 @@ utilizando ao máximo o seu potencial.
 		Página 1:
 			SELECT * FROM WKPedidos.Pedidos LIMIT 10 OFFSET 0;
 			Retorna os registros 1 a 10.
-
 		Página 2:
 			SELECT * FROM WKPedidos.Pedidos LIMIT 10 OFFSET 10;
 			Retorna os registros 11 a 20.
-
 		Página 3:
 			SELECT * FROM WKPedidos.Pedidos LIMIT 10 OFFSET 20;
 			Retorna os registros 21 a 30.
+			
+		Quando usar LIMIT e OFFSET?
+			Paginação de resultados: Para exibir resultados em páginas (ex: 10 registros por página).
+			Consultas grandes: Para evitar retornar muitos registros de uma só vez, o que pode sobrecarregar a aplicação ou o banco de dados.
+			Testes rápidos: Para verificar rapidamente um subconjunto de dados.
+
+		Cuidados ao usar OFFSET:
+			Desempenho: Em tabelas muito grandes, o OFFSET pode ser lento, pois o banco de dados precisa "pular" os registros anteriores antes de retornar os resultados.
+			Alternativa: Para melhorar o desempenho em grandes conjuntos de dados, considere usar uma coluna de referência (ex: id ou data) para paginar os resultados, em vez de OFFSET.
 
 ## Connection FIREDAC com MySQL 
 	
@@ -430,7 +445,7 @@ utilizando ao máximo o seu potencial.
 	Host info = localhost via TCP/IP
 	Name modes = CILCTD
 	SSL Cipher = 
-
+	
 ## Criação das Telas do Sistema WKPedidos
 
 ![## Telas do Sistema WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/EstruturasdasTelas.png)

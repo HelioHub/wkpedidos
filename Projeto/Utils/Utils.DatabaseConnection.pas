@@ -34,7 +34,7 @@ begin
   FConnection.DriverName := FIniFileHelper.ReadString('Database', 'DriverName', 'MySQL');
   FConnection.Params.Database := FIniFileHelper.ReadString('Database', 'Database', 'WKPedidos');
   FConnection.Params.UserName := FIniFileHelper.ReadString('Database', 'UserName', 'root');
-  FConnection.Params.Password := FIniFileHelper.ReadString('Database', 'Password', 'senha');
+  FConnection.Params.Password := FIniFileHelper.ReadString('Database', 'Password', 'wk@123');
   FConnection.Params.Add('Server=' + FIniFileHelper.ReadString('Database', 'Server', 'localhost'));
   FConnection.Params.Add('Port=' + FIniFileHelper.ReadString('Database', 'Port', '3306'));
 

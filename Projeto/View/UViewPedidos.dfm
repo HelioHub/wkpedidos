@@ -69,7 +69,7 @@ object FViewPedidos: TFViewPedidos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
-      OnClick = BBIncluirClick
+      OnClick = BBAlterarClick
     end
     object BBExcluir: TBitBtn
       Left = 170
@@ -152,6 +152,7 @@ object FViewPedidos: TFViewPedidos
       DataSource = DSViewPedidos
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentShowHint = False
+      PopupMenu = PMOptions
       ShowHint = True
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -163,34 +164,44 @@ object FViewPedidos: TFViewPedidos
       OnKeyDown = DBGViewKeyDown
       Columns = <
         item
+          Alignment = taCenter
           Color = clWheat
           Expanded = False
-          Title.Caption = 'N'#250'mero do Pedido'
-          Width = 103
+          FieldName = 'NumeroPedidos'
+          Title.Alignment = taCenter
+          Title.Caption = 'N'#186' Pedido'
+          Width = 54
           Visible = True
         end
         item
+          Alignment = taCenter
           Expanded = False
+          FieldName = 'DataEmissaoPedidos'
           Title.Alignment = taCenter
           Title.Caption = 'Data de Emiss'#227'o'
-          Width = 90
+          Width = 124
           Visible = True
         end
         item
+          Alignment = taCenter
           Expanded = False
+          FieldName = 'ClientePedidos'
+          Title.Alignment = taCenter
           Title.Caption = 'C'#243'digo do Cliente'
           Width = 89
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'NomeClientes'
           Title.Caption = 'Nome do Cliente'
-          Width = 225
+          Width = 243
           Visible = True
         end
         item
           Color = clWheat
           Expanded = False
+          FieldName = 'ValorTotalPedidos'
           Title.Alignment = taRightJustify
           Title.Caption = 'Total do Pedido'
           Width = 90
@@ -314,7 +325,37 @@ object FViewPedidos: TFViewPedidos
     end
   end
   object DSViewPedidos: TDataSource
+    DataSet = PedidosMemTable
+    Left = 224
+    Top = 160
+  end
+  object PedidosMemTable: TFDMemTable
+    FieldDefs = <>
+    CachedUpdates = True
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvPersistent, rvSilentMode]
+    ResourceOptions.Persistent = True
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired]
+    UpdateOptions.CheckRequired = False
+    StoreDefs = True
     Left = 328
-    Top = 168
+    Top = 160
+  end
+  object PMOptions: TPopupMenu
+    Left = 80
+    Top = 159
+    object ItensdoPedido1: TMenuItem
+      Caption = 'Itens do Pedido'
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object ValorTotaldoPedido1: TMenuItem
+      Caption = 'Valor Total do Pedido'
+      OnClick = ValorTotaldoPedido1Click
+    end
   end
 end

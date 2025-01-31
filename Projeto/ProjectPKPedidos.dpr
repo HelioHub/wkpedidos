@@ -14,7 +14,10 @@ uses
   Model.Pedido in 'Model\Model.Pedido.pas',
   Controller.PedidoController in 'Controller\Controller.PedidoController.pas',
   Utils.DatabaseConnection in 'Utils\Utils.DatabaseConnection.pas',
-  Utils.IniFileHelper in 'Utils\Utils.IniFileHelper.pas';
+  Utils.IniFileHelper in 'Utils\Utils.IniFileHelper.pas',
+  Interfaces.IItemPedido in 'Interfaces\Interfaces.IItemPedido.pas',
+  Model.ItemPedido in 'Model\Model.ItemPedido.pas',
+  Controller.ItemPedidoController in 'Controller\Controller.ItemPedidoController.pas';
 
 {$R *.res}
 

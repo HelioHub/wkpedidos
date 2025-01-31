@@ -13,7 +13,7 @@ const
   cEOL = #13;
   cTabServerINI = 'SERVIDOR';
   cCamServerINI = 'HOST';
-  cArquivoConnection = 'Connection.Data';
+  cArquivoConnection = 'config.ini';
   cCidadePadrao = 'Fortaleza';
   cUFPadrao = 'CE';
   cAcaoAlterar = 'Alterar';
