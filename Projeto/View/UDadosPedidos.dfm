@@ -324,5 +324,29 @@ object FDadosPedidos: TFDadosPedidos
     StoreDefs = True
     Left = 328
     Top = 192
+    object ItensMemTableidItensPedido: TIntegerField
+      FieldName = 'idItensPedido'
+    end
+    object ItensMemTablePedidoItensPedido: TIntegerField
+      FieldName = 'PedidoItensPedido'
+    end
+    object ItensMemTableProdutoItensPedido: TIntegerField
+      FieldName = 'ProdutoItensPedido'
+    end
+    object ItensMemTableQuantidadeItensPedido: TBCDField
+      FieldName = 'QuantidadeItensPedido'
+      DisplayFormat = '###,##0.00'
+      Size = 2
+    end
+    object ItensMemTableVlrUnitarioItensPedido: TBCDField
+      FieldName = 'VlrUnitarioItensPedido'
+      DisplayFormat = '###,##0.00'
+      Size = 3
+    end
+    object ItensMemTableVlrTotalItensPedido: TBCDField
+      FieldName = 'VlrTotalItensPedido'
+      DisplayFormat = '###,##0.00'
+      Size = 3
+    end
   end
 end

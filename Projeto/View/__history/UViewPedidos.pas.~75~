@@ -40,6 +40,11 @@ type
     ValorTotaldoPedido1: TMenuItem;
     DSItensPedido: TDataSource;
     ItensMemTable: TFDMemTable;
+    PedidosMemTableNumeroPedidos: TIntegerField;
+    PedidosMemTableDataEmissaoPedidos: TDateTimeField;
+    PedidosMemTableClientePedidos: TIntegerField;
+    PedidosMemTableNomeClientes: TStringField;
+    PedidosMemTableValorTotalPedidos: TBCDField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BBSairClick(Sender: TObject);
     procedure BBIncluirClick(Sender: TObject);
@@ -52,7 +57,6 @@ type
     procedure ValorTotaldoPedido1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DSViewPedidosDataChange(Sender: TObject; Field: TField);
-    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     FPedidoController: TPedidoController;
@@ -144,12 +148,6 @@ begin
   Action := CaFree;
 end;
 
-procedure TFViewPedidos.FormCreate(Sender: TObject);
-begin
-  //DBGView.Columns[0].FieldName := 'ValorTotal';
-  DBGView.Columns[4].DisplayFormat := 'R$ #,##0.00'; // Formata como moeda
-end;
-
 procedure TFViewPedidos.FormShow(Sender: TObject);
 begin
   pAtualizacao;
@@ -212,10 +210,7 @@ begin
   if MessageDlg('Deseja realmente excluir este Pedido '+
      DSViewPedidos.DataSet.FieldByName('NumeroPedidos').AsString+' e seus Itens?',
      mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-  begin
-    // Deleta o registro atual
     pCRUD(acExcluir);
-  end;
 end;
 
 procedure TFViewPedidos.ValorTotaldoPedido1Click(Sender: TObject);

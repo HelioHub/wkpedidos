@@ -14,6 +14,7 @@ object FConsultaProdutos: TFConsultaProdutos
   Font.Name = 'Tahoma'
   Font.Style = []
   OnClose = FormClose
+  OnShow = FormShow
   TextHeight = 13
   object PRodape: TPanel
     Left = 0
@@ -75,6 +76,7 @@ object FConsultaProdutos: TFConsultaProdutos
       Height = 208
       Hint = 'Duplo Click para Selecionar o Produto...'
       Align = alClient
+      DataSource = DSConslutaProduto
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentShowHint = False
       ShowHint = True
@@ -84,22 +86,25 @@ object FConsultaProdutos: TFConsultaProdutos
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      OnDblClick = DBGViewDblClick
       Columns = <
         item
           Expanded = False
+          FieldName = 'CodigoProdutos'
           Title.Caption = 'C'#243'digo '
           Width = 52
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'DescricaoProdutos'
           Title.Caption = 'Descri'#231#227'o do Produto'
           Width = 258
           Visible = True
         end
         item
-          Alignment = taRightJustify
           Expanded = False
+          FieldName = 'PrecoVendaProdutos'
           Title.Alignment = taRightJustify
           Title.Caption = 'Pre'#231'o de Venda'
           Width = 109
@@ -143,7 +148,32 @@ object FConsultaProdutos: TFConsultaProdutos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
-      OnClick = BBFiltrarClick
+    end
+  end
+  object DSConslutaProduto: TDataSource
+    DataSet = FDMemTableProduto
+    Left = 168
+    Top = 121
+  end
+  object FDMemTableProduto: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 280
+    Top = 121
+    object FDMemTableProdutoCodigoProdutos: TIntegerField
+      FieldName = 'CodigoProdutos'
+    end
+    object FDMemTableProdutoDescricaoProdutos: TStringField
+      FieldName = 'DescricaoProdutos'
+      Size = 80
+    end
+    object FDMemTableProdutoPrecoVendaProdutos: TFMTBCDField
+      FieldName = 'PrecoVendaProdutos'
     end
   end
 end

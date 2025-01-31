@@ -35,6 +35,12 @@ type
     LETotalPedido: TLabeledEdit;
     DSItensPedido: TDataSource;
     ItensMemTable: TFDMemTable;
+    ItensMemTableidItensPedido: TIntegerField;
+    ItensMemTablePedidoItensPedido: TIntegerField;
+    ItensMemTableProdutoItensPedido: TIntegerField;
+    ItensMemTableQuantidadeItensPedido: TBCDField;
+    ItensMemTableVlrUnitarioItensPedido: TBCDField;
+    ItensMemTableVlrTotalItensPedido: TBCDField;
     procedure BBSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure SBF2Click(Sender: TObject);

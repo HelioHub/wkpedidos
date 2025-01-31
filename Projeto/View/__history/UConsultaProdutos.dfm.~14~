@@ -14,6 +14,7 @@ object FConsultaProdutos: TFConsultaProdutos
   Font.Name = 'Tahoma'
   Font.Style = []
   OnClose = FormClose
+  OnShow = FormShow
   TextHeight = 13
   object PRodape: TPanel
     Left = 0
@@ -22,8 +23,6 @@ object FConsultaProdutos: TFConsultaProdutos
     Height = 41
     Align = alBottom
     TabOrder = 2
-    ExplicitLeft = 1
-    ExplicitTop = 256
     DesignSize = (
       456
       41)
@@ -44,7 +43,6 @@ object FConsultaProdutos: TFConsultaProdutos
       ParentFont = False
       TabOrder = 1
       OnClick = BBSairClick
-      ExplicitLeft = 513
     end
     object BBSelecionar: TBitBtn
       Left = 278
@@ -62,7 +60,6 @@ object FConsultaProdutos: TFConsultaProdutos
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 0
-      ExplicitLeft = 310
     end
   end
   object PDados: TPanel
@@ -72,9 +69,6 @@ object FConsultaProdutos: TFConsultaProdutos
     Height = 210
     Align = alClient
     TabOrder = 1
-    ExplicitTop = 0
-    ExplicitWidth = 599
-    ExplicitHeight = 270
     object DBGView: TDBGrid
       Left = 1
       Top = 1
@@ -82,6 +76,7 @@ object FConsultaProdutos: TFConsultaProdutos
       Height = 208
       Hint = 'Duplo Click para Selecionar o Produto...'
       Align = alClient
+      DataSource = DSConslutaProduto
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentShowHint = False
       ShowHint = True
@@ -91,15 +86,18 @@ object FConsultaProdutos: TFConsultaProdutos
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      OnDblClick = DBGViewDblClick
       Columns = <
         item
           Expanded = False
+          FieldName = 'CodigoProdutos'
           Title.Caption = 'C'#243'digo '
           Width = 52
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'DescricaoProdutos'
           Title.Caption = 'Descri'#231#227'o do Produto'
           Width = 258
           Visible = True
@@ -107,6 +105,7 @@ object FConsultaProdutos: TFConsultaProdutos
         item
           Alignment = taRightJustify
           Expanded = False
+          FieldName = 'PrecoVendaProdutos'
           Title.Alignment = taRightJustify
           Title.Caption = 'Pre'#231'o de Venda'
           Width = 109
@@ -121,8 +120,6 @@ object FConsultaProdutos: TFConsultaProdutos
     Height = 41
     Align = alTop
     TabOrder = 0
-    ExplicitTop = 247
-    ExplicitWidth = 488
     DesignSize = (
       456
       41)
@@ -153,5 +150,21 @@ object FConsultaProdutos: TFConsultaProdutos
       ParentFont = False
       TabOrder = 1
     end
+  end
+  object DSConslutaProduto: TDataSource
+    DataSet = FDMemTableProduto
+    Left = 168
+    Top = 121
+  end
+  object FDMemTableProduto: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 280
+    Top = 121
   end
 end

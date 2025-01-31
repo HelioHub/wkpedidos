@@ -23,7 +23,6 @@ object FViewPedidos: TFViewPedidos
     Height = 44
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 807
     DesignSize = (
       641
       44)
@@ -121,7 +120,6 @@ object FViewPedidos: TFViewPedidos
       ParentFont = False
       TabOrder = 4
       Text = '100'
-      ExplicitLeft = 795
     end
   end
   object PRodape: TPanel
@@ -133,7 +131,6 @@ object FViewPedidos: TFViewPedidos
     Alignment = taLeftJustify
     Caption = '   Itens do Pedido:'
     TabOrder = 4
-    ExplicitTop = 336
   end
   object PViewPedidos: TPanel
     Left = 0
@@ -142,7 +139,6 @@ object FViewPedidos: TFViewPedidos
     Height = 211
     Align = alClient
     TabOrder = 2
-    ExplicitHeight = 242
     object DBGView: TDBGrid
       Left = 1
       Top = 1
@@ -217,7 +213,6 @@ object FViewPedidos: TFViewPedidos
     Height = 50
     Align = alTop
     TabOrder = 1
-    ExplicitWidth = 807
     DesignSize = (
       641
       50)
@@ -270,7 +265,6 @@ object FViewPedidos: TFViewPedidos
     Height = 105
     Align = alBottom
     TabOrder = 3
-    ExplicitTop = 335
     object DBGViewItens: TDBGrid
       Left = 1
       Top = 1
@@ -322,7 +316,7 @@ object FViewPedidos: TFViewPedidos
         item
           Color = clSnow
           Expanded = False
-          FieldName = 'VlrUnitarioItensPedido'
+          FieldName = 'VlrTotalItensPedido'
           Title.Alignment = taRightJustify
           Title.Caption = 'Valor Total'
           Width = 90
@@ -350,6 +344,22 @@ object FViewPedidos: TFViewPedidos
     StoreDefs = True
     Left = 328
     Top = 160
+    object PedidosMemTableNumeroPedidos: TIntegerField
+      FieldName = 'NumeroPedidos'
+    end
+    object PedidosMemTableDataEmissaoPedidos: TDateTimeField
+      FieldName = 'DataEmissaoPedidos'
+    end
+    object PedidosMemTableClientePedidos: TIntegerField
+      FieldName = 'ClientePedidos'
+    end
+    object PedidosMemTableNomeClientes: TStringField
+      FieldName = 'NomeClientes'
+      Size = 80
+    end
+    object PedidosMemTableValorTotalPedidos: TFMTBCDField
+      FieldName = 'ValorTotalPedidos'
+    end
   end
   object PMOptions: TPopupMenu
     Left = 80

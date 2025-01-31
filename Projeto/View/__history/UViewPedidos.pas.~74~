@@ -52,7 +52,6 @@ type
     procedure ValorTotaldoPedido1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DSViewPedidosDataChange(Sender: TObject; Field: TField);
-    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     FPedidoController: TPedidoController;
@@ -144,12 +143,6 @@ begin
   Action := CaFree;
 end;
 
-procedure TFViewPedidos.FormCreate(Sender: TObject);
-begin
-  DBGView.Columns[4].FieldName := 'ValorTotalPedidos';
-  DBGView.Columns[4].DisplayFormat := 'R$ #,##0.00'; // Formata como moeda
-end;
-
 procedure TFViewPedidos.FormShow(Sender: TObject);
 begin
   pAtualizacao;
@@ -212,10 +205,7 @@ begin
   if MessageDlg('Deseja realmente excluir este Pedido '+
      DSViewPedidos.DataSet.FieldByName('NumeroPedidos').AsString+' e seus Itens?',
      mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-  begin
-    // Deleta o registro atual
     pCRUD(acExcluir);
-  end;
 end;
 
 procedure TFViewPedidos.ValorTotaldoPedido1Click(Sender: TObject);

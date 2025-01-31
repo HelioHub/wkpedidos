@@ -22,9 +22,6 @@ type
     DBGView: TDBGrid;
     DSConslutaProduto: TDataSource;
     FDMemTableProduto: TFDMemTable;
-    FDMemTableProdutoCodigoProdutos: TIntegerField;
-    FDMemTableProdutoDescricaoProdutos: TStringField;
-    FDMemTableProdutoPrecoVendaProdutos: TBCDField;
     procedure BBSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DBGViewDblClick(Sender: TObject);

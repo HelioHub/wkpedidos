@@ -103,7 +103,7 @@ object FConsultaProdutos: TFConsultaProdutos
           Visible = True
         end
         item
-          Alignment = taRightJustify
+          Color = 8421631
           Expanded = False
           FieldName = 'PrecoVendaProdutos'
           Title.Alignment = taRightJustify
@@ -166,5 +166,17 @@ object FConsultaProdutos: TFConsultaProdutos
     UpdateOptions.AutoCommitUpdates = True
     Left = 280
     Top = 121
+    object FDMemTableProdutoCodigoProdutos: TIntegerField
+      FieldName = 'CodigoProdutos'
+    end
+    object FDMemTableProdutoDescricaoProdutos: TStringField
+      FieldName = 'DescricaoProdutos'
+      Size = 80
+    end
+    object FDMemTableProdutoPrecoVendaProdutos: TBCDField
+      FieldName = 'PrecoVendaProdutos'
+      DisplayFormat = '###,##0.00'
+      Size = 3
+    end
   end
 end

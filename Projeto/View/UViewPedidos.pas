@@ -40,6 +40,17 @@ type
     ValorTotaldoPedido1: TMenuItem;
     DSItensPedido: TDataSource;
     ItensMemTable: TFDMemTable;
+    PedidosMemTableNumeroPedidos: TIntegerField;
+    PedidosMemTableDataEmissaoPedidos: TDateTimeField;
+    PedidosMemTableClientePedidos: TIntegerField;
+    PedidosMemTableNomeClientes: TStringField;
+    PedidosMemTableValorTotalPedidos: TFMTBCDField;
+    ItensMemTableidItensPedido: TIntegerField;
+    ItensMemTablePedidoItensPedido: TIntegerField;
+    ItensMemTableProdutoItensPedido: TIntegerField;
+    ItensMemTableQuantidadeItensPedido: TBCDField;
+    ItensMemTableVlrUnitarioItensPedido: TBCDField;
+    ItensMemTableVlrTotalItensPedido: TBCDField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BBSairClick(Sender: TObject);
     procedure BBIncluirClick(Sender: TObject);
@@ -52,6 +63,7 @@ type
     procedure ValorTotaldoPedido1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DSViewPedidosDataChange(Sender: TObject; Field: TField);
+    procedure ItensdoPedido1Click(Sender: TObject);
   private
     { Private declarations }
     FPedidoController: TPedidoController;
@@ -144,6 +156,11 @@ begin
 end;
 
 procedure TFViewPedidos.FormShow(Sender: TObject);
+begin
+  pAtualizacao;
+end;
+
+procedure TFViewPedidos.ItensdoPedido1Click(Sender: TObject);
 begin
   pAtualizacao;
 end;
