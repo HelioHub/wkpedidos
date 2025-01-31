@@ -16,6 +16,7 @@ const
   cAcaoAlterar = 'Alterar';
   cAcaoIncluir = 'Incluir';
   cAcaoExcluir = 'Excluir';
+  cZero = 0;
 
 implementation
 

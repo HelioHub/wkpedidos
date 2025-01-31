@@ -44,7 +44,10 @@ end;
 
 function TPedidoController.SalvarPedido(APedido: IPedido) : Boolean;
 begin
-  result := APedido.Salvar;
+  if APedido.Cliente = cZero then
+    result := false
+  else
+    result := APedido.Salvar;
 end;
 
 procedure TPedidoController.CarregarDadosPedidos(

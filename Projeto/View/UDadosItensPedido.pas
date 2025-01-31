@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.Mask;
+  Vcl.Mask, Controller.ItemPedidoController, Interfaces.IItemPedido;
 
 type
   TFDadosItensPedido = class(TForm)
@@ -25,15 +25,22 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure LEQtdKeyPress(Sender: TObject; var Key: Char);
     procedure LEQtdExit(Sender: TObject);
+    procedure BBGravarClick(Sender: TObject);
   private
     { Private declarations }
+    FItemPedidoController: TItemPedidoController;
+
     procedure OnlyNumber(var Key: char; ETextEdit: String);
     procedure MaskEdit(var LEAmount, LEPrice, LEValue: TLabeledEdit);
     procedure TakePoint(var LEdit: TLabeledEdit);
     procedure ConsultProduct;
   public
     { Public declarations }
-  end;
+     pNumeroPedido : Integer;
+
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+   end;
 
 var
   FDadosItensPedido: TFDadosItensPedido;
@@ -42,7 +49,41 @@ implementation
 
 {$R *.dfm}
 
-uses UConsultaProdutos;
+uses UConsultaProdutos, WKConst;
+
+constructor TFDadosItensPedido.Create(AOwner: TComponent);
+begin
+  inherited;
+  FItemPedidoController := TItemPedidoController.Create;
+end;
+
+destructor TFDadosItensPedido.Destroy;
+begin
+  FItemPedidoController.Free;
+  inherited;
+end;
+
+procedure TFDadosItensPedido.BBGravarClick(Sender: TObject);
+var
+  ItensPedido: IItemPedido;
+begin
+  ItensPedido := FItemPedidoController.GetItemPedido;
+
+  // Preenche os dados do Item do Pedido
+  ItensPedido.Pedido := pNumeroPedido;
+  ItensPedido.Produto := StrToIntDef(LECodigoProduto.Text, 0);
+  ItensPedido.Quantidade := StrToFloatDef(LEQtd.Text, 0);
+  ItensPedido.ValorUnitario := StrToFloatDef(LEPreco.Text, 0);
+  ItensPedido.ValorTotal := StrToFloatDef(LEValor.Text, 0);
+
+  // Salva o pedido
+  if FItemPedidoController.SalvarItemPedido(ItensPedido) then
+    // Atualiza o campo NumeroPedido com o ID gerado
+    ShowMessage('Sucesso na Gravação do Item '+LECodigoProduto.Text+'.')
+  else
+    ShowMessage('Sem Sucesso na Gravação do Item '+LECodigoProduto.Text+'.'+cEOL+
+      'Falta informar o Código do Produto');
+end;
 
 procedure TFDadosItensPedido.BBSairClick(Sender: TObject);
 begin

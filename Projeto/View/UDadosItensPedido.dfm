@@ -61,6 +61,7 @@ object FDadosItensPedido: TFDadosItensPedido
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 0
+      OnClick = BBGravarClick
     end
   end
   object PDados: TPanel

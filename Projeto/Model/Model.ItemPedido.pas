@@ -45,8 +45,7 @@ type
     function Excluir(const AId: Integer): Boolean; // Implementação do método Excluir
     function CalcularTotalItens(const AIdPedido: Integer): Double; // Implementação do método CalcularTotalItens
 
-    procedure CarregarDados(const AFDMemTable: TFDMemTable); // Implementação do método CarregarDados
-
+    procedure CarregarDados(const AFDMemTable: TFDMemTable; pPedido: String); // Implementação do método CarregarDados
 end;
 
 implementation
@@ -210,13 +209,22 @@ begin
   end;
 end;
 
-procedure TItemPedido.CarregarDados(const AFDMemTable: TFDMemTable);
+procedure TItemPedido.CarregarDados(const AFDMemTable: TFDMemTable; pPedido: String);
 begin
   try
     // Prepara a query para selecionar os dados
     FQuery.SQL.Clear;
-    FQuery.SQL.Add('SELECT idItensPedido, PedidoItensPedido, ProdutoItensPedido, QuantidadeItensPedido, VlrUnitarioItensPedido, VlrTotalItensPedido');
-    FQuery.SQL.Add('FROM ItensPedido');
+    FQuery.SQL.Add(' SELECT a.idItensPedido, a.PedidoItensPedido,');
+    FQuery.SQL.Add('        a.ProdutoItensPedido, a.QuantidadeItensPedido,');
+    FQuery.SQL.Add('        a.VlrUnitarioItensPedido, a.VlrTotalItensPedido,');
+    FQuery.SQL.Add('        b.DescricaoProdutos');
+    FQuery.SQL.Add(' FROM ItensPedido a ');
+    FQuery.SQL.Add(' JOIN Produtos b ON b.CodigoProdutos = a.ProdutoItensPedido ');
+    if not pPedido.IsEmpty then
+    begin
+      FQuery.SQL.Add(' WHERE PedidoItensPedido = '+pPedido);
+    end;
+    FQuery.SQL.Add(' ORDER BY a.ProdutoItensPedido = '+pPedido);
     FQuery.Open;
 
     // Copia os dados para o TFDMemTable

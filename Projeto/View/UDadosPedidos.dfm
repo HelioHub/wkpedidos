@@ -16,6 +16,7 @@ object FDadosPedidos: TFDadosPedidos
   KeyPreview = True
   OnClose = FormClose
   OnKeyDown = FormKeyDown
+  OnShow = FormShow
   TextHeight = 13
   object PRodape: TPanel
     Left = 0
@@ -53,12 +54,12 @@ object FDadosPedidos: TFDadosPedidos
       Height = 25
       Anchors = [akRight]
       Caption = '&Gravar'
+      Default = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
-      Kind = bkOK
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 0
@@ -188,6 +189,7 @@ object FDadosPedidos: TFDadosPedidos
       Height = 22
       Anchors = [akRight]
       Caption = '&Incluir'
+      Default = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -213,7 +215,7 @@ object FDadosPedidos: TFDadosPedidos
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 1
-      OnClick = BBIncClick
+      OnClick = BBAltClick
     end
     object BBExc: TBitBtn
       Left = 172
@@ -248,6 +250,7 @@ object FDadosPedidos: TFDadosPedidos
       Height = 126
       Hint = 'Duplo Click para Alterar o Item do Pedido...'
       Align = alClient
+      DataSource = DSItensPedido
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentShowHint = False
       ShowHint = True
@@ -263,18 +266,21 @@ object FDadosPedidos: TFDadosPedidos
         item
           Color = clSnow
           Expanded = False
+          FieldName = 'ProdutoItensPedido'
           Title.Caption = 'Item'
           Width = 56
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'DescricaoProdutos'
           Title.Caption = 'Descri'#231#227'o do Item'
           Width = 225
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'QuantidadeItensPedido'
           Title.Alignment = taRightJustify
           Title.Caption = 'Quantidade'
           Width = 89
@@ -282,6 +288,7 @@ object FDadosPedidos: TFDadosPedidos
         end
         item
           Expanded = False
+          FieldName = 'VlrUnitarioItensPedido'
           Title.Alignment = taRightJustify
           Title.Caption = 'Pre'#231'o Venda'
           Width = 101
@@ -290,11 +297,32 @@ object FDadosPedidos: TFDadosPedidos
         item
           Color = clSnow
           Expanded = False
+          FieldName = 'VlrTotalItensPedido'
           Title.Alignment = taRightJustify
           Title.Caption = 'Valor Total'
           Width = 90
           Visible = True
         end>
     end
+  end
+  object DSItensPedido: TDataSource
+    DataSet = ItensMemTable
+    Left = 224
+    Top = 192
+  end
+  object ItensMemTable: TFDMemTable
+    FieldDefs = <>
+    CachedUpdates = True
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvPersistent, rvSilentMode]
+    ResourceOptions.Persistent = True
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired]
+    UpdateOptions.CheckRequired = False
+    StoreDefs = True
+    Left = 328
+    Top = 192
   end
 end

@@ -8,7 +8,9 @@ uses
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.ComCtrls, System.UITypes,
   Controller.PedidoController, Interfaces.IPedido,
   Controller.ItemPedidoController,
-  WKConst;
+  WKConst, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.StorageBin, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TFDadosPedidos = class(TForm)
@@ -31,6 +33,8 @@ type
     BBAlt: TBitBtn;
     BBExc: TBitBtn;
     LETotalPedido: TLabeledEdit;
+    DSItensPedido: TDataSource;
+    ItensMemTable: TFDMemTable;
     procedure BBSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure SBF2Click(Sender: TObject);
@@ -42,6 +46,8 @@ type
     procedure DBGViewDblClick(Sender: TObject);
     procedure BBExcClick(Sender: TObject);
     procedure BBGravarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure BBAltClick(Sender: TObject);
   private
     { Private declarations }
     FPedidoController: TPedidoController;
@@ -79,6 +85,11 @@ begin
   inherited;
 end;
 
+procedure TFDadosPedidos.BBAltClick(Sender: TObject);
+begin
+  pCRUD(acAlterar);
+end;
+
 procedure TFDadosPedidos.BBExcClick(Sender: TObject);
 begin
   TratarDelete;
@@ -103,13 +114,16 @@ begin
     LENumeroPedido.Text := IntToStr(Pedido.NumeroPedido);
 
     ShowMessage('Sucesso na Gravação do Pedido '+LENumeroPedido.Text+'.');
-  end;
+  end
+  else
+    ShowMessage('Sem Sucesso na Gravação do Pedido '+LENumeroPedido.Text+'.'+cEOL+
+      'Falta informar o Código do Cliente');
+  pAtualizacao;
 end;
 
 procedure TFDadosPedidos.BBIncClick(Sender: TObject);
 begin
-  FDadosItensPedido := TFDadosItensPedido.Create(Application);
-  FDadosItensPedido.ShowModal;
+  pCRUD(acIncluir);
 end;
 
 procedure TFDadosPedidos.BBSairClick(Sender: TObject);
@@ -145,6 +159,11 @@ begin
     SBF2.Click;
 end;
 
+procedure TFDadosPedidos.FormShow(Sender: TObject);
+begin
+  pAtualizacao;
+end;
+
 procedure TFDadosPedidos.LETotalPedidoChange(Sender: TObject);
 begin
   LETotalPedido.Text := FormatFloat('###,##0.00',StrToFloatDef(LETotalPedido.Text,0));
@@ -152,12 +171,60 @@ end;
 
 procedure TFDadosPedidos.pAtualizacao;
 begin
-  //
+  if LENumeroPedido.Text = EmptyStr then
+  begin
+    BBInc.Enabled := False;
+    BBAlt.Enabled := False;
+    BBExc.Enabled := False;
+  end
+  else
+  begin
+    FItemPedidoController.CarregarDadosItensPedido(ItensMemTable,
+      LENumeroPedido.Text);
+    BBInc.Enabled := True;
+    BBAlt.Enabled := True;
+    BBExc.Enabled := True;
+  end;
 end;
 
 procedure TFDadosPedidos.pCRUD(pAcao: TAcao);
+var
+  FormItensPedido: TFDadosItensPedido;
 begin
-  //
+  if (DSItensPedido.DataSet.FieldByName('ProdutoItensPedido').IsNull) and
+     (pAcao <> acIncluir) then
+  begin
+    Beep;
+    ShowMessage('Selecione um registro válido '+cEOL+'para efetuar operação desejada!');
+    Exit;
+  end;
+
+  if (pAcao = acExcluir) then
+  begin
+    if FItemPedidoController.ExcluirItemPedido(
+       DSItensPedido.DataSet.FieldByName('idItensPedido').AsInteger) then
+      ShowMessage('Pedido excluído com sucesso!')
+    else
+      ShowMessage('Erro ao excluir pedido.');
+  end
+  else
+  begin
+    FormItensPedido := TFDadosItensPedido.Create(Application);
+    FormItensPedido.pNumeroPedido := StrToIntDef(LENumeroPedido.Text, 0);
+    if (pAcao = acIncluir) then
+    begin
+      FormItensPedido.Caption := FormItensPedido.Caption + '-' + cAcaoIncluir;
+      FormItensPedido.LECodigoProduto.Clear;
+    end
+    else
+    begin
+      FormItensPedido.Caption := FormItensPedido.Caption + '-' + cAcaoAlterar;
+      FormItensPedido.LECodigoProduto.Text := DSItensPedido.DataSet.FieldByName('PedidoItensPedido').AsString;
+      FormItensPedido.LEQtd.Text := DSItensPedido.DataSet.FieldByName('QuantidadeItensPedido').AsString;
+    end;
+    FormItensPedido.ShowModal;
+  end;
+  pAtualizacao;
 end;
 
 procedure TFDadosPedidos.SBF2Click(Sender: TObject);
@@ -178,12 +245,9 @@ end;
 procedure TFDadosPedidos.TratarDelete;
 begin
   // Exibe uma mensagem de confirmação antes de deletar o registro
-  if MessageDlg('Deseja realmente excluir este Item?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-  begin
-    // Deleta o registro atual
-    // DBGView.DataSource.DataSet.Delete;
-    BBExc.Click;
-  end;
+  if MessageDlg('Deseja realmente excluir este Item: '+DSItensPedido.DataSet.FieldByName('ProdutoItensPedido').AsString+'?',
+     mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    pCRUD(acExcluir);
 end;
 
 end.

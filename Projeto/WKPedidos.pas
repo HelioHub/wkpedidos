@@ -35,9 +35,6 @@ uses UViewPedidos, UViewAtencao, WKConst;
 
 procedure TFWKPedidos.BBCadPedidosClick(Sender: TObject);
 begin
-  //FViewAtencao := TFViewAtencao.Create(Application);
-  //FViewAtencao.ShowModal;
-
   FViewPedidos := TFViewPedidos.Create(Application);
   FViewPedidos.ShowModal;
 end;

@@ -18,7 +18,7 @@ type
     function ExcluirItemPedido(const AId: Integer): Boolean;
     function CalcularTotalItens(const AIdPedido: Integer): Double;
 
-    procedure CarregarDadosItensPedido(const AFDMemTable: TFDMemTable);
+    procedure CarregarDadosItensPedido(const AFDMemTable: TFDMemTable; pPedido: String);
   end;
 
 implementation
@@ -50,29 +50,20 @@ end;
 
 function TItemPedidoController.SalvarItemPedido(AItemPedido: IItemPedido): Boolean;
 begin
-  Result := AItemPedido.Salvar;
-  {
-  if Result then
-    ShowMessage('Item de pedido salvo com sucesso!')
+  if AItemPedido.Produto = cZero then
+    Result := false
   else
-    ShowMessage('Erro ao salvar item de pedido.');
-  }
+    Result := AItemPedido.Salvar;
 end;
 
-procedure TItemPedidoController.CarregarDadosItensPedido(const AFDMemTable: TFDMemTable);
+procedure TItemPedidoController.CarregarDadosItensPedido(const AFDMemTable: TFDMemTable; pPedido: String);
 begin
-  FItemPedido.CarregarDados(AFDMemTable);
+  FItemPedido.CarregarDados(AFDMemTable, pPedido);
 end;
 
 function TItemPedidoController.ExcluirItemPedido(const AId: Integer): Boolean;
 begin
   Result := FItemPedido.Excluir(AId);
-  {
-  if Result then
-    ShowMessage('Item de pedido excluído com sucesso!')
-  else
-    ShowMessage('Erro ao excluir item de pedido.');
-  }
 end;
 
 end.

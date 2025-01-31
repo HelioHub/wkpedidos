@@ -517,3 +517,16 @@ utilizando ao máximo o seu potencial.
 		Facilidade de Manutenção:
 			Se a configuração da conexão precisar ser alterada, basta modificar o arquivo .INI.			
 	
+## Todos os Requisitos atendidos 
+
+![## Requisitos WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/FuncionandoTudo.png)
+
+## Disponibilizado o DUMP do banco de dados no diretório raiz do projeto
+
+	1. mysqldump -u root -pwk@123 WKPedidos > C:\WKPedidos\Dump20250131
+	
+	2. config.ini - Arquivo de Configuração de Acesso ao Banco de Dados
+
+	3. C:\WKPedidos\DLL\libmysql.dll - Disponível nesta pasta no entanto configurável pelo config.ini
+
+	
