@@ -35,7 +35,8 @@ type
 
     function Salvar: Boolean; // Implementação do método Salvar
     function Excluir(const AId: Integer): Boolean; // Implementação do método Excluir
-    procedure CarregarDados(const AFDMemTable: TFDMemTable); // Implementação do método CarregarDados
+    procedure CarregarDados(const AFDMemTable: TFDMemTable;
+      pNumeroPedido, pNomeCliente, pLimite: String); // Implementação do método CarregarDados
   end;
 
 implementation
@@ -119,10 +120,10 @@ begin
     begin
       // Atualizar pedido existente
       FQuery.SQL.Add(' UPDATE Pedidos SET');
-      FQuery.SQL.Add(' DataEmissaoPedidos = :DataEmissao,');
-      FQuery.SQL.Add(' ClientePedidos = :Cliente,');
+      FQuery.SQL.Add('  DataEmissaoPedidos = :DataEmissao,');
+      FQuery.SQL.Add('  ClientePedidos = :Cliente,');
       FQuery.SQL.Add(' ValorTotalPedidos = :ValorTotal');
-      FQuery.SQL.Add(' WHERE NumeroPedidos = :NumeroPedido');
+      FQuery.SQL.Add('  WHERE NumeroPedidos = :NumeroPedido');
       FQuery.ParamByName('NumeroPedido').AsInteger := FNumeroPedido;
     end;
 
@@ -152,7 +153,8 @@ begin
   end;
 end;
 
-procedure TPedido.CarregarDados(const AFDMemTable: TFDMemTable);
+procedure TPedido.CarregarDados(const AFDMemTable: TFDMemTable;
+  pNumeroPedido, pNomeCliente, pLimite: String);
 begin
   try
     // Prepara a query para selecionar os dados
@@ -160,16 +162,26 @@ begin
     FQuery.SQL.Add('	SELECT');
     FQuery.SQL.Add('		p.NumeroPedidos,');
     FQuery.SQL.Add('		p.DataEmissaoPedidos,');
-    FQuery.SQL.Add('		p.ValorTotalPedidos,');
+//  FQuery.SQL.Add('		p.ValorTotalPedidos,');
     FQuery.SQL.Add('    p.ClientePedidos,');
-    FQuery.SQL.Add('		c.NomeClientes');
+    FQuery.SQL.Add('		c.NomeClientes,');
+    FQuery.SQL.Add('    (SELECT SUM(ip.VlrTotalItensPedido)');
+    FQuery.SQL.Add('     FROM WKPedidos.ItensPedido ip');
+    FQuery.SQL.Add('     WHERE ip.PedidoItensPedido = p.NumeroPedidos');
+    FQuery.SQL.Add('     ) AS ValorTotalPedidos');
     FQuery.SQL.Add('	FROM');
     FQuery.SQL.Add('		WKPedidos.Pedidos p');
     FQuery.SQL.Add('	JOIN');
     FQuery.SQL.Add('		WKPedidos.Clientes c ON p.ClientePedidos = c.CodigoClientes');
+    FQuery.SQL.Add('	WHERE 1=1 ');
+    if Not pNumeroPedido.IsEmpty then
+      FQuery.SQL.Add('	AND p.NumeroPedidos = '+pNumeroPedido);
+    if Not pNomeCliente.IsEmpty then
+      FQuery.SQL.Add('	AND c.NomeClientes LIKE '+QuotedStr(pNomeCliente+'%'));
     FQuery.SQL.Add('	ORDER BY');
     FQuery.SQL.Add('		p.DataEmissaoPedidos DESC');
-    FQuery.SQL.Add('	LIMIT 100 OFFSET 0;');
+    if Not pLimite.IsEmpty then
+      FQuery.SQL.Add('	LIMIT '+pLimite+' OFFSET 0;');
     FQuery.Open;
 
     // Copia os dados para o TFDMemTable

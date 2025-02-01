@@ -254,7 +254,7 @@ begin
                     ': ' + FormatFloat('###,##0.00',TotalItens));
   end
   else
-    ShowMessage('ID do Pedido inválido.');
+    ShowMessage('Id do Pedido inválido.');
 end;
 
 procedure TFViewPedidos.CallProdutoMaisVendido;

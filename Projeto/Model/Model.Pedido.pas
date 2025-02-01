@@ -184,10 +184,15 @@ begin
       FQuery.SQL.Add('	LIMIT '+pLimite+' OFFSET 0;');
     FQuery.Open;
 
-    // Copia os dados para o TFDMemTable
-    AFDMemTable.Close;
-    AFDMemTable.Data := FQuery.Data;
-    AFDMemTable.Open;
+    if FQuery.RecordCount = 0 then
+      ShowMessage('Sem Dado(s) Encontrado(s)!!')
+    else
+    begin
+      // Copia os dados para o TFDMemTable
+      AFDMemTable.Close;
+      AFDMemTable.Data := FQuery.Data;
+      AFDMemTable.Open;
+    end;
   except
     on E: Exception do
     begin

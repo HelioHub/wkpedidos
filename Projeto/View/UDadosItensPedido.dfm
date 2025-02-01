@@ -4,7 +4,7 @@ object FDadosItensPedido: TFDadosItensPedido
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Dados do Item(Produto) do Pedido'
-  ClientHeight = 220
+  ClientHeight = 213
   ClientWidth = 398
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object FDadosItensPedido: TFDadosItensPedido
   TextHeight = 13
   object PRodape: TPanel
     Left = 0
-    Top = 179
+    Top = 172
     Width = 398
     Height = 41
     Align = alBottom
@@ -69,7 +69,7 @@ object FDadosItensPedido: TFDadosItensPedido
     Left = 0
     Top = 0
     Width = 398
-    Height = 179
+    Height = 172
     Align = alClient
     TabOrder = 0
     ExplicitHeight = 152
