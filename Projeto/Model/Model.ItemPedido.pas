@@ -114,7 +114,6 @@ begin
     FQuery.Open;
 
     // Copia os dados para o TFDMemTable
-    if FQuery.RecordCount > 0 then
     begin
       AFDMemTable.Close;
       AFDMemTable.Data := FQuery.Data;
@@ -258,7 +257,6 @@ begin
     FQuery.Open;
 
     // Copia os dados para o TFDMemTable
-    if FQuery.RecordCount > 0 then
     begin
       AFDMemTable.Close;
       AFDMemTable.Data := FQuery.Data;

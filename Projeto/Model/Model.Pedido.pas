@@ -113,17 +113,21 @@ begin
     if FNumeroPedido = 0 then
     begin
       // Inserir novo pedido
-      FQuery.SQL.Add(' INSERT INTO Pedidos (DataEmissaoPedidos, ClientePedidos, ValorTotalPedidos)');
-      FQuery.SQL.Add(' VALUES (:DataEmissao, :Cliente, :ValorTotal)');
+      FQuery.SQL.Add(' INSERT INTO Pedidos (DataEmissaoPedidos, '+
+                                          ' ClientePedidos,     '+
+                                          ' ValorTotalPedidos)  ');
+      FQuery.SQL.Add(' VALUES (:DataEmissao, '+
+                             ' :Cliente,     '+
+                             ' :ValorTotal)  ');
     end
     else
     begin
       // Atualizar pedido existente
-      FQuery.SQL.Add(' UPDATE Pedidos SET');
-      FQuery.SQL.Add('  DataEmissaoPedidos = :DataEmissao,');
-      FQuery.SQL.Add('  ClientePedidos = :Cliente,');
-      FQuery.SQL.Add(' ValorTotalPedidos = :ValorTotal');
-      FQuery.SQL.Add('  WHERE NumeroPedidos = :NumeroPedido');
+      FQuery.SQL.Add(' UPDATE Pedidos SET '+
+                            ' DataEmissaoPedidos = :DataEmissao, '+
+                            ' ClientePedidos = :Cliente,         '+
+                            ' ValorTotalPedidos = :ValorTotal    ');
+      FQuery.SQL.Add('  WHERE NumeroPedidos = :NumeroPedido      ');
       FQuery.ParamByName('NumeroPedido').AsInteger := FNumeroPedido;
     end;
 
@@ -159,19 +163,18 @@ begin
   try
     // Prepara a query para selecionar os dados
     FQuery.SQL.Clear;
-    FQuery.SQL.Add('	SELECT');
-    FQuery.SQL.Add('		p.NumeroPedidos,');
-    FQuery.SQL.Add('		p.DataEmissaoPedidos,');
-//  FQuery.SQL.Add('		p.ValorTotalPedidos,');
-    FQuery.SQL.Add('    p.ClientePedidos,');
-    FQuery.SQL.Add('		c.NomeClientes,');
-    FQuery.SQL.Add('    (SELECT SUM(ip.VlrTotalItensPedido)');
-    FQuery.SQL.Add('     FROM WKPedidos.ItensPedido ip');
-    FQuery.SQL.Add('     WHERE ip.PedidoItensPedido = p.NumeroPedidos');
-    FQuery.SQL.Add('     ) AS ValorTotalPedidos');
-    FQuery.SQL.Add('	FROM');
-    FQuery.SQL.Add('		WKPedidos.Pedidos p');
-    FQuery.SQL.Add('	JOIN');
+    FQuery.SQL.Add(' SELECT');
+    FQuery.SQL.Add(' 	p.NumeroPedidos,     ');
+    FQuery.SQL.Add(' 	p.DataEmissaoPedidos,');
+    FQuery.SQL.Add('  p.ClientePedidos,    ');
+    FQuery.SQL.Add(' 	c.NomeClientes,      ');
+    FQuery.SQL.Add('  (SELECT SUM(ip.VlrTotalItensPedido)           '+
+                   '   FROM WKPedidos.ItensPedido ip                '+
+                   '   WHERE ip.PedidoItensPedido = p.NumeroPedidos '+
+                   '  ) AS ValorTotalPedidos ');
+    FQuery.SQL.Add('	FROM                   ');
+    FQuery.SQL.Add('		WKPedidos.Pedidos p  ');
+    FQuery.SQL.Add('	JOIN                   ');
     FQuery.SQL.Add('		WKPedidos.Clientes c ON p.ClientePedidos = c.CodigoClientes');
     FQuery.SQL.Add('	WHERE 1=1 ');
     if Not pNumeroPedido.IsEmpty then
@@ -181,7 +184,7 @@ begin
     FQuery.SQL.Add('	ORDER BY');
     FQuery.SQL.Add('		p.DataEmissaoPedidos DESC');
     if Not pLimite.IsEmpty then
-      FQuery.SQL.Add('	LIMIT '+pLimite+' OFFSET 0;');
+      FQuery.SQL.Add('	LIMIT '+pLimite+' OFFSET 0 ');
     FQuery.Open;
 
     if FQuery.RecordCount > 0 then
@@ -190,7 +193,9 @@ begin
       AFDMemTable.Close;
       AFDMemTable.Data := FQuery.Data;
       AFDMemTable.Open;
-    end;
+    end
+    else
+      AFDMemTable.Close;
   except
     on E: Exception do
     begin

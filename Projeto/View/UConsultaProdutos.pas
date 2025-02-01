@@ -26,7 +26,6 @@ type
     FDMemTableProdutoDescricaoProdutos: TStringField;
     FDMemTableProdutoPrecoVendaProdutos: TBCDField;
     procedure BBSairClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DBGViewDblClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -67,11 +66,6 @@ end;
 procedure TFConsultaProdutos.BBSairClick(Sender: TObject);
 begin
   Close;
-end;
-
-procedure TFConsultaProdutos.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  //Action := CaFree;
 end;
 
 procedure TFConsultaProdutos.FormShow(Sender: TObject);
