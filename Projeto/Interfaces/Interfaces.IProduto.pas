@@ -7,7 +7,7 @@ uses
 
 type
   IProduto = interface
-    ['{988AC819-E11B-45C4-AC61-6D1C95F3B2F9}']
+    ['{4F628195-07EE-4CC8-8952-6AE0B4190C30}']
     function GetCodigoProdutos: Integer;
     function GetDescricaoProdutos: string;
     function GetPrecoVendaProdutos: Double;
@@ -20,6 +20,7 @@ type
     property PrecoVendaProdutos: Double read GetPrecoVendaProdutos write SetPrecoVendaProdutos;
 
     procedure CarregarDados(const AFDMemTable: TFDMemTable; pDescricaoProduto: String); // Método para carregar dados
+    function CarregarNomePorId(pId: String): String;
   end;
 
 implementation

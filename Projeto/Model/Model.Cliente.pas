@@ -33,6 +33,7 @@ type
     property UFClientes: string read GetUFClientes write SetUFClientes;
 
     procedure CarregarDados(const AFDMemTable: TFDMemTable; pNomeCliente: String); // Implementação do método CarregarDados
+    function CarregarNomePorId(pId: String) : String; // Implementação do método Carregar Nome por Id
   end;
 
 implementation
@@ -116,6 +117,26 @@ begin
     AFDMemTable.Close;
     AFDMemTable.Data := FQuery.Data;
     AFDMemTable.Open;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Erro ao carregar dados: ' + E.Message);
+    end;
+  end;
+end;
+
+function TCliente.CarregarNomePorId(pId: String) : String;
+begin
+  Result := '';
+  try
+    FQuery.SQL.Clear;
+    FQuery.SQL.Add(' SELECT NomeClientes ');
+    FQuery.SQL.Add(' FROM Clientes');
+    if pId <> EmptyStr then
+      FQuery.SQL.Add('WHERE CodigoClientes = '+pId);
+    FQuery.Open;
+
+    Result := FQuery.FieldByName('NomeClientes').AsString
   except
     on E: Exception do
     begin

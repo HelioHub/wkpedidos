@@ -49,18 +49,18 @@ implementation
 constructor TFConsultaProdutos.Create(AOwner: TComponent);
 begin
   inherited;
-  FProdutoController := TProdutoController.Create('C:\caminho\para\config.ini');
-end;
-
-procedure TFConsultaProdutos.DBGViewDblClick(Sender: TObject);
-begin
-  BBSelecionar.Click;
+  FProdutoController := TProdutoController.Create;
 end;
 
 destructor TFConsultaProdutos.Destroy;
 begin
   FProdutoController.Free;
   inherited;
+end;
+
+procedure TFConsultaProdutos.DBGViewDblClick(Sender: TObject);
+begin
+  BBSelecionar.Click;
 end;
 
 procedure TFConsultaProdutos.BBSairClick(Sender: TObject);

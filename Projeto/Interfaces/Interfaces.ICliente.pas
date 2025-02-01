@@ -23,6 +23,7 @@ type
     property UFClientes: string read GetUFClientes write SetUFClientes;
 
     procedure CarregarDados(const AFDMemTable: TFDMemTable; pNomeCliente: String); // Método para carregar dados
+    function CarregarNomePorId(pId: String) : String; // Implementação do método Carregar Nome por Id
   end;
 
 implementation

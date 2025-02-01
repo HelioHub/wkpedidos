@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.Mask, Controller.ItemPedidoController, Interfaces.IItemPedido;
+  Vcl.Mask, Controller.ItemPedidoController, Interfaces.IItemPedido,
+  Controller.ProdutoController;
 
 type
   TFDadosItensPedido = class(TForm)
@@ -28,9 +29,11 @@ type
     procedure LEQtdExit(Sender: TObject);
     procedure BBGravarClick(Sender: TObject);
     procedure LEPrecoChange(Sender: TObject);
+    procedure LECodigoProdutoExit(Sender: TObject);
   private
     { Private declarations }
     FItemPedidoController: TItemPedidoController;
+    FProdutoController: TProdutoController;
 
     procedure OnlyNumber(var Key: char; ETextEdit: String);
     procedure MaskEdit(var LEAmount, LEPrice, LEValue: TLabeledEdit);
@@ -57,11 +60,13 @@ constructor TFDadosItensPedido.Create(AOwner: TComponent);
 begin
   inherited;
   FItemPedidoController := TItemPedidoController.Create;
+  FProdutoController    := TProdutoController.Create;
 end;
 
 destructor TFDadosItensPedido.Destroy;
 begin
   FItemPedidoController.Free;
+  FProdutoController.Free;
   inherited;
 end;
 
@@ -118,6 +123,12 @@ end;
 procedure TFDadosItensPedido.LEQtdExit(Sender: TObject);
 begin
   MaskEdit(LEQtd, LEPreco, LEValor);
+end;
+
+procedure TFDadosItensPedido.LECodigoProdutoExit(Sender: TObject);
+begin
+  if LECodigoProduto.Text <> EmptyStr then
+    LEDescricao.Text := FProdutoController.CarregarNomePorId(LECodigoProduto.Text);
 end;
 
 procedure TFDadosItensPedido.LEPrecoChange(Sender: TObject);

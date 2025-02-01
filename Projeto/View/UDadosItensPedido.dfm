@@ -1,6 +1,7 @@
 object FDadosItensPedido: TFDadosItensPedido
   Left = 0
   Top = 0
+  ActiveControl = LECodigoProduto
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Dados do Item(Produto) do Pedido'
@@ -24,7 +25,6 @@ object FDadosItensPedido: TFDadosItensPedido
     Height = 41
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 152
     DesignSize = (
       398
       41)
@@ -72,7 +72,6 @@ object FDadosItensPedido: TFDadosItensPedido
     Height = 172
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 152
     object SBF2: TSpeedButton
       Left = 183
       Top = 35
@@ -90,11 +89,11 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Width = 96
       EditLabel.Height = 21
       EditLabel.Caption = ' C'#243'digo do Produto:'
-      Enabled = False
       LabelPosition = lpLeft
       NumbersOnly = True
       TabOrder = 0
       Text = ''
+      OnExit = LECodigoProdutoExit
     end
     object LEDescricao: TLabeledEdit
       Left = 116

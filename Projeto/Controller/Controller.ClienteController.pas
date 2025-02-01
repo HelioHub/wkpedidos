@@ -14,6 +14,7 @@ type
     destructor Destroy; override;
 
     function GetCliente: ICliente;
+    function CarregarNomePorId(pId: String) : String; // Implementação do método Carregar Nome por Id
     procedure CarregarDadosClientes(const AFDMemTable: TFDMemTable; pNomeCliente: String);
   end;
 
@@ -22,6 +23,11 @@ implementation
 { TClienteController }
 
 uses WKConst;
+
+function TClienteController.CarregarNomePorId(pId: String): String;
+begin
+  Result := FCliente.CarregarNomePorId(pId);
+end;
 
 constructor TClienteController.Create;
 begin

@@ -29,6 +29,7 @@ type
     property DescricaoProdutos: string read GetDescricaoProdutos write SetDescricaoProdutos;
     property PrecoVendaProdutos: Double read GetPrecoVendaProdutos write SetPrecoVendaProdutos;
 
+    function CarregarNomePorId(pId: String): String;
     procedure CarregarDados(const AFDMemTable: TFDMemTable; pDescricaoProduto: String); // Implementação do método CarregarDados
   end;
 
@@ -103,6 +104,26 @@ begin
     AFDMemTable.Close;
     AFDMemTable.Data := FQuery.Data;
     AFDMemTable.Open;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Erro ao carregar dados: ' + E.Message);
+    end;
+  end;
+end;
+
+function TProduto.CarregarNomePorId(pId: String) : String;
+begin
+  Result := '';
+  try
+    FQuery.SQL.Clear;
+    FQuery.SQL.Add(' SELECT DescricaoProdutos ');
+    FQuery.SQL.Add(' FROM Produtos ');
+    if pId <> EmptyStr then
+      FQuery.SQL.Add('WHERE CodigoProdutos = '+pId);
+    FQuery.Open;
+
+    Result := FQuery.FieldByName('DescricaoProdutos').AsString
   except
     on E: Exception do
     begin

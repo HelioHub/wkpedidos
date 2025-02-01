@@ -126,11 +126,11 @@ object FDadosPedidos: TFDadosPedidos
       EditLabel.Width = 88
       EditLabel.Height = 21
       EditLabel.Caption = 'C'#243'digo do Cliente:'
-      Enabled = False
       LabelPosition = lpLeft
       NumbersOnly = True
       TabOrder = 2
       Text = ''
+      OnExit = LECodigoClienteExit
     end
     object EDescCliente: TEdit
       Left = 191

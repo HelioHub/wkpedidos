@@ -163,7 +163,7 @@ begin
   try
     // Prepara a query para selecionar os dados
     FQuery.SQL.Clear;
-    FQuery.SQL.Add(' SELECT');
+    FQuery.SQL.Add(' SELECT ');
     FQuery.SQL.Add(' 	p.NumeroPedidos,     ');
     FQuery.SQL.Add(' 	p.DataEmissaoPedidos,');
     FQuery.SQL.Add('  p.ClientePedidos,    ');

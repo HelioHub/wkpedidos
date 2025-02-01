@@ -23,7 +23,6 @@ type
     DSConslutaCliente: TDataSource;
     FDMemTableCliente: TFDMemTable;
     procedure BBSairClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BBFiltrarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -65,11 +64,6 @@ end;
 procedure TFConsultaClientes.BBSairClick(Sender: TObject);
 begin
   BBSelecionar.Click;
-end;
-
-procedure TFConsultaClientes.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  //Action := CaFree;
 end;
 
 procedure TFConsultaClientes.FormShow(Sender: TObject);

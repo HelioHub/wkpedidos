@@ -8,6 +8,7 @@ uses
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.ComCtrls, System.UITypes,
   Controller.PedidoController, Interfaces.IPedido,
   Controller.ItemPedidoController,
+  Controller.ClienteController,
   WKConst, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.StorageBin, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
@@ -54,10 +55,12 @@ type
     procedure BBGravarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BBAltClick(Sender: TObject);
+    procedure LECodigoClienteExit(Sender: TObject);
   private
     { Private declarations }
     FPedidoController: TPedidoController;
     FItemPedidoController: TItemPedidoController;
+    FClienteController: TClienteController;
 
     procedure TratarDelete;
     procedure pCRUD(pAcao: TAcao);
@@ -82,18 +85,26 @@ begin
   inherited;
   FPedidoController := TPedidoController.Create;
   FItemPedidoController := TItemPedidoController.Create;
+  FClienteController := TClienteController.Create;
 end;
 
 destructor TFDadosPedidos.Destroy;
 begin
   FPedidoController.Free;
   FItemPedidoController.Free;
+  FClienteController.Free;
   inherited;
 end;
 
 procedure TFDadosPedidos.FormShow(Sender: TObject);
 begin
   pAtualizacao;
+end;
+
+procedure TFDadosPedidos.LECodigoClienteExit(Sender: TObject);
+begin
+  if LECodigoCliente.Text <> EmptyStr  then
+    EDescCliente.Text := FClienteController.CarregarNomePorId(LECodigoCliente.Text);
 end;
 
 procedure TFDadosPedidos.BBIncClick(Sender: TObject);
