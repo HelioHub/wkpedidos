@@ -27,6 +27,7 @@ type
     procedure LEQtdKeyPress(Sender: TObject; var Key: Char);
     procedure LEQtdExit(Sender: TObject);
     procedure BBGravarClick(Sender: TObject);
+    procedure LEPrecoChange(Sender: TObject);
   private
     { Private declarations }
     FItemPedidoController: TItemPedidoController;
@@ -82,6 +83,8 @@ var
   ItensPedido: IItemPedido;
 begin
   ItensPedido := FItemPedidoController.GetItemPedido;
+  MaskEdit(LEQtd, LEPreco, LEValor);
+  TakePoint(LEValor);
 
   // Preenche os dados do Item do Pedido
   ItensPedido.IdItemPedido := StrToIntDef(LEIdItemProduto.Text, 0);;
@@ -113,6 +116,11 @@ begin
 end;
 
 procedure TFDadosItensPedido.LEQtdExit(Sender: TObject);
+begin
+  MaskEdit(LEQtd, LEPreco, LEValor);
+end;
+
+procedure TFDadosItensPedido.LEPrecoChange(Sender: TObject);
 begin
   MaskEdit(LEQtd, LEPreco, LEValor);
 end;

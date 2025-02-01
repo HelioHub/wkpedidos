@@ -184,9 +184,7 @@ begin
       FQuery.SQL.Add('	LIMIT '+pLimite+' OFFSET 0;');
     FQuery.Open;
 
-    if FQuery.RecordCount = 0 then
-      ShowMessage('Sem Dado(s) Encontrado(s)!!')
-    else
+    if FQuery.RecordCount > 0 then
     begin
       // Copia os dados para o TFDMemTable
       AFDMemTable.Close;

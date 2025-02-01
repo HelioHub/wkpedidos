@@ -300,6 +300,7 @@ object FViewPedidos: TFViewPedidos
       TitleFont.Style = []
       Columns = <
         item
+          Alignment = taCenter
           Color = clSnow
           Expanded = False
           FieldName = 'PedidoItensPedido'

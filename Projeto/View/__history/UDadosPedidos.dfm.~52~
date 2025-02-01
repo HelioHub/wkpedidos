@@ -25,7 +25,6 @@ object FDadosPedidos: TFDadosPedidos
     Height = 41
     Align = alBottom
     TabOrder = 0
-    ExplicitTop = 442
     DesignSize = (
       599
       41)
@@ -53,7 +52,7 @@ object FDadosPedidos: TFDadosPedidos
       Width = 75
       Height = 25
       Anchors = [akRight]
-      Caption = 'OK'
+      Caption = '&Gravar'
       Default = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -73,7 +72,6 @@ object FDadosPedidos: TFDadosPedidos
     Height = 123
     Align = alClient
     TabOrder = 1
-    ExplicitTop = -6
     object LDT: TLabel
       Left = 30
       Top = 41
@@ -156,7 +154,6 @@ object FDadosPedidos: TFDadosPedidos
       NumbersOnly = True
       TabOrder = 4
       Text = ''
-      OnChange = LETotalPedidoChange
     end
   end
   object PItensPedido: TPanel
@@ -168,7 +165,6 @@ object FDadosPedidos: TFDadosPedidos
     Alignment = taLeftJustify
     Caption = '   Itens do Pedido:'
     TabOrder = 2
-    ExplicitTop = 257
   end
   object POpcoes: TPanel
     Left = 0
@@ -177,8 +173,6 @@ object FDadosPedidos: TFDadosPedidos
     Height = 27
     Align = alBottom
     TabOrder = 3
-    ExplicitLeft = -1
-    ExplicitTop = 296
     DesignSize = (
       599
       27)
@@ -188,7 +182,7 @@ object FDadosPedidos: TFDadosPedidos
       Width = 75
       Height = 22
       Anchors = [akRight]
-      Caption = 'OK'
+      Caption = '&Incluir'
       Default = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -242,7 +236,6 @@ object FDadosPedidos: TFDadosPedidos
     Height = 128
     Align = alBottom
     TabOrder = 4
-    ExplicitTop = 226
     object DBGView: TDBGrid
       Left = 1
       Top = 1
@@ -250,7 +243,7 @@ object FDadosPedidos: TFDadosPedidos
       Height = 126
       Hint = 'Duplo Click para Alterar o Item do Pedido...'
       Align = alClient
-      DataSource = DSItensPedido
+      DataSource = DSDadosItensPedido
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentShowHint = False
       ShowHint = True
@@ -264,11 +257,18 @@ object FDadosPedidos: TFDadosPedidos
       OnKeyDown = DBGViewKeyDown
       Columns = <
         item
+          Expanded = False
+          FieldName = 'idItensPedido'
+          Title.Caption = 'Id'
+          Width = 29
+          Visible = True
+        end
+        item
           Color = clSnow
           Expanded = False
           FieldName = 'ProdutoItensPedido'
           Title.Caption = 'Item'
-          Width = 56
+          Width = 47
           Visible = True
         end
         item
@@ -283,7 +283,7 @@ object FDadosPedidos: TFDadosPedidos
           FieldName = 'QuantidadeItensPedido'
           Title.Alignment = taRightJustify
           Title.Caption = 'Quantidade'
-          Width = 89
+          Width = 74
           Visible = True
         end
         item
@@ -291,7 +291,7 @@ object FDadosPedidos: TFDadosPedidos
           FieldName = 'VlrUnitarioItensPedido'
           Title.Alignment = taRightJustify
           Title.Caption = 'Pre'#231'o Venda'
-          Width = 101
+          Width = 90
           Visible = True
         end
         item
@@ -305,12 +305,12 @@ object FDadosPedidos: TFDadosPedidos
         end>
     end
   end
-  object DSItensPedido: TDataSource
-    DataSet = ItensMemTable
+  object DSDadosItensPedido: TDataSource
+    DataSet = ItensPedidoMemTable
     Left = 224
     Top = 192
   end
-  object ItensMemTable: TFDMemTable
+  object ItensPedidoMemTable: TFDMemTable
     FieldDefs = <>
     CachedUpdates = True
     IndexDefs = <>
@@ -324,5 +324,33 @@ object FDadosPedidos: TFDadosPedidos
     StoreDefs = True
     Left = 328
     Top = 192
+    object ItensPedidoMemTableidItensPedido: TIntegerField
+      FieldName = 'idItensPedido'
+    end
+    object ItensPedidoMemTablePedidoItensPedido: TIntegerField
+      FieldName = 'PedidoItensPedido'
+    end
+    object ItensPedidoMemTableProdutoItensPedido: TIntegerField
+      FieldName = 'ProdutoItensPedido'
+    end
+    object ItensPedidoMemTableQuantidadeItensPedido: TBCDField
+      FieldName = 'QuantidadeItensPedido'
+      DisplayFormat = '###,##0.00'
+      Size = 2
+    end
+    object ItensPedidoMemTableVlrUnitarioItensPedido: TBCDField
+      FieldName = 'VlrUnitarioItensPedido'
+      DisplayFormat = '###,##0.00'
+      Size = 3
+    end
+    object ItensPedidoMemTableVlrTotalItensPedido: TBCDField
+      FieldName = 'VlrTotalItensPedido'
+      DisplayFormat = '###,##0.00'
+      Size = 3
+    end
+    object ItensPedidoMemTableDescricaoProdutos: TStringField
+      FieldName = 'DescricaoProdutos'
+      Size = 80
+    end
   end
 end

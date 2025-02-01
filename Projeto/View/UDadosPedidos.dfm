@@ -257,25 +257,28 @@ object FDadosPedidos: TFDadosPedidos
       OnKeyDown = DBGViewKeyDown
       Columns = <
         item
+          Alignment = taCenter
           Expanded = False
           FieldName = 'idItensPedido'
+          Title.Alignment = taCenter
           Title.Caption = 'Id'
           Width = 29
           Visible = True
         end
         item
+          Alignment = taCenter
           Color = clSnow
           Expanded = False
           FieldName = 'ProdutoItensPedido'
-          Title.Caption = 'Item'
-          Width = 47
+          Title.Caption = 'C'#243'digo Item'
+          Width = 67
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'DescricaoProdutos'
           Title.Caption = 'Descri'#231#227'o do Item'
-          Width = 225
+          Width = 209
           Visible = True
         end
         item
