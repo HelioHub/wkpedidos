@@ -525,7 +525,7 @@ utilizando ao máximo o seu potencial.
 
 	1. mysqldump -u root -pwk@123 WKPedidos > C:\WKPedidos\Dump20250131
 	
-	2. config.ini - Arquivo de Configuração de Acesso ao Banco de Dados
+	2. C:\WKPedidos\config.ini - Arquivo de Configuração de Acesso ao Banco de Dados
 
 	3. C:\WKPedidos\DLL\libmysql.dll - Disponível nesta pasta no entanto configurável pelo config.ini
 

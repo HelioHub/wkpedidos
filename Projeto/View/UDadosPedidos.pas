@@ -47,7 +47,6 @@ type
     procedure SBF2Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BBIncClick(Sender: TObject);
-    procedure LETotalPedidoChange(Sender: TObject);
     procedure DBGViewKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure DBGViewDblClick(Sender: TObject);
@@ -92,7 +91,22 @@ begin
   inherited;
 end;
 
+procedure TFDadosPedidos.FormShow(Sender: TObject);
+begin
+  pAtualizacao;
+end;
+
+procedure TFDadosPedidos.BBIncClick(Sender: TObject);
+begin
+  pCRUD(acIncluir);
+end;
+
 procedure TFDadosPedidos.BBAltClick(Sender: TObject);
+begin
+  pCRUD(acAlterar);
+end;
+
+procedure TFDadosPedidos.DBGViewDblClick(Sender: TObject);
 begin
   pCRUD(acAlterar);
 end;
@@ -100,6 +114,17 @@ end;
 procedure TFDadosPedidos.BBExcClick(Sender: TObject);
 begin
   TratarDelete;
+end;
+
+procedure TFDadosPedidos.DBGViewKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  // Verifica se a tecla DELETE foi pressionada
+  if Key = VK_DELETE then
+  begin
+    TratarDelete;
+    Key := 0; // Evita que o DBGrid processe o DELETE automaticamente
+  end;
 end;
 
 procedure TFDadosPedidos.BBGravarClick(Sender: TObject);
@@ -128,52 +153,11 @@ begin
   pAtualizacao;
 end;
 
-procedure TFDadosPedidos.BBIncClick(Sender: TObject);
-begin
-  pCRUD(acIncluir);
-end;
-
-procedure TFDadosPedidos.BBSairClick(Sender: TObject);
-begin
-  Close;
-end;
-
-procedure TFDadosPedidos.DBGViewDblClick(Sender: TObject);
-begin
-  BBAlt.Click;
-end;
-
-procedure TFDadosPedidos.DBGViewKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  // Verifica se a tecla DELETE foi pressionada
-  if Key = VK_DELETE then
-  begin
-    TratarDelete;
-    Key := 0; // Evita que o DBGrid processe o DELETE automaticamente
-  end;
-end;
-
-procedure TFDadosPedidos.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  Action := CaFree;
-end;
-
 procedure TFDadosPedidos.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if key = vk_F2 then
     SBF2.Click;
-end;
-
-procedure TFDadosPedidos.FormShow(Sender: TObject);
-begin
-  pAtualizacao;
-end;
-
-procedure TFDadosPedidos.LETotalPedidoChange(Sender: TObject);
-begin
-  LETotalPedido.Text := FormatFloat('###,##0.00',StrToFloatDef(LETotalPedido.Text,0));
 end;
 
 procedure TFDadosPedidos.pAtualizacao;
@@ -212,9 +196,9 @@ begin
   begin
     if FItemPedidoController.ExcluirItemPedido(
        DSDadosItensPedido.DataSet.FieldByName('idItensPedido').AsInteger) then
-      ShowMessage('Pedido excluído com sucesso!')
+      ShowMessage('Item do Pedido excluído com sucesso!')
     else
-      ShowMessage('Erro ao excluir pedido.');
+      ShowMessage('Erro ao excluir Item do Pedido.');
   end
   else
   begin
@@ -223,11 +207,12 @@ begin
     if (pAcao = acIncluir) then
     begin
       FormItensPedido.Caption := FormItensPedido.Caption + '-' + cAcaoIncluir;
-      FormItensPedido.LECodigoProduto.Clear;
+      FormItensPedido.LEIdItemProduto.Clear;
     end
     else
     begin
       FormItensPedido.Caption := FormItensPedido.Caption + '-' + cAcaoAlterar;
+      FormItensPedido.LEIdItemProduto.Text := DSDadosItensPedido.DataSet.FieldByName('IdItensPedido').AsString;
       FormItensPedido.LECodigoProduto.Text := DSDadosItensPedido.DataSet.FieldByName('ProdutoItensPedido').AsString;
       FormItensPedido.LEDescricao.Text := DSDadosItensPedido.DataSet.FieldByName('DescricaoProdutos').AsString;
       FormItensPedido.LEQtd.Text := DSDadosItensPedido.DataSet.FieldByName('QuantidadeItensPedido').AsString;
@@ -260,6 +245,16 @@ begin
   if MessageDlg('Deseja realmente excluir este Item: '+DSDadosItensPedido.DataSet.FieldByName('ProdutoItensPedido').AsString+'?',
      mtConfirmation, [mbYes, mbNo], 0) = mrYes then
     pCRUD(acExcluir);
+end;
+
+procedure TFDadosPedidos.BBSairClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TFDadosPedidos.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := CaFree;
 end;
 
 end.

@@ -19,6 +19,7 @@ type
     LEQtd: TLabeledEdit;
     LEPreco: TLabeledEdit;
     LEValor: TLabeledEdit;
+    LEIdItemProduto: TLabeledEdit;
     procedure BBSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure SBF2Click(Sender: TObject);
@@ -63,14 +64,27 @@ begin
   inherited;
 end;
 
+procedure TFDadosItensPedido.ConsultProduct;
+begin
+  FConsultaProdutos := TFConsultaProdutos.Create(Application);
+  if FConsultaProdutos.ShowModal = mrOK then
+  begin
+    LECodigoProduto.Text := FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('CodigoProdutos').AsString;
+    LEDescricao.Text := FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('DescricaoProdutos').AsString;
+    LEPreco.Text := FormatFloat('###,##0.00',
+      FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('PrecoVendaProdutos').AsFloat);
+  end;
+  FConsultaProdutos.Free;
+end;
+
 procedure TFDadosItensPedido.BBGravarClick(Sender: TObject);
 var
   ItensPedido: IItemPedido;
 begin
   ItensPedido := FItemPedidoController.GetItemPedido;
-  MaskEdit(LEQtd, LEPreco, LEValor);
 
   // Preenche os dados do Item do Pedido
+  ItensPedido.IdItemPedido := StrToIntDef(LEIdItemProduto.Text, 0);;
   ItensPedido.Pedido := pNumeroPedido;
   ItensPedido.Produto := StrToIntDef(LECodigoProduto.Text, 0);
   ItensPedido.Quantidade := StrToFloatDef(LEQtd.Text, 0);
@@ -86,21 +100,16 @@ begin
       'Falta informar o Código do Produto');
 end;
 
-procedure TFDadosItensPedido.BBSairClick(Sender: TObject);
-begin
-  Close;
-end;
-
-procedure TFDadosItensPedido.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  Action := CaFree;
-end;
-
 procedure TFDadosItensPedido.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if key = vk_F2 then
     ConsultProduct;
+end;
+
+procedure TFDadosItensPedido.SBF2Click(Sender: TObject);
+begin
+  ConsultProduct;
 end;
 
 procedure TFDadosItensPedido.LEQtdExit(Sender: TObject);
@@ -147,27 +156,19 @@ begin
   end;
 end;
 
-procedure TFDadosItensPedido.SBF2Click(Sender: TObject);
-begin
-  ConsultProduct;
-end;
-
 procedure TFDadosItensPedido.TakePoint(var LEdit: TLabeledEdit);
 begin
   LEdit.Text := StringReplace(LEdit.Text, '.', '', [rfReplaceAll, rfIgnoreCase]);
 end;
 
-procedure TFDadosItensPedido.ConsultProduct;
+procedure TFDadosItensPedido.BBSairClick(Sender: TObject);
 begin
-  FConsultaProdutos := TFConsultaProdutos.Create(Application);
-  if FConsultaProdutos.ShowModal = mrOK then
-  begin
-    LECodigoProduto.Text := FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('CodigoProdutos').AsString;
-    LEDescricao.Text := FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('DescricaoProdutos').AsString;
-    LEPreco.Text := FormatFloat('###,##0.00',
-      FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('PrecoVendaProdutos').AsFloat);
-  end;
-  FConsultaProdutos.Free;
+  Close;
+end;
+
+procedure TFDadosItensPedido.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := CaFree;
 end;
 
 end.

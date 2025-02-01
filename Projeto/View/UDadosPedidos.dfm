@@ -25,7 +25,6 @@ object FDadosPedidos: TFDadosPedidos
     Height = 41
     Align = alBottom
     TabOrder = 0
-    ExplicitTop = 442
     DesignSize = (
       599
       41)
@@ -73,7 +72,6 @@ object FDadosPedidos: TFDadosPedidos
     Height = 123
     Align = alClient
     TabOrder = 1
-    ExplicitTop = -6
     object LDT: TLabel
       Left = 30
       Top = 41
@@ -156,7 +154,6 @@ object FDadosPedidos: TFDadosPedidos
       NumbersOnly = True
       TabOrder = 4
       Text = ''
-      OnChange = LETotalPedidoChange
     end
   end
   object PItensPedido: TPanel
@@ -168,7 +165,6 @@ object FDadosPedidos: TFDadosPedidos
     Alignment = taLeftJustify
     Caption = '   Itens do Pedido:'
     TabOrder = 2
-    ExplicitTop = 257
   end
   object POpcoes: TPanel
     Left = 0
@@ -177,8 +173,6 @@ object FDadosPedidos: TFDadosPedidos
     Height = 27
     Align = alBottom
     TabOrder = 3
-    ExplicitLeft = -1
-    ExplicitTop = 296
     DesignSize = (
       599
       27)
@@ -242,7 +236,6 @@ object FDadosPedidos: TFDadosPedidos
     Height = 128
     Align = alBottom
     TabOrder = 4
-    ExplicitTop = 226
     object DBGView: TDBGrid
       Left = 1
       Top = 1
@@ -264,11 +257,18 @@ object FDadosPedidos: TFDadosPedidos
       OnKeyDown = DBGViewKeyDown
       Columns = <
         item
+          Expanded = False
+          FieldName = 'idItensPedido'
+          Title.Caption = 'Id'
+          Width = 29
+          Visible = True
+        end
+        item
           Color = clSnow
           Expanded = False
           FieldName = 'ProdutoItensPedido'
           Title.Caption = 'Item'
-          Width = 56
+          Width = 47
           Visible = True
         end
         item
@@ -283,7 +283,7 @@ object FDadosPedidos: TFDadosPedidos
           FieldName = 'QuantidadeItensPedido'
           Title.Alignment = taRightJustify
           Title.Caption = 'Quantidade'
-          Width = 89
+          Width = 74
           Visible = True
         end
         item
@@ -291,7 +291,7 @@ object FDadosPedidos: TFDadosPedidos
           FieldName = 'VlrUnitarioItensPedido'
           Title.Alignment = taRightJustify
           Title.Caption = 'Pre'#231'o Venda'
-          Width = 101
+          Width = 90
           Visible = True
         end
         item

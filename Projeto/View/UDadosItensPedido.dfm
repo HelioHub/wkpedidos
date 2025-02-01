@@ -4,7 +4,7 @@ object FDadosItensPedido: TFDadosItensPedido
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Dados do Item(Produto) do Pedido'
-  ClientHeight = 193
+  ClientHeight = 220
   ClientWidth = 398
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,11 +19,12 @@ object FDadosItensPedido: TFDadosItensPedido
   TextHeight = 13
   object PRodape: TPanel
     Left = 0
-    Top = 152
+    Top = 179
     Width = 398
     Height = 41
     Align = alBottom
     TabOrder = 1
+    ExplicitTop = 152
     DesignSize = (
       398
       41)
@@ -68,12 +69,13 @@ object FDadosItensPedido: TFDadosItensPedido
     Left = 0
     Top = 0
     Width = 398
-    Height = 152
+    Height = 179
     Align = alClient
     TabOrder = 0
+    ExplicitHeight = 152
     object SBF2: TSpeedButton
       Left = 183
-      Top = 9
+      Top = 35
       Width = 113
       Height = 22
       Caption = 'F2 -Concultar Produto'
@@ -82,7 +84,7 @@ object FDadosItensPedido: TFDadosItensPedido
     end
     object LECodigoProduto: TLabeledEdit
       Left = 116
-      Top = 10
+      Top = 36
       Width = 61
       Height = 21
       EditLabel.Width = 96
@@ -96,7 +98,7 @@ object FDadosItensPedido: TFDadosItensPedido
     end
     object LEDescricao: TLabeledEdit
       Left = 116
-      Top = 37
+      Top = 63
       Width = 269
       Height = 21
       EditLabel.Width = 106
@@ -110,7 +112,7 @@ object FDadosItensPedido: TFDadosItensPedido
     end
     object LEQtd: TLabeledEdit
       Left = 116
-      Top = 64
+      Top = 90
       Width = 109
       Height = 21
       Alignment = taRightJustify
@@ -125,22 +127,22 @@ object FDadosItensPedido: TFDadosItensPedido
     end
     object LEPreco: TLabeledEdit
       Left = 116
-      Top = 91
+      Top = 117
       Width = 109
       Height = 21
       Alignment = taRightJustify
       EditLabel.Width = 79
       EditLabel.Height = 21
       EditLabel.Caption = 'Pre'#231'o de Venda:'
-      Enabled = False
       LabelPosition = lpLeft
       TabOrder = 3
       Text = ''
+      OnExit = LEQtdExit
       OnKeyPress = LEQtdKeyPress
     end
     object LEValor: TLabeledEdit
       Left = 116
-      Top = 118
+      Top = 144
       Width = 109
       Height = 21
       Alignment = taRightJustify
@@ -150,6 +152,20 @@ object FDadosItensPedido: TFDadosItensPedido
       Enabled = False
       LabelPosition = lpLeft
       TabOrder = 4
+      Text = ''
+    end
+    object LEIdItemProduto: TLabeledEdit
+      Left = 116
+      Top = 9
+      Width = 61
+      Height = 21
+      EditLabel.Width = 14
+      EditLabel.Height = 21
+      EditLabel.Caption = 'Id:'
+      Enabled = False
+      LabelPosition = lpLeft
+      NumbersOnly = True
+      TabOrder = 5
       Text = ''
     end
   end
