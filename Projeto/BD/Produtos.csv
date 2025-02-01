@@ -1,0 +1,21 @@
+CodigoProduto,DescricaoProduto,PrecoVendaProduto
+1,Mouse,15
+2,"Monitor 14p",200
+3,"CPU Intel i5",2000
+4,Teclado,25
+5,"Placa-Mãe X",500
+6,"Placa-Mãe Y",600
+7,"Placa-Mãe W",700
+8,"Placa-Vídeo X",300
+9,"Placa-Vídeo Y",400
+10,"Placa-Vídeo W",500
+11,"Processador i3",600
+12,"Processador i5",800
+13,"Processador i9",1000
+14,"CPU i3",1000
+15,"CPU i9",2000
+16,"Gabinete X",90
+17,"Gabinete Y",100
+18,"Gabinete W",110
+19,"Camera HD",100
+20,Pad-Mouse,5.5
