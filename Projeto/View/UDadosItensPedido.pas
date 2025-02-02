@@ -77,8 +77,7 @@ begin
   begin
     LECodigoProduto.Text := FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('CodigoProdutos').AsString;
     LEDescricao.Text := FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('DescricaoProdutos').AsString;
-    LEPreco.Text := FormatFloat('###,##0.00',
-      FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('PrecoVendaProdutos').AsFloat);
+    //LEPreco.Text := FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('PrecoVendaProdutos').AsString
   end;
   FConsultaProdutos.Free;
 end;

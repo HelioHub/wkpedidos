@@ -28,6 +28,8 @@ type
     procedure BBSairClick(Sender: TObject);
     procedure DBGViewDblClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure BBSelecionarClick(Sender: TObject);
+    procedure BBFiltrarClick(Sender: TObject);
   private
     { Private declarations }
     FProdutoController: TProdutoController;
@@ -46,6 +48,11 @@ implementation
 
 {$R *.dfm}
 
+procedure TFConsultaProdutos.BBSelecionarClick(Sender: TObject);
+begin
+  //
+end;
+
 constructor TFConsultaProdutos.Create(AOwner: TComponent);
 begin
   inherited;
@@ -61,6 +68,11 @@ end;
 procedure TFConsultaProdutos.DBGViewDblClick(Sender: TObject);
 begin
   BBSelecionar.Click;
+end;
+
+procedure TFConsultaProdutos.BBFiltrarClick(Sender: TObject);
+begin
+  pAtualizacao;
 end;
 
 procedure TFConsultaProdutos.BBSairClick(Sender: TObject);

@@ -93,11 +93,11 @@ begin
   try
     // Prepara a query para selecionar os dados
     FQuery.SQL.Clear;
-    FQuery.SQL.Add('SELECT CodigoProdutos, DescricaoProdutos, PrecoVendaProdutos');
-    FQuery.SQL.Add('FROM Produtos');
+    FQuery.SQL.Add('SELECT CodigoProdutos, DescricaoProdutos, PrecoVendaProdutos ');
+    FQuery.SQL.Add('FROM Produtos ');
     if pDescricaoProduto <> EmptyStr then
       FQuery.SQL.Add('WHERE DescricaoProdutos LIKE '+QuotedStr(pDescricaoProduto+'%'));
-    FQuery.SQL.Add('ORDER BY DescricaoProdutos');
+    FQuery.SQL.Add(' ORDER BY DescricaoProdutos ');
     FQuery.Open;
 
     // Copia os dados para o TFDMemTable

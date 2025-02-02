@@ -91,7 +91,7 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Caption = ' C'#243'digo do Produto:'
       LabelPosition = lpLeft
       NumbersOnly = True
-      TabOrder = 0
+      TabOrder = 1
       Text = ''
       OnExit = LECodigoProdutoExit
     end
@@ -106,7 +106,7 @@ object FDadosItensPedido: TFDadosItensPedido
       Enabled = False
       LabelPosition = lpLeft
       NumbersOnly = True
-      TabOrder = 1
+      TabOrder = 2
       Text = ''
     end
     object LEQtd: TLabeledEdit
@@ -119,7 +119,7 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Height = 21
       EditLabel.Caption = 'Quantidade:'
       LabelPosition = lpLeft
-      TabOrder = 2
+      TabOrder = 3
       Text = ''
       OnExit = LEQtdExit
       OnKeyPress = LEQtdKeyPress
@@ -134,7 +134,7 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Height = 21
       EditLabel.Caption = 'Pre'#231'o de Venda:'
       LabelPosition = lpLeft
-      TabOrder = 3
+      TabOrder = 4
       Text = ''
       OnChange = LEPrecoChange
       OnExit = LEQtdExit
@@ -151,7 +151,7 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Caption = 'Valor Total:'
       Enabled = False
       LabelPosition = lpLeft
-      TabOrder = 4
+      TabOrder = 5
       Text = ''
     end
     object LEIdItemProduto: TLabeledEdit
@@ -165,7 +165,7 @@ object FDadosItensPedido: TFDadosItensPedido
       Enabled = False
       LabelPosition = lpLeft
       NumbersOnly = True
-      TabOrder = 5
+      TabOrder = 0
       Text = ''
     end
   end
