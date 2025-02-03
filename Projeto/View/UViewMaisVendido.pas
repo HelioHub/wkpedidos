@@ -17,10 +17,10 @@ type
     DSItensPedido: TDataSource;
     ItensMemTable: TFDMemTable;
     ItensMemTableCodigoProdutos: TIntegerField;
-    ItensMemTableDescricaoProdutos: TStringField;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    ItensMemTableDescricaoProdutos: TStringField;
     ItensMemTableTotalVendido: TFMTBCDField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);

@@ -127,7 +127,7 @@ object FViewPedidos: TFViewPedidos
       Width = 75
       Height = 30
       Cancel = True
-      Caption = '+ Vendido'
+      Caption = '+ &Vendido'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11

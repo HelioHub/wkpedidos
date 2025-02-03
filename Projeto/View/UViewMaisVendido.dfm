@@ -60,13 +60,14 @@ object FViewMaisVendido: TFViewMaisVendido
         FieldName = 'CodigoProdutos'
         Title.Alignment = taCenter
         Title.Caption = 'Item'
+        Width = 47
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'DescricaoProdutos'
         Title.Caption = 'Descri'#231#227'o do Item'
-        Width = 252
+        Width = 232
         Visible = True
       end
       item
@@ -74,8 +75,8 @@ object FViewMaisVendido: TFViewMaisVendido
         Expanded = False
         FieldName = 'TotalVendido'
         Title.Alignment = taRightJustify
-        Title.Caption = 'Total Vendido'
-        Width = 104
+        Title.Caption = 'Quantidade Total Vendido'
+        Width = 143
         Visible = True
       end>
   end
@@ -107,7 +108,7 @@ object FViewMaisVendido: TFViewMaisVendido
     end
     object ItensMemTableTotalVendido: TFMTBCDField
       FieldName = 'TotalVendido'
-      currency = True
+      DisplayFormat = '###,##0.00'
     end
   end
 end

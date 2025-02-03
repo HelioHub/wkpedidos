@@ -71,15 +71,19 @@ begin
 end;
 
 procedure TFDadosItensPedido.ConsultProduct;
+var
+  pPrice : Double;
 begin
+  pPrice := 0;
   FConsultaProdutos := TFConsultaProdutos.Create(Application);
   if FConsultaProdutos.ShowModal = mrOK then
   begin
     LECodigoProduto.Text := FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('CodigoProdutos').AsString;
     LEDescricao.Text := FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('DescricaoProdutos').AsString;
-    //LEPreco.Text := FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('PrecoVendaProdutos').AsString
+    pPrice := FConsultaProdutos.DSConslutaProduto.DataSet.FieldByName('PrecoVendaProdutos').AsFloat;
   end;
   FConsultaProdutos.Free;
+  LEPreco.Text := FormatFloat('###,##0.00',pPrice);
 end;
 
 procedure TFDadosItensPedido.BBGravarClick(Sender: TObject);

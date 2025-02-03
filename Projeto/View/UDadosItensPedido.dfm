@@ -136,7 +136,6 @@ object FDadosItensPedido: TFDadosItensPedido
       LabelPosition = lpLeft
       TabOrder = 4
       Text = ''
-      OnChange = LEPrecoChange
       OnExit = LEQtdExit
       OnKeyPress = LEQtdKeyPress
     end
