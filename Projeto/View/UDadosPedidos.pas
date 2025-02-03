@@ -253,8 +253,11 @@ end;
 procedure TFDadosPedidos.TratarDelete;
 begin
   // Exibe uma mensagem de confirmação antes de deletar o registro
-  if MessageDlg('Deseja realmente excluir este Item: '+DSDadosItensPedido.DataSet.FieldByName('ProdutoItensPedido').AsString+'?',
-     mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+
+  if MessageDlg('Deseja realmente excluir este Item: '+
+    DSDadosItensPedido.DataSet.FieldByName('ProdutoItensPedido').AsString+' '+
+     'Id '+DSDadosItensPedido.DataSet.FieldByName('IdItensPedido').AsString+'?',
+        mtConfirmation, [mbYes, mbNo], 0) = mrYes then
     pCRUD(acExcluir);
 end;
 

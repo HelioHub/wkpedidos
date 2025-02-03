@@ -24,7 +24,9 @@ uses
   Interfaces.IProduto in 'Interfaces\Interfaces.IProduto.pas',
   Model.Produto in 'Model\Model.Produto.pas',
   Controller.ProdutoController in 'Controller\Controller.ProdutoController.pas',
-  UViewMaisVendido in 'View\UViewMaisVendido.pas' {FViewMaisVendido};
+  UViewMaisVendido in 'View\UViewMaisVendido.pas' {FViewMaisVendido},
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 

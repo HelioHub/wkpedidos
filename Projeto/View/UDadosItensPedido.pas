@@ -92,6 +92,8 @@ var
 begin
   ItensPedido := FItemPedidoController.GetItemPedido;
   MaskEdit(LEQtd, LEPreco, LEValor);
+  TakePoint(LEQtd);
+  TakePoint(LEPreco);
   TakePoint(LEValor);
 
   // Preenche os dados do Item do Pedido
