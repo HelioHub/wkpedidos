@@ -11,11 +11,11 @@ utilizando ao máximo o seu potencial.
 
 ## Requisitos 
 
-![## Documento de Requisitos WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/Model/Requisitos1.png)
+![## Documento de Requisitos WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/BD/Requisitos1.png)
 
 ## Diagrama de Entidade e Relacionamento 
 
-![## Diagrama de Entidade e Relacionamento WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/Model/EERDiagram.png)
+![## Diagrama de Entidade e Relacionamento WKPedidos](https://github.com/HelioHub/wkpedidos/blob/main/BD/EERDiagram.png)
 
 ## Arquitetura do Sistema 
 
