@@ -135,7 +135,9 @@ begin
   begin
     TratarDelete;
     Key := 0; // Evita que o DBGrid processe o DELETE automaticamente
-  end;
+  end
+  else if key = VK_RETURN then
+    pCRUD(acAlterar);
 end;
 
 procedure TFDadosPedidos.BBGravarClick(Sender: TObject);

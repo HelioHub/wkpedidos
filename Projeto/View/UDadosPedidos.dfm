@@ -53,7 +53,6 @@ object FDadosPedidos: TFDadosPedidos
       Height = 25
       Anchors = [akRight]
       Caption = '&Gravar'
-      Default = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -183,7 +182,6 @@ object FDadosPedidos: TFDadosPedidos
       Height = 22
       Anchors = [akRight]
       Caption = '&Incluir'
-      Default = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
