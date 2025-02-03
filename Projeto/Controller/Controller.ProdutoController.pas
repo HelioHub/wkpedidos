@@ -15,6 +15,7 @@ type
 
     function GetProduto: IProduto;
     function CarregarNomePorId(pId: String): String;
+    function CarregarPricePorId(pId: String): Double;
     procedure CarregarDadosProdutos(const AFDMemTable: TFDMemTable; pDescricaoProduto: String);
   end;
 
@@ -38,6 +39,11 @@ end;
 function TProdutoController.CarregarNomePorId(pId: String): String;
 begin
   Result := FProduto.CarregarNomePorId(pId);
+end;
+
+function TProdutoController.CarregarPricePorId(pId: String): Double;
+begin
+  Result := FProduto.CarregarPricePorId(pId);
 end;
 
 function TProdutoController.GetProduto: IProduto;

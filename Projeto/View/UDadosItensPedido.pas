@@ -133,7 +133,10 @@ end;
 procedure TFDadosItensPedido.LECodigoProdutoExit(Sender: TObject);
 begin
   if LECodigoProduto.Text <> EmptyStr then
+  begin
     LEDescricao.Text := FProdutoController.CarregarNomePorId(LECodigoProduto.Text);
+    LEPreco.Text := FormatFloat('###,##0.00',FProdutoController.CarregarPricePorId((LECodigoProduto.Text)));
+  end;
 end;
 
 procedure TFDadosItensPedido.LEPrecoChange(Sender: TObject);

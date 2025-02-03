@@ -95,6 +95,7 @@ object FConsultaClientes: TFConsultaClientes
           Visible = True
         end
         item
+          Color = clYellow
           Expanded = False
           FieldName = 'NomeClientes'
           Title.Caption = 'Nome do Cliente'

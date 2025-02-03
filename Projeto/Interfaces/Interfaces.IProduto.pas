@@ -21,6 +21,7 @@ type
 
     procedure CarregarDados(const AFDMemTable: TFDMemTable; pDescricaoProduto: String); // Método para carregar dados
     function CarregarNomePorId(pId: String): String;
+    function CarregarPricePorId(pId: String): Double;
   end;
 
 implementation
