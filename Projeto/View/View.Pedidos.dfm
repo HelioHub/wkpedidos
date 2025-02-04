@@ -76,13 +76,16 @@ object FViewPedidos: TFViewPedidos
       Top = 8
       Width = 75
       Height = 30
-      Caption = '&Excluir'
+      Hint = 'Cancela o Pedido e seus Itens'
+      Caption = '&Cancelar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 2
       OnClick = BBExcluirClick
     end
@@ -126,6 +129,7 @@ object FViewPedidos: TFViewPedidos
       Top = 8
       Width = 75
       Height = 30
+      Hint = 'Visualiza os Produtos mais Vendidos.'
       Cancel = True
       Caption = '+ &Vendido'
       Font.Charset = DEFAULT_CHARSET
@@ -135,6 +139,8 @@ object FViewPedidos: TFViewPedidos
       Font.Style = [fsBold]
       NumGlyphs = 2
       ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 5
       OnClick = BBProdutoMaisVendidoClick
     end
