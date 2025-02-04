@@ -529,4 +529,6 @@ utilizando ao máximo o seu potencial.
 
 	3. C:\WKPedidos\DLL\libmysql.dll - Disponível nesta pasta no entanto configurável pelo config.ini
 
-	
+## Melhor Distribuição do projeto	
+
+![## Distribuição do Projetos](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/Distri.png)

@@ -4,7 +4,7 @@
         <ProjectVersion>20.1</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <ProjectName Condition="'$(ProjectName)'==''">ProjectPKPedidos</ProjectName>
         <TargetedPlatforms>3</TargetedPlatforms>
@@ -133,27 +133,27 @@
             <Form>FWKPedidos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="View\UViewPedidos.pas">
+        <DCCReference Include="View\View.Pedidos.pas">
             <Form>FViewPedidos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="View\UConsultaClientes.pas">
+        <DCCReference Include="View\View.Consulta.Clientes.pas">
             <Form>FConsultaClientes</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="View\UConsultaProdutos.pas">
+        <DCCReference Include="View\View.Consulta.Produtos.pas">
             <Form>FConsultaProdutos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="View\UDadosItensPedido.pas">
+        <DCCReference Include="View\View.Dados.ItensPedido.pas">
             <Form>FDadosItensPedido</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="View\UDadosPedidos.pas">
+        <DCCReference Include="View\View.Dados.Pedidos.pas">
             <Form>FDadosPedidos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="View\UViewAtencao.pas">
+        <DCCReference Include="View\View.Show.Atencao.pas">
             <Form>FViewAtencao</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -172,7 +172,7 @@
         <DCCReference Include="Interfaces\Interfaces.IProduto.pas"/>
         <DCCReference Include="Model\Model.Produto.pas"/>
         <DCCReference Include="Controller\Controller.ProdutoController.pas"/>
-        <DCCReference Include="View\UViewMaisVendido.pas">
+        <DCCReference Include="View\View.Show.MaisVendido.pas">
             <Form>FViewMaisVendido</Form>
             <FormType>dfm</FormType>
         </DCCReference>

@@ -32,7 +32,7 @@ implementation
 
 {$R *.dfm}
 
-uses UViewPedidos, UViewAtencao, WKConst;
+uses View.Show.MaisVendido, View.Show.Atencao, WKConst, View.Pedidos;
 
 
 procedure TFWKPedidos.BBCadPedidosClick(Sender: TObject);

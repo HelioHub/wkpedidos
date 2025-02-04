@@ -3,12 +3,12 @@ program ProjectPKPedidos;
 uses
   Vcl.Forms,
   WKPedidos in 'WKPedidos.pas' {FWKPedidos},
-  UViewPedidos in 'View\UViewPedidos.pas' {FViewPedidos},
-  UConsultaClientes in 'View\UConsultaClientes.pas' {FConsultaClientes},
-  UConsultaProdutos in 'View\UConsultaProdutos.pas' {FConsultaProdutos},
-  UDadosItensPedido in 'View\UDadosItensPedido.pas' {FDadosItensPedido},
-  UDadosPedidos in 'View\UDadosPedidos.pas' {FDadosPedidos},
-  UViewAtencao in 'View\UViewAtencao.pas' {FViewAtencao},
+  View.Pedidos in 'View\View.Pedidos.pas' {FViewPedidos},
+  View.Consulta.Clientes in 'View\View.Consulta.Clientes.pas' {FConsultaClientes},
+  View.Consulta.Produtos in 'View\View.Consulta.Produtos.pas' {FConsultaProdutos},
+  View.Dados.ItensPedido in 'View\View.Dados.ItensPedido.pas' {FDadosItensPedido},
+  View.Dados.Pedidos in 'View\View.Dados.Pedidos.pas' {FDadosPedidos},
+  View.Show.Atencao in 'View\View.Show.Atencao.pas' {FViewAtencao},
   WKConst in 'WKConst.pas',
   Interfaces.IPedido in 'Interfaces\Interfaces.IPedido.pas',
   Model.Pedido in 'Model\Model.Pedido.pas',
@@ -24,7 +24,7 @@ uses
   Interfaces.IProduto in 'Interfaces\Interfaces.IProduto.pas',
   Model.Produto in 'Model\Model.Produto.pas',
   Controller.ProdutoController in 'Controller\Controller.ProdutoController.pas',
-  UViewMaisVendido in 'View\UViewMaisVendido.pas' {FViewMaisVendido},
+  View.Show.MaisVendido in 'View\View.Show.MaisVendido.pas' {FViewMaisVendido},
   Vcl.Themes,
   Vcl.Styles;
 
