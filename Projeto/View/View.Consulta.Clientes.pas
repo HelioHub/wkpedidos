@@ -26,6 +26,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure BBSairClick(Sender: TObject);
     procedure DBGViewDblClick(Sender: TObject);
+    procedure DBGViewKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     FClienteController: TClienteController;
@@ -58,6 +60,13 @@ end;
 procedure TFConsultaClientes.DBGViewDblClick(Sender: TObject);
 begin
   BBSelecionar.Click;
+end;
+
+procedure TFConsultaClientes.DBGViewKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key = VK_RETURN then
+    BBSelecionar.Click;
 end;
 
 destructor TFConsultaClientes.Destroy;

@@ -30,6 +30,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure BBSelecionarClick(Sender: TObject);
     procedure BBFiltrarClick(Sender: TObject);
+    procedure DBGViewKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     FProdutoController: TProdutoController;
@@ -68,6 +70,13 @@ end;
 procedure TFConsultaProdutos.DBGViewDblClick(Sender: TObject);
 begin
   BBSelecionar.Click;
+end;
+
+procedure TFConsultaProdutos.DBGViewKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key = VK_RETURN then
+    BBSelecionar.Click;
 end;
 
 procedure TFConsultaProdutos.BBFiltrarClick(Sender: TObject);

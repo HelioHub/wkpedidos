@@ -86,6 +86,7 @@ object FConsultaProdutos: TFConsultaProdutos
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
       OnDblClick = DBGViewDblClick
+      OnKeyDown = DBGViewKeyDown
       Columns = <
         item
           Expanded = False
