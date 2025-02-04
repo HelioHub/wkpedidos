@@ -532,3 +532,4 @@ utilizando ao máximo o seu potencial.
 ## Melhor Distribuição do projeto	
 
 ![## Distribuição do Projetos](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/Distri.png)
+
