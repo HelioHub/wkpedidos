@@ -6386,7 +6386,6 @@ object FWKPedidos: TFWKPedidos
     ShowHint = True
     TabOrder = 0
     OnClick = BBCadPedidosClick
-    ExplicitTop = 40
   end
   object BBFechar: TBitBtn
     Left = 0
@@ -6408,7 +6407,6 @@ object FWKPedidos: TFWKPedidos
     ShowHint = True
     TabOrder = 1
     OnClick = BBFecharClick
-    ExplicitTop = 335
   end
   object PHost: TPanel
     Left = 0
@@ -6419,6 +6417,9 @@ object FWKPedidos: TFWKPedidos
     Alignment = taLeftJustify
     Caption = '  Host:'
     TabOrder = 2
+    DesignSize = (
+      662
+      35)
     object EHostName: TEdit
       Left = 41
       Top = 6
@@ -6440,6 +6441,16 @@ object FWKPedidos: TFWKPedidos
       TabOrder = 0
       Text = '127.0.0.1'
       TextHint = 'Hostname or IP Address'
+    end
+    object BExecFolder: TButton
+      Left = 528
+      Top = 6
+      Width = 115
+      Height = 25
+      Anchors = [akTop, akRight]
+      Caption = 'Execution Folder'
+      TabOrder = 1
+      OnClick = BExecFolderClick
     end
   end
 end

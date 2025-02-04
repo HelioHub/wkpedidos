@@ -14,9 +14,11 @@ type
     PHost: TPanel;
     EHostName: TEdit;
     LWK: TLabel;
+    BExecFolder: TButton;
     procedure BBFecharClick(Sender: TObject);
     procedure LWKClick(Sender: TObject);
     procedure BBCadPedidosClick(Sender: TObject);
+    procedure BExecFolderClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -44,6 +46,15 @@ begin
   FViewAtencao := TFViewAtencao.Create(Application);
   FViewAtencao.ShowModal;
   Application.Terminate;
+end;
+
+procedure TFWKPedidos.BExecFolderClick(Sender: TObject);
+var
+  ExecutablePath, ExecutableDir: string;
+begin
+  ExecutablePath := ParamStr(0); // Obtém o caminho completo do executável
+  ExecutableDir := ExtractFileDir(ExecutablePath); // Extrai o diretório do caminho
+  ShowMessage('O executável está sendo executado na pasta: ' + ExecutableDir);
 end;
 
 procedure TFWKPedidos.LWKClick(Sender: TObject);
