@@ -162,7 +162,7 @@ begin
   end
   else
     ShowMessage('Sem Sucesso na Gravação do Pedido '+LENumeroPedido.Text+'.'+cEOL+
-      'Falta informar o Código do Cliente');
+      'Falta informar o Código do Cliente!');
   pAtualizacao;
 end;
 

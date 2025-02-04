@@ -14,7 +14,7 @@ type
 
     function GetConnection: TFDConnection;
   public
-    constructor Create(const IniFileName: string);
+    constructor Create;
     destructor Destroy; override;
 
     property Connection: TFDConnection read GetConnection;
@@ -24,8 +24,13 @@ implementation
 
 { TDatabaseConnection }
 
-constructor TDatabaseConnection.Create(const IniFileName: string);
+uses WKConst;
+
+constructor TDatabaseConnection.Create;
+var
+  IniFileName : String;
 begin
+  IniFileName := cPATH_INI;
   // Carrega os parâmetros do arquivo .INI
   FIniFileHelper := TIniFileHelper.Create(IniFileName);
 

@@ -30,7 +30,7 @@ uses WKConst;
 
 constructor TItemPedidoController.Create;
 begin
-  FItemPedido := TItemPedido.Create(cPATH_INI);
+  FItemPedido := TItemPedido.Create;
 end;
 
 destructor TItemPedidoController.Destroy;

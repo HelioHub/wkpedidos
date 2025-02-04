@@ -25,7 +25,7 @@ type
     procedure SetCidadeClientes(const Value: string);
     procedure SetUFClientes(const Value: string);
   public
-    constructor Create(const IniFileName: string);
+    constructor Create;
     destructor Destroy; override;
     property CodigoClientes: Integer read GetCodigoClientes write SetCodigoClientes;
     property NomeClientes: string read GetNomeClientes write SetNomeClientes;
@@ -46,10 +46,10 @@ uses
 
 { TCliente }
 
-constructor TCliente.Create(const IniFileName: string);
+constructor TCliente.Create;
 begin
   // Usa a conexão centralizada com parâmetros do arquivo .INI
-  FDatabaseConnection := TDatabaseConnection.Create(IniFileName);
+  FDatabaseConnection := TDatabaseConnection.Create;
   FQuery := TFDQuery.Create(nil);
   FQuery.Connection := FDatabaseConnection.Connection;
 end;

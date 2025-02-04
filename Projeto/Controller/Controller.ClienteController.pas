@@ -31,7 +31,7 @@ end;
 
 constructor TClienteController.Create;
 begin
-  FCliente := TCliente.Create(cPATH_INI);
+  FCliente := TCliente.Create;
 end;
 
 destructor TClienteController.Destroy;

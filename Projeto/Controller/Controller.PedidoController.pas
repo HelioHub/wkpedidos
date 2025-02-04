@@ -28,7 +28,7 @@ uses WKConst;
 
 constructor TPedidoController.Create;
 begin
-  FPedido := TPedido.Create(cPATH_INI);
+  FPedido := TPedido.Create;
 end;
 
 destructor TPedidoController.Destroy;

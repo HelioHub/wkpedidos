@@ -27,7 +27,7 @@ uses WKConst;
 
 constructor TProdutoController.Create;
 begin
-  FProduto := TProduto.Create(cPATH_INI);
+  FProduto := TProduto.Create;
 end;
 
 destructor TProdutoController.Destroy;

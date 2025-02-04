@@ -22,7 +22,7 @@ type
     procedure SetDescricaoProdutos(const Value: string);
     procedure SetPrecoVendaProdutos(const Value: Double);
   public
-    constructor Create(const IniFileName: string);
+    constructor Create;
     destructor Destroy; override;
 
     property CodigoProdutos: Integer read GetCodigoProdutos write SetCodigoProdutos;
@@ -44,10 +44,10 @@ uses
 
 { TProduto }
 
-constructor TProduto.Create(const IniFileName: string);
+constructor TProduto.Create;
 begin
   // Usa a conexão centralizada com parâmetros do arquivo .INI
-  FDatabaseConnection := TDatabaseConnection.Create(IniFileName);
+  FDatabaseConnection := TDatabaseConnection.Create;
   FQuery := TFDQuery.Create(nil);
   FQuery.Connection := FDatabaseConnection.Connection;
 end;
