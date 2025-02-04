@@ -223,7 +223,7 @@ end;
 procedure TFViewPedidos.TratarDelete;
 begin
   // Exibe uma mensagem de confirmação antes de deletar o registro
-  if MessageDlg('Deseja realmente excluir este Pedido '+
+  if MessageDlg('Deseja realmente Cancelar(Excluíndo) este Pedido '+
      DSViewPedidos.DataSet.FieldByName('NumeroPedidos').AsString+' e seus Itens?',
      mtConfirmation, [mbYes, mbNo], 0) = mrYes then
     pCRUD(acExcluir);

@@ -26,8 +26,6 @@ object FDadosItensPedido: TFDadosItensPedido
     Height = 41
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 172
-    ExplicitWidth = 398
     DesignSize = (
       458
       41)
@@ -48,7 +46,6 @@ object FDadosItensPedido: TFDadosItensPedido
       ParentFont = False
       TabOrder = 1
       OnClick = BBSairClick
-      ExplicitLeft = 312
     end
     object BBGravar: TBitBtn
       Left = 289
@@ -67,7 +64,6 @@ object FDadosItensPedido: TFDadosItensPedido
       ParentFont = False
       TabOrder = 0
       OnClick = BBGravarClick
-      ExplicitLeft = 229
     end
   end
   object PDados: TPanel
@@ -77,7 +73,6 @@ object FDadosItensPedido: TFDadosItensPedido
     Height = 237
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 481
     object SBF2: TSpeedButton
       Left = 186
       Top = 35
@@ -181,7 +176,7 @@ object FDadosItensPedido: TFDadosItensPedido
       Enabled = False
       LabelPosition = lpLeft
       NumbersOnly = True
-      TabOrder = 2
+      TabOrder = 3
       Text = ''
     end
     object LEQtd: TLabeledEdit
@@ -194,7 +189,7 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Height = 21
       EditLabel.Caption = 'Quantidade:'
       LabelPosition = lpLeft
-      TabOrder = 3
+      TabOrder = 4
       Text = ''
       OnExit = LEQtdExit
       OnKeyPress = LEQtdKeyPress
@@ -209,7 +204,7 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Height = 21
       EditLabel.Caption = 'Pre'#231'o de Venda:'
       LabelPosition = lpLeft
-      TabOrder = 6
+      TabOrder = 7
       Text = ''
       OnExit = cbTipoVendaExit
       OnKeyPress = LEQtdKeyPress
@@ -225,7 +220,7 @@ object FDadosItensPedido: TFDadosItensPedido
       EditLabel.Caption = 'Valor Total:'
       Enabled = False
       LabelPosition = lpLeft
-      TabOrder = 7
+      TabOrder = 8
       Text = ''
     end
     object LEIdItemProduto: TLabeledEdit
@@ -248,7 +243,7 @@ object FDadosItensPedido: TFDadosItensPedido
       Width = 109
       Height = 21
       ItemIndex = 0
-      TabOrder = 4
+      TabOrder = 5
       Text = 'Varejo'
       OnExit = cbTipoVendaExit
       Items.Strings = (
@@ -261,12 +256,27 @@ object FDadosItensPedido: TFDadosItensPedido
       Width = 109
       Height = 21
       ItemIndex = 0
-      TabOrder = 5
+      TabOrder = 6
       Text = #192' Vista'
       OnExit = cbTipoVendaExit
       Items.Strings = (
         #192' Vista'
         #192' Prazo')
+    end
+    object LEPrecoSugerido: TLabeledEdit
+      Left = 308
+      Top = 35
+      Width = 121
+      Height = 21
+      Alignment = taRightJustify
+      EditLabel.Width = 120
+      EditLabel.Height = 13
+      EditLabel.Caption = 'Pre'#231'o de Venda Sugerido'
+      Enabled = False
+      TabOrder = 2
+      Text = ''
+      OnExit = cbTipoVendaExit
+      OnKeyPress = LEQtdKeyPress
     end
   end
 end

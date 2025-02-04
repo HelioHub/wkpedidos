@@ -77,7 +77,7 @@ object FViewPedidos: TFViewPedidos
       Width = 75
       Height = 30
       Hint = 'Cancela o Pedido e seus Itens'
-      Caption = '&Cancelar'
+      Caption = '&Excluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11

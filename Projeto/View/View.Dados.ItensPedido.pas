@@ -26,6 +26,7 @@ type
     Label1: TLabel;
     cbFormaPgto: TComboBox;
     ITipoCliente: TImage;
+    LEPrecoSugerido: TLabeledEdit;
     procedure BBSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure SBF2Click(Sender: TObject);
@@ -44,7 +45,7 @@ type
     FItemPrecoVenda : iItem;
 
     procedure OnlyNumber(var Key: char; ETextEdit: String);
-    procedure MaskEdit(var LEAmount, LEPrice, LEValue: TLabeledEdit);
+    procedure MaskEdit(var LEAmount, LEPrice, LEValue, LEValueSug: TLabeledEdit);
     procedure TakePoint(var LEdit: TLabeledEdit);
     procedure ConsultProduct;
     procedure DefinePriceFinal;
@@ -103,7 +104,7 @@ var
   ItensPedido: IItemPedido;
 begin
   ItensPedido := FItemPedidoController.GetItemPedido;
-  MaskEdit(LEQtd, LEPreco, LEValor);
+  MaskEdit(LEQtd, LEPreco, LEValor, LEPrecoSugerido);
   TakePoint(LEQtd);
   TakePoint(LEPreco);
   TakePoint(LEValor);
@@ -139,7 +140,7 @@ end;
 
 procedure TFDadosItensPedido.LEQtdExit(Sender: TObject);
 begin
-  MaskEdit(LEQtd, LEPreco, LEValor);
+  MaskEdit(LEQtd, LEPreco, LEValor, LEPrecoSugerido);
 end;
 
 procedure TFDadosItensPedido.LECodigoProdutoExit(Sender: TObject);
@@ -152,13 +153,14 @@ begin
     dPriceVenda := FProdutoController.
                     CarregarPricePorId(LECodigoProduto.Text);
     LEPreco.Text := FormatFloat('###,##0.00', dPriceVenda);
-    MaskEdit(LEQtd, LEPreco, LEValor);
+    LEPrecoSugerido.Text := FormatFloat('###,##0.00', dPriceVenda);
+    MaskEdit(LEQtd, LEPreco, LEValor, LEPrecoSugerido);
   end;
 end;
 
 procedure TFDadosItensPedido.LEPrecoChange(Sender: TObject);
 begin
-  MaskEdit(LEQtd, LEPreco, LEValor);
+  MaskEdit(LEQtd, LEPreco, LEValor, LEPrecoSugerido);
 end;
 
 procedure TFDadosItensPedido.LEQtdKeyPress(Sender: TObject; var Key: Char);
@@ -169,20 +171,23 @@ begin
   OnlyNumber(Key, edText);
 end;
 
-procedure TFDadosItensPedido.MaskEdit(var LEAmount, LEPrice, LEValue: TLabeledEdit);
+procedure TFDadosItensPedido.MaskEdit(var LEAmount, LEPrice, LEValue, LEValueSug: TLabeledEdit);
 var
-  dAmount, dPrice : Double;
+  dAmount, dPrice, dPriceSug : Double;
 begin
   DefinePriceFinal;
 
   TakePoint(LEAmount);
-  TakePoint(LEPreco);
+  TakePoint(LEPrice);
+  TakePoint(LEValueSug);
 
   dAmount := StrToFloatDef(LEAmount.Text,0);
   dPrice := StrToFloatDef(LEPreco.Text,0);
+  dPriceSug := StrToFloatDef(LEPrecoSugerido.Text,0);
   LEAmount.Text := FormatFloat('###,##0.00',dAmount);
   LEPrice.Text := FormatFloat('###,##0.00',dPrice);
   LEValue.Text := FormatFloat('###,##0.00',dAmount*dPrice);
+  LEValueSug.Text := FormatFloat('###,##0.00',dPriceSug);
 end;
 
 procedure TFDadosItensPedido.OnlyNumber(var Key: char; ETextEdit: String);
@@ -222,7 +227,7 @@ end;
 
 procedure TFDadosItensPedido.cbTipoVendaExit(Sender: TObject);
 begin
-  MaskEdit(LEQtd, LEPreco, LEValor);
+  MaskEdit(LEQtd, LEPreco, LEValor, LEPrecoSugerido);
 end;
 
 procedure TFDadosItensPedido.FormClose(Sender: TObject; var Action: TCloseAction);

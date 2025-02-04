@@ -22,9 +22,10 @@ type
     BBFiltrar: TBitBtn;
     DSConslutaCliente: TDataSource;
     FDMemTableCliente: TFDMemTable;
-    procedure BBSairClick(Sender: TObject);
     procedure BBFiltrarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure BBSairClick(Sender: TObject);
+    procedure DBGViewDblClick(Sender: TObject);
   private
     { Private declarations }
     FClienteController: TClienteController;
@@ -43,10 +44,20 @@ implementation
 
 {$R *.dfm}
 
+procedure TFConsultaClientes.BBSairClick(Sender: TObject);
+begin
+  Close;
+end;
+
 constructor TFConsultaClientes.Create(AOwner: TComponent);
 begin
   inherited;
   FClienteController := TClienteController.Create;
+end;
+
+procedure TFConsultaClientes.DBGViewDblClick(Sender: TObject);
+begin
+  BBSelecionar.Click;
 end;
 
 destructor TFConsultaClientes.Destroy;
@@ -59,11 +70,6 @@ procedure TFConsultaClientes.BBFiltrarClick(Sender: TObject);
 begin
   // Carrega os dados no TFDMemTable
   pAtualizacao;
-end;
-
-procedure TFConsultaClientes.BBSairClick(Sender: TObject);
-begin
-  BBSelecionar.Click;
 end;
 
 procedure TFConsultaClientes.FormShow(Sender: TObject);

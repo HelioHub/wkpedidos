@@ -85,7 +85,7 @@ object FConsultaClientes: TFConsultaClientes
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
-      OnDblClick = BBSairClick
+      OnDblClick = DBGViewDblClick
       Columns = <
         item
           Expanded = False
