@@ -26,7 +26,11 @@ uses
   Controller.ProdutoController in 'Controller\Controller.ProdutoController.pas',
   View.Show.MaisVendido in 'View\View.Show.MaisVendido.pas' {FViewMaisVendido},
   Vcl.Themes,
-  Vcl.Styles;
+  Vcl.Styles,
+  Model.Item in 'Model\Model.Item.pas',
+  Model.Item.RegraAtacado in 'Model\Model.Item.RegraAtacado.pas',
+  Model.Item.RegraVarejo in 'Model\Model.Item.RegraVarejo.pas',
+  Interfaces.Visitor in 'Interfaces\Interfaces.Visitor.pas';
 
 {$R *.res}
 

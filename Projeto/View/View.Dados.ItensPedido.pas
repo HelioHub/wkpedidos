@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.Mask, Controller.ItemPedidoController, Interfaces.IItemPedido,
-  Controller.ProdutoController;
+  Controller.ProdutoController, Interfaces.Visitor, Vcl.Imaging.pngimage;
 
 type
   TFDadosItensPedido = class(TForm)
@@ -21,6 +21,11 @@ type
     LEPreco: TLabeledEdit;
     LEValor: TLabeledEdit;
     LEIdItemProduto: TLabeledEdit;
+    lblTipoVenda: TLabel;
+    cbTipoVenda: TComboBox;
+    Label1: TLabel;
+    cbFormaPgto: TComboBox;
+    ITipoCliente: TImage;
     procedure BBSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure SBF2Click(Sender: TObject);
@@ -30,15 +35,21 @@ type
     procedure BBGravarClick(Sender: TObject);
     procedure LEPrecoChange(Sender: TObject);
     procedure LECodigoProdutoExit(Sender: TObject);
+    procedure cbTipoVendaExit(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     FItemPedidoController: TItemPedidoController;
     FProdutoController: TProdutoController;
+    FItemPrecoVenda : iItem;
 
     procedure OnlyNumber(var Key: char; ETextEdit: String);
     procedure MaskEdit(var LEAmount, LEPrice, LEValue: TLabeledEdit);
     procedure TakePoint(var LEdit: TLabeledEdit);
     procedure ConsultProduct;
+    procedure DefinePriceFinal;
+
+    function PrecoTipoVenda : iVisitor;
   public
     { Public declarations }
      pNumeroPedido : Integer;
@@ -54,7 +65,8 @@ implementation
 
 {$R *.dfm}
 
-uses View.Consulta.Produtos, WKConst;
+uses View.Consulta.Produtos, WKConst,
+     Model.Item, Model.Item.RegraAtacado, Model.Item.RegraVarejo;
 
 constructor TFDadosItensPedido.Create(AOwner: TComponent);
 begin
@@ -131,11 +143,16 @@ begin
 end;
 
 procedure TFDadosItensPedido.LECodigoProdutoExit(Sender: TObject);
+var
+  dPriceVenda : Double;
 begin
   if LECodigoProduto.Text <> EmptyStr then
   begin
     LEDescricao.Text := FProdutoController.CarregarNomePorId(LECodigoProduto.Text);
-    LEPreco.Text := FormatFloat('###,##0.00',FProdutoController.CarregarPricePorId((LECodigoProduto.Text)));
+    dPriceVenda := FProdutoController.
+                    CarregarPricePorId(LECodigoProduto.Text);
+    LEPreco.Text := FormatFloat('###,##0.00', dPriceVenda);
+    MaskEdit(LEQtd, LEPreco, LEValor);
   end;
 end;
 
@@ -156,6 +173,8 @@ procedure TFDadosItensPedido.MaskEdit(var LEAmount, LEPrice, LEValue: TLabeledEd
 var
   dAmount, dPrice : Double;
 begin
+  DefinePriceFinal;
+
   TakePoint(LEAmount);
   TakePoint(LEPreco);
 
@@ -183,6 +202,14 @@ begin
   end;
 end;
 
+function TFDadosItensPedido.PrecoTipoVenda: iVisitor;
+begin
+  case cbTipoVenda.ItemIndex of
+    0: Result := TModelItemRegraVarejo.New.Visitor;
+    1: Result := TModelItemRegraAtacado.New.Visitor;
+  end;
+end;
+
 procedure TFDadosItensPedido.TakePoint(var LEdit: TLabeledEdit);
 begin
   LEdit.Text := StringReplace(LEdit.Text, '.', '', [rfReplaceAll, rfIgnoreCase]);
@@ -193,9 +220,47 @@ begin
   Close;
 end;
 
+procedure TFDadosItensPedido.cbTipoVendaExit(Sender: TObject);
+begin
+  MaskEdit(LEQtd, LEPreco, LEValor);
+end;
+
 procedure TFDadosItensPedido.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  Action := CaFree;
+  Close;
+end;
+
+procedure TFDadosItensPedido.FormCreate(Sender: TObject);
+begin
+  FItemPrecoVenda := TModelItem.New;
+end;
+
+procedure TFDadosItensPedido.DefinePriceFinal;
+begin
+  case cbFormaPgto.ItemIndex of
+    0: begin
+      LEPreco.Text := FormatFloat(
+                        '#,##0.00',
+                        FItemPrecoVenda
+                          .SetPrecoUnitario(FProdutoController.
+                                              CarregarPricePorId(LECodigoProduto.Text))
+                          .Regras
+                          .Accept(PrecoTipoVenda)
+                          .PrecoAVista
+                      );
+    end;
+    1: begin
+      LEPreco.Text := FormatFloat(
+                        '#,##0.00',
+                        FItemPrecoVenda
+                          .SetPrecoUnitario(FProdutoController.
+                                              CarregarPricePorId(LECodigoProduto.Text))
+                          .Regras
+                          .Accept(PrecoTipoVenda)
+                          .PrecoAPrazo
+                      );
+    end;
+  end;
 end;
 
 end.

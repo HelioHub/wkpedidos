@@ -533,3 +533,54 @@ utilizando ao máximo o seu potencial.
 
 ![## Distribuição do Projetos](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/Distri.png)
 
+## Implementação do Padrão de Projeto Visitor Pattern. Conceito:
+
+	Em programação orientada a objetos e engenharia de software, 
+	o Visitor Pattern é um padrão de projeto comportamental. 
+	Representa uma operação a ser realizada sobre elementos da estrutura de um objeto. 
+	O Visitor permite que se crie uma nova operação sem que se mude a classe dos elementos sobre as quais ela opera.
+
+	Isto é, permite separar algoritmos dos objetos nos quais eles operam.	
+
+	Reduz a complexidade de implementação de regras de negócios no Sistema, 
+	evitando utilização de comandos condicionais como If e Case.
+
+	Cria Sistema Desacoplado, 
+	separando componentes ou camadas individuais dentro de um aplicativo para permitir que cada parte evolua, 
+	seja dimensionada e mantida independentemente uma da outra.
+
+	````
+	Prós
+	````
+	> Princípio Aberto/Fechado: Você pode introduzir um novo comportamento que possa 
+	  trabalhar com objetos de diferentes classes sem alterar essas classes.
+	> Princípio de responsabilidade única: Você pode mover várias versões do mesmo comportamento 
+	  para a mesma classe.
+	> Um objeto visitante pode acumular algumas informações úteis ao trabalhar com vários objetos. 
+	  Isso pode ser útil quando você deseja percorrer alguma estrutura complexa de objetos, 
+	  como uma árvore de objetos, e aplicar o visitante a cada objeto dessa estrutura.
+
+	````
+	Exemplo
+	````
+	Item Preço de Venda >
+		Método Identifica o Tipo de Cliente, Varejo ou Atacado.
+		Conforme o Tipo aplica Desconto à Prazo ou Vista.
+		
+	Cliente Varejo:
+		Desconto à Vista: 10%
+		Desconto à Prazo: 0%
+
+	Cliente Atacado:
+		Desconto à Vista: 30%
+		Desconto à Prazo: 15%
+	
+![## DP Visitor WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/VisitorPattern.png)
+
+	
+	
+	
+	
+	
+
+
