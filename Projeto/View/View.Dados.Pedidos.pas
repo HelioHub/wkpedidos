@@ -43,6 +43,7 @@ type
     ItensPedidoMemTableVlrUnitarioItensPedido: TBCDField;
     ItensPedidoMemTableVlrTotalItensPedido: TBCDField;
     ItensPedidoMemTableDescricaoProdutos: TStringField;
+    LETotalItens: TLabeledEdit;
     procedure BBSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure SBF2Click(Sender: TObject);
@@ -192,6 +193,7 @@ begin
   end;
   LETotalPedido.Text := FormatFloat('###,##0.00',
     FItemPedidoController.CalcularTotalItens(StrToIntDef(LENumeroPedido.Text, 0)));
+  LETotalItens.Text := LETotalPedido.Text;
 end;
 
 procedure TFDadosPedidos.pCRUD(pAcao: TAcao);

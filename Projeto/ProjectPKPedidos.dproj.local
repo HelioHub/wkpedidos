@@ -52,8 +52,8 @@
     <Transaction>2025/01/31 10:12:01.000.313,=C:\WKPedido\Projeto\Unit1.pas</Transaction>
     <Transaction>2025/01/31 10:13:12.000.099,C:\WKPedido\Projeto\Unit1.pas=C:\WKPedido\Projeto\Controller\Controller.ProdutoController.pas</Transaction>
     <Transaction>2025/01/31 17:08:47.000.303,=C:\WKPedido\Projeto\Unit1.pas</Transaction>
-    <Transaction>2025/01/31 17:09:43.000.108,C:\WKPedido\Projeto\Unit1.dfm=C:\WKPedido\Projeto\View\UViewMaisVendido.dfm</Transaction>
     <Transaction>2025/01/31 17:09:43.000.108,C:\WKPedido\Projeto\Unit1.pas=C:\WKPedido\Projeto\View\UViewMaisVendido.pas</Transaction>
+    <Transaction>2025/01/31 17:09:43.000.108,C:\WKPedido\Projeto\Unit1.dfm=C:\WKPedido\Projeto\View\UViewMaisVendido.dfm</Transaction>
     <Transaction>2025/02/04 09:40:06.000.044,C:\WKPedido\Projeto\View\UConsultaClientes.dfm=C:\WKPedido\Projeto\View\view.consulta.clientes.dfm</Transaction>
     <Transaction>2025/02/04 09:40:06.000.044,C:\WKPedido\Projeto\View\UConsultaClientes.pas=C:\WKPedido\Projeto\View\view.consulta.clientes.pas</Transaction>
     <Transaction>2025/02/04 09:44:14.000.757,C:\WKPedido\Projeto\View\view.consulta.clientes.pas=C:\WKPedido\Projeto\View\UConsultaClientes.pas</Transaction>
@@ -66,10 +66,10 @@
     <Transaction>2025/02/04 09:47:37.000.164,C:\WKPedido\Projeto\View\UDadosItensPedido.dfm=C:\WKPedido\Projeto\View\View.Dados.ItensPedido.dfm</Transaction>
     <Transaction>2025/02/04 09:48:26.000.867,C:\WKPedido\Projeto\View\UViewAtencao.pas=C:\WKPedido\Projeto\View\View.Show.Atencao.pas</Transaction>
     <Transaction>2025/02/04 09:48:26.000.867,C:\WKPedido\Projeto\View\UViewAtencao.dfm=C:\WKPedido\Projeto\View\View.Show.Atencao.dfm</Transaction>
-    <Transaction>2025/02/04 09:49:24.000.305,C:\WKPedido\Projeto\View\UDadosPedidos.pas=C:\WKPedido\Projeto\View\View.Dados.Pedidos.pas</Transaction>
     <Transaction>2025/02/04 09:49:24.000.305,C:\WKPedido\Projeto\View\UDadosPedidos.dfm=C:\WKPedido\Projeto\View\View.Dados.Pedidos.dfm</Transaction>
-    <Transaction>2025/02/04 09:50:08.000.086,C:\WKPedido\Projeto\View\UViewMaisVendido.pas=C:\WKPedido\Projeto\View\View.Show.MaisVendido.pas</Transaction>
+    <Transaction>2025/02/04 09:49:24.000.305,C:\WKPedido\Projeto\View\UDadosPedidos.pas=C:\WKPedido\Projeto\View\View.Dados.Pedidos.pas</Transaction>
     <Transaction>2025/02/04 09:50:08.000.086,C:\WKPedido\Projeto\View\UViewMaisVendido.dfm=C:\WKPedido\Projeto\View\View.Show.MaisVendido.dfm</Transaction>
+    <Transaction>2025/02/04 09:50:08.000.086,C:\WKPedido\Projeto\View\UViewMaisVendido.pas=C:\WKPedido\Projeto\View\View.Show.MaisVendido.pas</Transaction>
     <Transaction>2025/02/04 09:51:01.000.896,C:\WKPedido\Projeto\View\UViewPedidos.dfm=C:\WKPedido\Projeto\View\View.Pedidos.dfm</Transaction>
     <Transaction>2025/02/04 09:51:01.000.896,C:\WKPedido\Projeto\View\UViewPedidos.pas=C:\WKPedido\Projeto\View\View.Pedidos.pas</Transaction>
     <Transaction>2025/02/04 14:04:23.000.686,=C:\WKPedido\Projeto\Interfaces\Interfaces.Visitor.pas</Transaction>
@@ -78,5 +78,6 @@
     <Transaction>2025/02/04 14:06:46.000.343,=C:\WKPedido\Projeto\Model\Model.Item.RegraAtacado.pas</Transaction>
     <Transaction>2025/02/05 09:48:51.953,=C:\WKPedido\Projeto\Unit1.pas</Transaction>
     <Transaction>2025/02/05 09:49:39.819,C:\WKPedido\Projeto\Utils\Utils.ErrorLogger.pas=C:\WKPedido\Projeto\Unit1.pas</Transaction>
+    <Transaction>2025/02/05 14:49:58.578,=C:\WKPedido\Projeto\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

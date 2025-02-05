@@ -31,6 +31,7 @@ type
     function Salvar: Boolean; // Método para salvar o item de pedido
     function Excluir(const AId: Integer): Boolean; // Método para excluir um item de pedido
     function CalcularTotalItens(const AIdPedido: Integer): Double; // Método para calcular o total dos itens
+    function GerarRelatorioHTML: string; // Relatório HTML
 
     procedure CarregarDados(const AFDMemTable: TFDMemTable; pPedido: String); // Método para carregar dados
     procedure MaisVendido(const AFDMemTable: TFDMemTable); // Método Mais Vendido dos Pedidos.

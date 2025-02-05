@@ -17,6 +17,7 @@ type
     function SalvarItemPedido(AItemPedido: IItemPedido): Boolean;
     function ExcluirItemPedido(const AId: Integer): Boolean;
     function CalcularTotalItens(const AIdPedido: Integer): Double;
+    function GerarRelatorioHTML: string;
 
     procedure CarregarDadosItensPedido(const AFDMemTable: TFDMemTable; pPedido: String);
     procedure MaisVendido(const AFDMemTable: TFDMemTable); // Método Mais Vendido dos Pedidos.
@@ -37,6 +38,11 @@ destructor TItemPedidoController.Destroy;
 begin
   FItemPedido := nil;
   inherited;
+end;
+
+function TItemPedidoController.GerarRelatorioHTML: string;
+begin
+  result := FItemPedido.GerarRelatorioHTML;
 end;
 
 function TItemPedidoController.GetItemPedido: IItemPedido;

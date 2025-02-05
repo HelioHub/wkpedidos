@@ -12,7 +12,7 @@ uses
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Menus,
   Controller.PedidoController,
   Controller.ItemPedidoController,
-  WKConst;
+  WKConst, Winapi.ShellAPI;
 
 type
   TFViewPedidos = class(TForm)
@@ -55,6 +55,7 @@ type
     PMProdutoMaisVendido: TMenuItem;
     BBProdutoMaisVendido: TBitBtn;
     ItensMemTableDescricaoProdutos: TStringField;
+    BBRelatorio: TBitBtn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BBSairClick(Sender: TObject);
     procedure BBIncluirClick(Sender: TObject);
@@ -70,6 +71,7 @@ type
     procedure PMAtualizarItensdoPedidoClick(Sender: TObject);
     procedure PMProdutoMaisVendidoClick(Sender: TObject);
     procedure BBProdutoMaisVendidoClick(Sender: TObject);
+    procedure BBRelatorioClick(Sender: TObject);
   private
     { Private declarations }
     FPedidoController: TPedidoController;
@@ -80,6 +82,8 @@ type
     procedure pAtualizacao;
     procedure CallProdutoMaisVendido;
     procedure pValorTotaldoPedido;
+    procedure GerarEExibirRelatorio;
+
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
@@ -177,6 +181,32 @@ end;
 procedure TFViewPedidos.BBProdutoMaisVendidoClick(Sender: TObject);
 begin
   CallProdutoMaisVendido;
+end;
+
+procedure TFViewPedidos.BBRelatorioClick(Sender: TObject);
+begin
+  GerarEExibirRelatorio;
+end;
+
+procedure TFViewPedidos.GerarEExibirRelatorio;
+var
+  HTML: string;
+  FileName: string;
+begin
+   HTML := FItemPedidoController.GerarRelatorioHTML;
+
+  // Salva o HTML em um arquivo temporário
+  FileName := ExtractFilePath(Application.ExeName) + 'relatorio_pedido.html';
+  with TStringList.Create do
+  try
+    Text := HTML;
+    SaveToFile(FileName);
+  finally
+    Free;
+  end;
+
+  // Abre o arquivo no navegador padrão
+  ShellExecute(0, 'open', PChar(FileName), nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TFViewPedidos.pCRUD(pAcao: TAcao);

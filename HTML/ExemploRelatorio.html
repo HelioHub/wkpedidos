@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Pedido</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .cabecalho { margin-bottom: 20px; }
+    .tabela-itens { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    .tabela-itens th, .tabela-itens td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    .tabela-itens th { background-color: #f2f2f2; }
+    .rodape { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="cabecalho">
+    <h1>Pedido: 123</h1>
+    <p><strong>Data de Emissão:</strong> 25/10/2023</p>
+    <p><strong>Cliente:</strong> João da Silva</p>
+  </div>
+  <table class="tabela-itens">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Valor Unitário</th>
+        <th>Valor Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Produto A</td>
+        <td>2</td>
+        <td>R$ 50,00</td>
+        <td>R$ 100,00</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Produto B</td>
+        <td>1</td>
+        <td>R$ 30,00</td>
+        <td>R$ 30,00</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="rodape">
+    <p><strong>Total do Pedido:</strong> R$ 130,00</p>
+  </div>
+</body>
+</html>

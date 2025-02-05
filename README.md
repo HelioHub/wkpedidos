@@ -577,7 +577,13 @@ utilizando ao máximo o seu potencial.
 	
 ![## DP Visitor WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/VisitorPattern.png)
 
+## Relatório de Pedido gerado utilizando HTML/CSS/JavaScript (Mostra meu conhecimento sobre):
+
+	Relatório Criado Mostras os Pedidos e seus Itens, totalizando por Pedido.
+	Gerado em HTML/CSS e lançado no Browser Default.
 	
+![## Relatório WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/Relatorio.png)
+
 	
 	
 	

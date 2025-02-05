@@ -172,6 +172,7 @@ object FDadosPedidos: TFDadosPedidos
     Height = 27
     Align = alBottom
     TabOrder = 3
+    ExplicitLeft = 8
     DesignSize = (
       599
       27)
@@ -225,6 +226,21 @@ object FDadosPedidos: TFDadosPedidos
       ParentFont = False
       TabOrder = 2
       OnClick = BBExcClick
+    end
+    object LETotalItens: TLabeledEdit
+      Left = 486
+      Top = 3
+      Width = 97
+      Height = 21
+      Alignment = taRightJustify
+      EditLabel.Width = 78
+      EditLabel.Height = 21
+      EditLabel.Caption = 'Total do Pedido:'
+      LabelPosition = lpLeft
+      NumbersOnly = True
+      ReadOnly = True
+      TabOrder = 3
+      Text = ''
     end
   end
   object PView: TPanel
