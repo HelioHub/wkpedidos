@@ -33,7 +33,7 @@ type
 
     function GerarCabecalhoPedido: string;
     function GerarDetalhesItensPedido(pPedido : Integer): string;
-    function GerarRodapePedido: string;
+    function GerarRodapePedido(pTotalPedido : Double): string;
   public
     constructor Create;
     destructor Destroy; override;
@@ -332,13 +332,14 @@ begin
     '      <th>Item</th>' +
     '      <th>Produto</th>' +
     '      <th>Quantidade</th>' +
-    '      <th>Valor Unitário</th>' +
+    '      <th>Valor Unitario</th>' +
     '      <th>Valor Total</th>' +
     '    </tr>' +
     '  </thead>' +
     '  <tbody>';
 
-  while FQuery.FieldByName('NumeroPedidos').AsInteger = pPedido do
+  while Not FQuery.Eof And
+        (FQuery.FieldByName('NumeroPedidos').AsInteger = pPedido) do
   begin
     Result := Result +
       '<tr>' +
@@ -354,17 +355,18 @@ begin
   Result := Result + '</tbody></table>';
 end;
 
-function TItemPedido.GerarRodapePedido: string;
+function TItemPedido.GerarRodapePedido(pTotalPedido : Double): string;
 begin
   Result :=
     '<div class="rodape">' +
-    '  <p><strong>Total do Pedido:</strong> ' + FormatFloat('R$ #,##0.00', FQuery.FieldByName('ValorTotalPedidos').AsFloat) + '</p>' +
+    '  <p><strong>Total do Pedido:</strong> ' + FormatFloat('R$ #,##0.00', pTotalPedido) + '</p>' +
     '</div>';
 end;
 
 function TItemPedido.GerarRelatorioHTML: string;
 var
   HTML: TStringList;
+  dTotalPedido : Double;
 begin
   HTML := TStringList.Create;
   try
@@ -410,11 +412,11 @@ begin
 
     while not FQuery.Eof do
     begin
+      dTotalPedido := FQuery.FieldByName('ValorTotalPedidos').AsFloat;
+
       HTML.Add(GerarCabecalhoPedido);
       HTML.Add(GerarDetalhesItensPedido(FQuery.FieldByName('NumeroPedidos').AsInteger));
-      HTML.Add(GerarRodapePedido);
-
-      FQuery.Next;
+      HTML.Add(GerarRodapePedido(dTotalPedido));
     end;
 
     HTML.Add(
@@ -429,4 +431,4 @@ begin
   end;
 end;
 
-end.                 S
+end.

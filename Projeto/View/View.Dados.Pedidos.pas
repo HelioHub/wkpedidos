@@ -152,7 +152,9 @@ begin
   Pedido.NumeroPedido := StrToIntDef(LENumeroPedido.Text, 0);
   Pedido.DataEmissao := DTPDataEmissao.DateTime;
   Pedido.Cliente := StrToIntDef(LECodigoCliente.Text, 0);
-  Pedido.ValorTotal := StrToFloatDef(LETotalPedido.Text, 0);
+  Pedido.ValorTotal := StrToFloatDef(StringReplace(
+                                     LETotalPedido.Text, '.', '',
+                                     [rfReplaceAll, rfIgnoreCase]), 0);
 
   // Salva o pedido
   if FPedidoController.SalvarPedido(Pedido) then

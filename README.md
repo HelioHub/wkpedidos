@@ -581,9 +581,41 @@ utilizando ao máximo o seu potencial.
 
 	Relatório Criado Mostras os Pedidos e seus Itens, totalizando por Pedido.
 	Gerado em HTML/CSS e lançado no Browser Default.
-	
+
+	````
+	Tela
+	````
+![## Tela Relatório WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/RelatorioTela.png)
+
+	````
+	Relatório no Browser
+	````
 ![## Relatório WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/Relatorio.png)
 
+	````
+	SQL Utilizado
+	````
+	select a.NumeroPedidos, 
+		   a.DataEmissaoPedidos, 
+		   a.ClientePedidos, 
+		   c.NomeClientes,
+		   b.idItensPedido,
+		   b.ProdutoItensPedido,
+		   d.DescricaoProdutos,
+		   b.QuantidadeItensPedido,
+		   b.VlrUnitarioItensPedido,
+		   b.VlrTotalItensPedido,
+		   a.ValorTotalPedidos
+	from pedidos a
+	inner join itenspedido b on b.PedidoItensPedido = a.NumeroPedidos
+	inner join clientes c on c.CodigoClientes = a.ClientePedidos
+	inner join produtos d on d.CodigoProdutos = b.ProdutoItensPedido
+	order by a.NumeroPedidos
+
+
+
+
+	
 	
 	
 	

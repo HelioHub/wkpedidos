@@ -172,7 +172,6 @@ object FDadosPedidos: TFDadosPedidos
     Height = 27
     Align = alBottom
     TabOrder = 3
-    ExplicitLeft = 8
     DesignSize = (
       599
       27)
