@@ -42,7 +42,7 @@ uses
   FireDAC.DApt, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
   FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Comp.UI, FireDAC.Phys.MySQL,
-  FireDAC.Phys.MySQLDef, System.SysUtils, Vcl.Dialogs;
+  FireDAC.Phys.MySQLDef, System.SysUtils, Vcl.Dialogs, WKConst;
 
 { TCliente }
 
@@ -120,7 +120,7 @@ begin
   except
     on E: Exception do
     begin
-      ShowMessage('Erro ao carregar dados: ' + E.Message);
+      raise Exception.Create('Erro ao carregar dados: ' + cEOL + E.Message);
     end;
   end;
 end;
@@ -140,7 +140,7 @@ begin
   except
     on E: Exception do
     begin
-      ShowMessage('Erro ao carregar dados: ' + E.Message);
+      raise Exception.Create('Erro ao carregar dados: ' + E.Message);
     end;
   end;
 end;

@@ -108,7 +108,7 @@ begin
   except
     on E: Exception do
     begin
-      ShowMessage('Erro ao carregar dados: ' + E.Message);
+      raise Exception.Create('Erro ao carregar dados: ' + E.Message);
     end;
   end;
 end;
@@ -128,7 +128,7 @@ begin
   except
     on E: Exception do
     begin
-      ShowMessage('Erro ao carregar dados: ' + E.Message);
+      raise Exception.Create('Erro ao carregar dados: ' + E.Message);
     end;
   end;
 end;

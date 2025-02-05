@@ -122,7 +122,7 @@ begin
   except
     on E: Exception do
     begin
-      ShowMessage('Erro ao carregar dados: ' + E.Message);
+      raise Exception.Create('Erro ao carregar dados: ' + E.Message);
     end;
   end;
 end;
@@ -180,7 +180,7 @@ begin
   except
     on E: Exception do
     begin
-      ShowMessage('Erro ao calcular total dos itens: ' + E.Message);
+      raise Exception.Create('Erro ao calcular total dos itens: ' + E.Message);
     end;
   end;
 end;
@@ -233,7 +233,7 @@ begin
   except
     on E: Exception do
     begin
-      ShowMessage('Erro ao salvar item de pedido: ' + E.Message);
+      raise Exception.Create('Erro ao salvar item de pedido: ' + E.Message);
     end;
   end;
 end;
@@ -265,7 +265,7 @@ begin
   except
     on E: Exception do
     begin
-      ShowMessage('Erro ao carregar dados: ' + E.Message);
+      raise Exception.Create('Erro ao carregar dados: ' + E.Message);
     end;
   end;
 end;
@@ -286,7 +286,7 @@ begin
   except
     on E: Exception do
     begin
-      ShowMessage('Erro ao excluir item de pedido: ' + E.Message);
+      raise Exception.Create('Erro ao excluir item de pedido: ' + E.Message);
     end;
   end;
 end;
