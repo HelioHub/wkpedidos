@@ -65,7 +65,6 @@ type
     procedure TratarDelete;
     procedure pCRUD(pAcao: TAcao);
     procedure pAtualizacao;
-    procedure pConsultClientes;
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
@@ -171,7 +170,7 @@ procedure TFDadosPedidos.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if key = vk_F2 then
-    pConsultClientes;
+    SBF2.Click;
 end;
 
 procedure TFDadosPedidos.pAtualizacao;
@@ -240,11 +239,6 @@ end;
 
 procedure TFDadosPedidos.SBF2Click(Sender: TObject);
 begin
-  pConsultClientes;
-end;
-
-procedure TFDadosPedidos.pConsultClientes;
-begin
   FConsultaClientes := TFConsultaClientes.Create(Application);
   try
     if FConsultaClientes.ShowModal = mrOK then
@@ -258,7 +252,6 @@ begin
     end;
   finally
     FConsultaClientes.Free;
-    LECodigoCliente.SetFocus;
   end;
 end;
 

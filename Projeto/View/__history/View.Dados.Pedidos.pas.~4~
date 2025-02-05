@@ -258,7 +258,7 @@ begin
     end;
   finally
     FConsultaClientes.Free;
-    LECodigoCliente.SetFocus;
+    LECodigoClienteExit.SetFocus;
   end;
 end;
 
