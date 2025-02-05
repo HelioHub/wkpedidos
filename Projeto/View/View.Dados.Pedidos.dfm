@@ -24,7 +24,7 @@ object FDadosPedidos: TFDadosPedidos
     Width = 599
     Height = 41
     Align = alBottom
-    TabOrder = 0
+    TabOrder = 4
     DesignSize = (
       599
       41)
@@ -70,7 +70,7 @@ object FDadosPedidos: TFDadosPedidos
     Width = 599
     Height = 123
     Align = alClient
-    TabOrder = 1
+    TabOrder = 0
     object LDT: TLabel
       Left = 30
       Top = 41
@@ -163,7 +163,7 @@ object FDadosPedidos: TFDadosPedidos
     Align = alBottom
     Alignment = taLeftJustify
     Caption = '   Itens do Pedido:'
-    TabOrder = 2
+    TabOrder = 1
   end
   object POpcoes: TPanel
     Left = 0
@@ -233,7 +233,7 @@ object FDadosPedidos: TFDadosPedidos
     Width = 599
     Height = 128
     Align = alBottom
-    TabOrder = 4
+    TabOrder = 2
     object DBGView: TDBGrid
       Left = 1
       Top = 1

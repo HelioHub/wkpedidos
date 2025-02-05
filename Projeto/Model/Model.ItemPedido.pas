@@ -188,6 +188,7 @@ end;
 function TItemPedido.Salvar: Boolean;
 begin
   Result := False;
+  FDatabaseConnection.Connection.StartTransaction;
   try
     // Prepara a query para inserir ou atualizar o item de pedido
     FQuery.SQL.Clear;
@@ -229,10 +230,12 @@ begin
       FIdItemPedido := FQuery.FieldByName('LastID').AsInteger;
     end;
 
+    FDatabaseConnection.Connection.Commit;
     Result := True; // Indica que o item de pedido foi salvo com sucesso
   except
     on E: Exception do
     begin
+      FDatabaseConnection.Connection.Rollback;
       raise Exception.Create('Erro ao salvar item de pedido: ' + E.Message);
     end;
   end;
