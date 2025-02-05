@@ -107,27 +107,36 @@ procedure TFDadosItensPedido.BBGravarClick(Sender: TObject);
 var
   ItensPedido: IItemPedido;
 begin
-  ItensPedido := FItemPedidoController.GetItemPedido;
-  MaskEdit(LEQtd, LEPreco, LEValor, LEPrecoSugerido);
   TakePoint(LEQtd);
-  TakePoint(LEPreco);
-  TakePoint(LEValor);
-
-  // Preenche os dados do Item do Pedido
-  ItensPedido.IdItemPedido := StrToIntDef(LEIdItemProduto.Text, 0);;
-  ItensPedido.Pedido := pNumeroPedido;
-  ItensPedido.Produto := StrToIntDef(LECodigoProduto.Text, 0);
-  ItensPedido.Quantidade := StrToFloatDef(LEQtd.Text, 0);
-  ItensPedido.ValorUnitario := StrToFloatDef(LEPreco.Text, 0);
-  ItensPedido.ValorTotal := StrToFloatDef(LEValor.Text, 0);
-
-  // Salva o pedido
-  if FItemPedidoController.SalvarItemPedido(ItensPedido) then
-    // Atualiza o campo NumeroPedido com o ID gerado
-    ShowMessage('Sucesso na Gravação do Item '+LECodigoProduto.Text+'.')
+  if StrToFloatDef(LEQtd.Text, 0) = cZero then
+  begin
+    beep;
+    ShowMessage('Atenção!!'+ cEOL +
+                'Falta informar a Quantidade.');
+  end
   else
-    ShowMessage('Sem Sucesso na Gravação do Item '+LECodigoProduto.Text+'.'+cEOL+
-      'Falta informar o Código do Produto');
+  begin
+    ItensPedido := FItemPedidoController.GetItemPedido;
+    MaskEdit(LEQtd, LEPreco, LEValor, LEPrecoSugerido);
+    TakePoint(LEPreco);
+    TakePoint(LEValor);
+
+    // Preenche os dados do Item do Pedido
+    ItensPedido.IdItemPedido := StrToIntDef(LEIdItemProduto.Text, 0);;
+    ItensPedido.Pedido := pNumeroPedido;
+    ItensPedido.Produto := StrToIntDef(LECodigoProduto.Text, 0);
+    ItensPedido.Quantidade := StrToFloatDef(LEQtd.Text, 0);
+    ItensPedido.ValorUnitario := StrToFloatDef(LEPreco.Text, 0);
+    ItensPedido.ValorTotal := StrToFloatDef(LEValor.Text, 0);
+
+    // Salva o pedido
+    if FItemPedidoController.SalvarItemPedido(ItensPedido) then
+      // Atualiza o campo NumeroPedido com o ID gerado
+      ShowMessage('Sucesso na Gravação do Item '+LECodigoProduto.Text+'.')
+    else
+      ShowMessage('Sem Sucesso na Gravação do Item '+LECodigoProduto.Text+'.'+cEOL+
+        'Falta informar o Código do Produto');
+  end;
 end;
 
 procedure TFDadosItensPedido.FormKeyDown(Sender: TObject; var Key: Word;
