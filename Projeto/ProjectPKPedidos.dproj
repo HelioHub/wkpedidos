@@ -4,7 +4,7 @@
         <ProjectVersion>20.1</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <ProjectName Condition="'$(ProjectName)'==''">ProjectPKPedidos</ProjectName>
         <TargetedPlatforms>3</TargetedPlatforms>
@@ -180,6 +180,7 @@
         <DCCReference Include="Model\Model.Item.RegraAtacado.pas"/>
         <DCCReference Include="Model\Model.Item.RegraVarejo.pas"/>
         <DCCReference Include="Interfaces\Interfaces.Visitor.pas"/>
+        <DCCReference Include="Utils\Utils.ErrorLogger.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

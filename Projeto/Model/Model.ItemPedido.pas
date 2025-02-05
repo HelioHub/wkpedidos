@@ -55,7 +55,7 @@ uses
   FireDAC.DApt, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
   FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Comp.UI, FireDAC.Phys.MySQL,
-  FireDAC.Phys.MySQLDef, System.SysUtils, Vcl.Dialogs;
+  FireDAC.Phys.MySQLDef, System.SysUtils, Vcl.Dialogs, Utils.ErrorLogger;
 
 { TItemPedido }
 
@@ -186,8 +186,13 @@ begin
 end;
 
 function TItemPedido.Salvar: Boolean;
+var
+  Logger: TErrorLogger;
 begin
   Result := False;
+  Logger := TErrorLogger.Create; // Usa o caminho padrão 'error.log'
+  try
+
   FDatabaseConnection.Connection.StartTransaction;
   try
     // Prepara a query para inserir ou atualizar o item de pedido
@@ -236,8 +241,13 @@ begin
     on E: Exception do
     begin
       FDatabaseConnection.Connection.Rollback;
+      Logger.LogError(E);
       raise Exception.Create('Erro ao salvar item de pedido: ' + E.Message);
     end;
+  end;
+
+  finally
+    Logger.Free;
   end;
 end;
 

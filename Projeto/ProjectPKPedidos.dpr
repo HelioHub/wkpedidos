@@ -30,7 +30,8 @@ uses
   Model.Item in 'Model\Model.Item.pas',
   Model.Item.RegraAtacado in 'Model\Model.Item.RegraAtacado.pas',
   Model.Item.RegraVarejo in 'Model\Model.Item.RegraVarejo.pas',
-  Interfaces.Visitor in 'Interfaces\Interfaces.Visitor.pas';
+  Interfaces.Visitor in 'Interfaces\Interfaces.Visitor.pas',
+  Utils.ErrorLogger in 'Utils\Utils.ErrorLogger.pas';
 
 {$R *.res}
 

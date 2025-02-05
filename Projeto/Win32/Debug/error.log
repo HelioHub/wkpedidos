@@ -1,0 +1,1 @@
+05/02/2025 09:54:04 - Erro: EMySQLNativeException - [FireDAC][Phys][MySQL] You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECTs LAST_INSERT_ID() AS LastID' at line 1

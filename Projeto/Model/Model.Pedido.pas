@@ -45,7 +45,8 @@ uses
   FireDAC.DApt, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
   FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Comp.UI, FireDAC.Phys.MySQL,
-  FireDAC.Phys.MySQLDef, System.SysUtils, Vcl.Dialogs;
+  FireDAC.Phys.MySQLDef, System.SysUtils, Vcl.Dialogs,
+  Utils.ErrorLogger;
 
 { TPedido }
 
@@ -105,58 +106,68 @@ begin
 end;
 
 function TPedido.Salvar: Boolean;
+var
+  Logger: TErrorLogger;
 begin
   Result := False;
-  FDatabaseConnection.Connection.StartTransaction;
+  Logger := TErrorLogger.Create; // Usa o caminho padrão 'error.log'
   try
-    // Prepara a query para inserir ou atualizar o pedido
-    FQuery.SQL.Clear;
-    if FNumeroPedido = 0 then
-    begin
-      // Inserir novo pedido
-      FQuery.SQL.Add(' INSERT INTO Pedidos (DataEmissaoPedidos, '+
-                                          ' ClientePedidos,     '+
-                                          ' ValorTotalPedidos)  ');
-      FQuery.SQL.Add(' VALUES (:DataEmissao, '+
-                             ' :Cliente,     '+
-                             ' :ValorTotal)  ');
-    end
-    else
-    begin
-      // Atualizar pedido existente
-      FQuery.SQL.Add(' UPDATE Pedidos SET '+
-                            ' DataEmissaoPedidos = :DataEmissao, '+
-                            ' ClientePedidos = :Cliente,         '+
-                            ' ValorTotalPedidos = :ValorTotal    ');
-      FQuery.SQL.Add('  WHERE NumeroPedidos = :NumeroPedido      ');
-      FQuery.ParamByName('NumeroPedido').AsInteger := FNumeroPedido;
-    end;
 
-    // Define os parâmetros da query
-    FQuery.ParamByName('DataEmissao').AsDateTime := FDataEmissao;
-    FQuery.ParamByName('Cliente').AsInteger := FCliente;
-    FQuery.ParamByName('ValorTotal').AsFloat := FValorTotal;
-
-    // Executa a query
-    FQuery.ExecSQL;
-
-    // Se for uma inserção, recupera o ID gerado
-    if FNumeroPedido = 0 then
-    begin
+    FDatabaseConnection.Connection.StartTransaction;
+    try
+      // Prepara a query para inserir ou atualizar o pedido
       FQuery.SQL.Clear;
-      FQuery.SQL.Add('SELECT LAST_INSERT_ID() AS LastID');
-      FQuery.Open;
-      FNumeroPedido := FQuery.FieldByName('LastID').AsInteger;
+      if FNumeroPedido = 0 then
+      begin
+        // Inserir novo pedido
+        FQuery.SQL.Add(' INSERT INTO Pedidos (DataEmissaoPedidos, '+
+                                            ' ClientePedidos,     '+
+                                            ' ValorTotalPedidos)  ');
+        FQuery.SQL.Add(' VALUES (:DataEmissao, '+
+                               ' :Cliente,     '+
+                               ' :ValorTotal)  ');
+      end
+      else
+      begin
+        // Atualizar pedido existente
+        FQuery.SQL.Add(' UPDATE Pedidos SET '+
+                              ' DataEmissaoPedidos = :DataEmissao, '+
+                              ' ClientePedidos = :Cliente,         '+
+                              ' ValorTotalPedidos = :ValorTotal    ');
+        FQuery.SQL.Add('  WHERE NumeroPedidos = :NumeroPedido      ');
+        FQuery.ParamByName('NumeroPedido').AsInteger := FNumeroPedido;
+      end;
+
+      // Define os parâmetros da query
+      FQuery.ParamByName('DataEmissao').AsDateTime := FDataEmissao;
+      FQuery.ParamByName('Cliente').AsInteger := FCliente;
+      FQuery.ParamByName('ValorTotal').AsFloat := FValorTotal;
+
+      // Executa a query
+      FQuery.ExecSQL;
+
+      // Se for uma inserção, recupera o ID gerado
+      if FNumeroPedido = 0 then
+      begin
+        FQuery.SQL.Clear;
+        FQuery.SQL.Add('SELECT LAST_INSERT_ID() AS LastID');
+        FQuery.Open;
+        FNumeroPedido := FQuery.FieldByName('LastID').AsInteger;
+      end;
+
+      FDatabaseConnection.Connection.Commit;
+      Result := True; // Indica que o pedido foi salvo com sucesso
+    except
+      on E: Exception do
+      begin
+        FDatabaseConnection.Connection.Rollback;
+        Logger.LogError(E);
+        raise Exception.Create('Erro ao salvar pedido: ' + E.Message);
+      end;
     end;
 
-    FDatabaseConnection.Connection.Commit;
-    Result := True; // Indica que o pedido foi salvo com sucesso
-  except
-    on E: Exception do
-    begin
-      FDatabaseConnection.Connection.Rollback;
-      raise Exception.Create('Erro ao salvar pedido: ' + E.Message);
-    end;
+  finally
+    Logger.Free;
   end;
 end;
 
