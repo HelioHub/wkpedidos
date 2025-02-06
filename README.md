@@ -639,6 +639,10 @@ utilizando ao máximo o seu potencial.
 
 ## CheckList Final:
 
+	````
+	End Project: "Tudo funcionando perfeitamente". CheckList:
+	````
+
 ![## CheckList WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/CheckList.png)
 
 
