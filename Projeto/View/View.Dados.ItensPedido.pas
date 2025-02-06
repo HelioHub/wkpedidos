@@ -118,6 +118,7 @@ begin
   begin
     ItensPedido := FItemPedidoController.GetItemPedido;
     MaskEdit(LEQtd, LEPreco, LEValor, LEPrecoSugerido);
+    TakePoint(LEQtd);
     TakePoint(LEPreco);
     TakePoint(LEValor);
 
