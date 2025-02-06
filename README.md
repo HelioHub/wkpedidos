@@ -643,6 +643,7 @@ utilizando ao máximo o seu potencial.
 	Usando HTML/CSS/JS
 	````
 ![## Gráfico WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/Grafico1.png)
+![## Gráfico WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/Grafico2.png)
 
 
 ## CheckList Final:
