@@ -29,6 +29,7 @@ CREATE TABLE `pedidos` (
   `ValorTotalPedidos` decimal(17,3) DEFAULT NULL,
   PRIMARY KEY (`NumeroPedidos`),
   KEY `FK_CLIENTE_idx` (`ClientePedidos`),
+  INDEX `INDEX_DATAEMISSAO` (`DataEmissaoPedidos` ASC),
   CONSTRAINT `FK_CLIENTE` FOREIGN KEY (`ClientePedidos`) REFERENCES `clientes` (`CodigoClientes`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

@@ -616,7 +616,7 @@ utilizando ao máximo o seu potencial.
 ## Criação do Filtro por Data de Emissão da Tela de Pedidos e Index para performar melhor no Banco:
 
 	````
-	Atende a Tela de Pedido e Relatório.
+	Atende a Tela de Pedido e o Relatório.
 	````
 	
 	CREATE TABLE IF NOT EXISTS `WKPedidos`.`Pedidos` (
@@ -637,10 +637,12 @@ utilizando ao máximo o seu potencial.
 ![## Tela Filtro WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/FiltroDataEmissao.png)
 
 
+## CheckList Final:
+
+![## CheckList WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/CheckList.png)
 
 
-	
-	
+
 	
 	
 	

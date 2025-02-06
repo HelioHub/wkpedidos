@@ -196,7 +196,6 @@ object FViewPedidos: TFViewPedidos
     Alignment = taLeftJustify
     Caption = '   Itens do Pedido:'
     TabOrder = 4
-    ExplicitTop = 305
   end
   object PViewPedidos: TPanel
     Left = 0
@@ -205,8 +204,6 @@ object FViewPedidos: TFViewPedidos
     Height = 221
     Align = alClient
     TabOrder = 2
-    ExplicitTop = 94
-    ExplicitHeight = 211
     object DBGView: TDBGrid
       Left = 1
       Top = 1
@@ -403,7 +400,6 @@ object FViewPedidos: TFViewPedidos
     Height = 105
     Align = alBottom
     TabOrder = 3
-    ExplicitTop = 329
     object DBGViewItens: TDBGrid
       Left = 1
       Top = 1
@@ -423,9 +419,19 @@ object FViewPedidos: TFViewPedidos
       Columns = <
         item
           Alignment = taCenter
+          Expanded = False
+          FieldName = 'idItensPedido'
+          Title.Alignment = taCenter
+          Title.Caption = 'Id'
+          Width = 31
+          Visible = True
+        end
+        item
+          Alignment = taCenter
           Color = clSnow
           Expanded = False
-          FieldName = 'PedidoItensPedido'
+          FieldName = 'ProdutoItensPedido'
+          Title.Alignment = taCenter
           Title.Caption = 'Item'
           Width = 56
           Visible = True
@@ -434,7 +440,7 @@ object FViewPedidos: TFViewPedidos
           Expanded = False
           FieldName = 'DescricaoProdutos'
           Title.Caption = 'Descri'#231#227'o do Item'
-          Width = 266
+          Width = 240
           Visible = True
         end
         item
@@ -442,7 +448,7 @@ object FViewPedidos: TFViewPedidos
           FieldName = 'QuantidadeItensPedido'
           Title.Alignment = taRightJustify
           Title.Caption = 'Quantidade'
-          Width = 89
+          Width = 84
           Visible = True
         end
         item
@@ -450,7 +456,7 @@ object FViewPedidos: TFViewPedidos
           FieldName = 'VlrUnitarioItensPedido'
           Title.Alignment = taRightJustify
           Title.Caption = 'Pre'#231'o Venda'
-          Width = 101
+          Width = 98
           Visible = True
         end
         item
