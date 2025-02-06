@@ -637,7 +637,7 @@ utilizando ao máximo o seu potencial.
 ![## Tela Filtro WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/FiltroDataEmissao.png)
 
 
-## Gráfico do mais Vendidos Uando HTML/CSS/JavaScript:
+## Gráficos dos Itens mais Vendidos Usando HTML/CSS/JavaScript:
 
 	````
 	Gráfico de Barra
