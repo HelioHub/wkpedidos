@@ -14,9 +14,11 @@ type
     PHost: TPanel;
     EHostName: TEdit;
     LWK: TLabel;
+    BExecFolder: TButton;
     procedure BBFecharClick(Sender: TObject);
     procedure LWKClick(Sender: TObject);
     procedure BBCadPedidosClick(Sender: TObject);
+    procedure BExecFolderClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -26,31 +28,35 @@ type
 var
   FWKPedidos: TFWKPedidos;
 
-const curlWK = '';
-
 implementation
 
 {$R *.dfm}
 
-uses UViewPedidos, UViewAtencao;
+uses View.Show.MaisVendido, View.Show.Atencao, WKConst, View.Pedidos;
 
 
 procedure TFWKPedidos.BBCadPedidosClick(Sender: TObject);
-var
-  Formulario: TFViewPedidos;
 begin
-  Formulario := TFViewPedidos.Create(Application);
-  Formulario.ShowModal;
+  FViewPedidos := TFViewPedidos.Create(Application);
+  FViewPedidos.ShowModal;
 end;
 
 procedure TFWKPedidos.BBFecharClick(Sender: TObject);
-var
-  i : integer;
-  Form: TFViewAtencao;
 begin
-  Form := TFViewAtencao.Create(Application);
-  Form.ShowModal;
+  FViewAtencao := TFViewAtencao.Create(Application);
+  FViewAtencao.ShowModal;
   Application.Terminate;
+end;
+
+procedure TFWKPedidos.BExecFolderClick(Sender: TObject);
+var
+  ExecutablePath, ExecutableDir: string;
+begin
+  ExecutablePath := ParamStr(0); // Obtém o caminho completo do executável
+  ExecutableDir := ExtractFileDir(ExecutablePath); // Extrai o diretório do caminho
+  ShowMessage('O executável está sendo executado na pasta: ' + ExecutableDir);
+
+  ShowMessage('Área do círculo: ' + FormatFloat('###,##0.00',Pi * 2 * 2:0:2)
 end;
 
 procedure TFWKPedidos.LWKClick(Sender: TObject);
