@@ -528,9 +528,13 @@ begin
       FQuery.First;
       while not FQuery.Eof do
       begin
-        Labels.Add('"' + StringReplace(FQuery.FieldByName('DescricaoProdutos').AsString, '"', '""', [rfReplaceAll]) + '"');
+
+        Labels.Add(QuotedStr(FQuery.FieldByName('DescricaoProdutos').AsString));
+        Labels.Text := StringReplace(Labels.Text, '"', '', [rfReplaceAll]);
         Data.Add(FQuery.FieldByName('TotalVendido').AsString);
         Colors.Add('"rgba(' + IntToStr(Random(256)) + ', ' + IntToStr(Random(256)) + ', ' + IntToStr(Random(256)) + ', 0.6)"');
+        Colors.Text := StringReplace(Colors.Text, '"', '', [rfReplaceAll]);
+
         FQuery.Next;
       end;
 
