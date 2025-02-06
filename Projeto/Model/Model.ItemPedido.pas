@@ -48,7 +48,7 @@ type
     function Salvar: Boolean; // Implementação do método Salvar
     function Excluir(const AId: Integer): Boolean; // Implementação do método Excluir
     function CalcularTotalItens(const AIdPedido: Integer): Double; // Implementação do método CalcularTotalItens
-    function GerarRelatorioHTML: string; //Relatório HTML
+    function GerarRelatorioHTML(const pDtIni, pDtFin: TDate): string; //Relatório HTML
 
     procedure CarregarDados(const AFDMemTable: TFDMemTable; pPedido: String); // Implementação do método CarregarDados
     procedure MaisVendido(const AFDMemTable: TFDMemTable); // Método Mais Vendido dos Pedidos.
@@ -272,9 +272,7 @@ begin
     FQuery.SQL.Add(' FROM ItensPedido a ');
     FQuery.SQL.Add(' JOIN Produtos b ON b.CodigoProdutos = a.ProdutoItensPedido ');
     if not pPedido.IsEmpty then
-    begin
       FQuery.SQL.Add(' WHERE PedidoItensPedido = '+pPedido);
-    end;
     FQuery.SQL.Add(' ORDER BY a.ProdutoItensPedido = '+pPedido);
     FQuery.Open;
 
@@ -346,8 +344,8 @@ begin
       '  <td>' + FQuery.FieldByName('idItensPedido').AsString + '</td>' +
       '  <td>' + FQuery.FieldByName('DescricaoProdutos').AsString + '</td>' +
       '  <td>' + FQuery.FieldByName('QuantidadeItensPedido').AsString + '</td>' +
-      '  <td>' + FormatFloat('R$ #,##0.00', FQuery.FieldByName('VlrUnitarioItensPedido').AsFloat) + '</td>' +
-      '  <td>' + FormatFloat('R$ #,##0.00', FQuery.FieldByName('VlrTotalItensPedido').AsFloat) + '</td>' +
+      '  <td style="text-align: right;">' + FormatFloat('R$ #,##0.00', FQuery.FieldByName('VlrUnitarioItensPedido').AsFloat) + '</td>' +
+      '  <td style="text-align: right;">' + FormatFloat('R$ #,##0.00', FQuery.FieldByName('VlrTotalItensPedido').AsFloat) + '</td>' +
       '</tr>';
     FQuery.Next;
   end;
@@ -363,7 +361,7 @@ begin
     '</div>';
 end;
 
-function TItemPedido.GerarRelatorioHTML: string;
+function TItemPedido.GerarRelatorioHTML(const pDtIni, pDtFin: TDate): string;
 var
   HTML: TStringList;
   dTotalPedido : Double;
@@ -387,7 +385,10 @@ begin
       'inner join itenspedido b on b.PedidoItensPedido = a.NumeroPedidos ' +
       'inner join clientes c on c.CodigoClientes = a.ClientePedidos ' +
       'inner join produtos d on d.CodigoProdutos = b.ProdutoItensPedido ' +
+      'where a.DataEmissaoPedidos BETWEEN :pDtIni AND :pDtFin '+
       'order by a.NumeroPedidos';
+    FQuery.ParamByName('pDtIni').AsDate := pDtIni;
+    FQuery.ParamByName('pDtFin').AsDate := pDtFin+1;
     FQuery.Open;
 
     // Gera o HTML do relatório
@@ -397,7 +398,7 @@ begin
       '<head>' +
       '  <meta charset="UTF-8">' +
       '  <meta name="viewport" content="width=device-width, initial-scale=1.0">' +
-      '  <title>Relatório de Pedido</title>' +
+      '  <title>Relatorio de Pedido</title>' +
       '  <style>' +
       '    body { font-family: Arial, sans-serif; margin: 20px; }' +
       '    .cabecalho { margin-bottom: 20px; }' +

@@ -80,7 +80,7 @@ implementation
 
 {$R *.dfm}
 
-uses View.Consulta.Clientes, View.Dados.ItensPedido;
+uses View.Consulta.Clientes, View.Dados.ItensPedido, Utils.DMUtils;
 
 constructor TFDadosPedidos.Create(AOwner: TComponent);
 begin

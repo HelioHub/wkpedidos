@@ -17,7 +17,8 @@ type
     function SalvarPedido(APedido: IPedido) : Boolean;
     function ExcluirPedido(const AId: Integer): Boolean;
     procedure CarregarDadosPedidos(const AFDMemTable: TFDMemTable;
-      pNumeroPedido, pNomeCliente, pLimite: String);
+      pNumeroPedido, pNomeCliente, pLimite: String;
+      pDtIni, pDtFin : TDate);
   end;
 
 implementation
@@ -52,9 +53,10 @@ end;
 
 procedure TPedidoController.CarregarDadosPedidos(
   const AFDMemTable: TFDMemTable;
-  pNumeroPedido, pNomeCliente, pLimite: String);
+  pNumeroPedido, pNomeCliente, pLimite: String;
+  pDtIni, pDtFin : TDate);
 begin
-  FPedido.CarregarDados(AFDMemTable, pNumeroPedido, pNomeCliente, pLimite);
+  FPedido.CarregarDados(AFDMemTable, pNumeroPedido, pNomeCliente, pLimite, pDtIni, pDtFin);
 end;
 
 function TPedidoController.ExcluirPedido(const AId: Integer): Boolean;

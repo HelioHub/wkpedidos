@@ -5,7 +5,7 @@ object FViewPedidos: TFViewPedidos
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Pedidos'
-  ClientHeight = 434
+  ClientHeight = 466
   ClientWidth = 641
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -27,7 +27,7 @@ object FViewPedidos: TFViewPedidos
       641
       44)
     object LNR: TLabel
-      Left = 515
+      Left = 517
       Top = 16
       Width = 73
       Height = 13
@@ -39,50 +39,61 @@ object FViewPedidos: TFViewPedidos
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      ExplicitLeft = 720
     end
     object BBIncluir: TBitBtn
       Left = 8
       Top = 8
-      Width = 75
+      Width = 69
       Height = 30
+      Hint = 'Incluir Pedido'
       Caption = '&Incluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
+      ImageIndex = 0
+      Images = DMUtils.ILImagensSystem
       ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 0
       OnClick = BBIncluirClick
     end
     object BBAlterar: TBitBtn
-      Left = 89
+      Left = 80
       Top = 8
-      Width = 75
+      Width = 69
       Height = 30
+      Hint = 'Alterar Pedido'
       Caption = '&Alterar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
+      ImageIndex = 1
+      Images = DMUtils.ILImagensSystem
       ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 1
       OnClick = BBAlterarClick
     end
     object BBExcluir: TBitBtn
-      Left = 170
+      Left = 152
       Top = 8
-      Width = 75
+      Width = 69
       Height = 30
-      Hint = 'Cancela o Pedido e seus Itens'
+      Hint = 'Cancela o Pedido e seus Itens deletandos'
       Caption = '&Excluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
+      ImageIndex = 2
+      Images = DMUtils.ILImagensSystem
       ParentFont = False
       ParentShowHint = False
       ShowHint = True
@@ -90,10 +101,11 @@ object FViewPedidos: TFViewPedidos
       OnClick = BBExcluirClick
     end
     object BBSair: TBitBtn
-      Left = 251
+      Left = 224
       Top = 8
-      Width = 75
+      Width = 69
       Height = 30
+      Hint = 'Fechar tela de Pedidos'
       Cancel = True
       Caption = '&Fechar'
       Font.Charset = DEFAULT_CHARSET
@@ -101,13 +113,17 @@ object FViewPedidos: TFViewPedidos
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
+      ImageIndex = 8
+      Images = DMUtils.ILImagensSystem
       NumGlyphs = 2
       ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 3
       OnClick = BBSairClick
     end
     object ENR: TEdit
-      Left = 590
+      Left = 591
       Top = 13
       Width = 44
       Height = 21
@@ -125,9 +141,9 @@ object FViewPedidos: TFViewPedidos
       Text = '100'
     end
     object BBProdutoMaisVendido: TBitBtn
-      Left = 369
+      Left = 325
       Top = 8
-      Width = 64
+      Width = 83
       Height = 30
       Hint = 'Visualiza os Produtos mais Vendidos.'
       Cancel = True
@@ -137,6 +153,8 @@ object FViewPedidos: TFViewPedidos
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
+      ImageIndex = 6
+      Images = DMUtils.ILImagensSystem
       NumGlyphs = 2
       ParentFont = False
       ParentShowHint = False
@@ -145,11 +163,13 @@ object FViewPedidos: TFViewPedidos
       OnClick = BBProdutoMaisVendidoClick
     end
     object BBRelatorio: TBitBtn
-      Left = 436
+      Left = 414
       Top = 8
-      Width = 64
+      Width = 83
       Height = 30
-      Hint = 'Gera Relat'#243'rio em HTML dos Pedidos.'
+      Hint = 
+        'Gera Relat'#243'rio em HTML dos Pedidos. Considera o Filtro Data de E' +
+        'miss'#227'o.'
       Cancel = True
       Caption = 'Rela&t'#243'rio'
       Font.Charset = DEFAULT_CHARSET
@@ -157,6 +177,8 @@ object FViewPedidos: TFViewPedidos
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
+      ImageIndex = 4
+      Images = DMUtils.ILImagensSystem
       NumGlyphs = 2
       ParentFont = False
       ParentShowHint = False
@@ -167,26 +189,29 @@ object FViewPedidos: TFViewPedidos
   end
   object PRodape: TPanel
     Left = 0
-    Top = 305
+    Top = 337
     Width = 641
     Height = 24
     Align = alBottom
     Alignment = taLeftJustify
     Caption = '   Itens do Pedido:'
     TabOrder = 4
+    ExplicitTop = 305
   end
   object PViewPedidos: TPanel
     Left = 0
-    Top = 94
+    Top = 116
     Width = 641
-    Height = 211
+    Height = 221
     Align = alClient
     TabOrder = 2
+    ExplicitTop = 94
+    ExplicitHeight = 211
     object DBGView: TDBGrid
       Left = 1
       Top = 1
       Width = 639
-      Height = 209
+      Height = 219
       Hint = 'Duplo Click para Alterar o Pedido...'
       Align = alClient
       DataSource = DSViewPedidos
@@ -253,14 +278,64 @@ object FViewPedidos: TFViewPedidos
     Left = 0
     Top = 44
     Width = 641
-    Height = 50
+    Height = 72
     Align = alTop
     TabOrder = 1
     DesignSize = (
       641
-      50)
+      72)
+    object LDT: TLabel
+      Left = 14
+      Top = 51
+      Width = 133
+      Height = 13
+      Caption = 'Filtrar por Data de Emiss'#227'o:'
+    end
+    object Label1: TLabel
+      Left = 240
+      Top = 52
+      Width = 6
+      Height = 13
+      Caption = 'a'
+    end
+    object SBClearPedido: TSpeedButton
+      Left = 198
+      Top = 3
+      Width = 23
+      Height = 22
+      Hint = 'Limpar Pedido'
+      ImageIndex = 7
+      Images = DMUtils.ILImagensSystem
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      OnClick = SBClearPedidoClick
+    end
+    object SBClearNomeCliente: TSpeedButton
+      Left = 479
+      Top = 24
+      Width = 23
+      Height = 22
+      Hint = 'Limpar Nome do Cliente'
+      ImageIndex = 7
+      Images = DMUtils.ILImagensSystem
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      OnClick = SBClearNomeClienteClick
+    end
     object LEFiltroNumeroPedido: TLabeledEdit
-      Left = 155
+      Left = 150
       Top = 3
       Width = 46
       Height = 21
@@ -273,8 +348,8 @@ object FViewPedidos: TFViewPedidos
       Text = ''
     end
     object LEFiltroNomeCliente: TLabeledEdit
-      Left = 155
-      Top = 26
+      Left = 150
+      Top = 25
       Width = 326
       Height = 21
       EditLabel.Width = 132
@@ -285,10 +360,10 @@ object FViewPedidos: TFViewPedidos
       Text = ''
     end
     object BBAtualizar: TBitBtn
-      Left = 515
+      Left = 539
       Top = 5
       Width = 75
-      Height = 39
+      Height = 61
       Anchors = [akTop, akRight]
       Caption = 'Filtra&r'
       Font.Charset = DEFAULT_CHARSET
@@ -296,18 +371,39 @@ object FViewPedidos: TFViewPedidos
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
+      ImageIndex = 3
+      Images = DMUtils.ILImagensSystem
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 4
       OnClick = BBAtualizarClick
+    end
+    object DTPDEIni: TDateTimePicker
+      Left = 150
+      Top = 47
+      Width = 85
+      Height = 21
+      Date = 45686.000000000000000000
+      Time = 0.829977719906310100
+      TabOrder = 2
+    end
+    object DTPDEFin: TDateTimePicker
+      Left = 250
+      Top = 47
+      Width = 85
+      Height = 21
+      Date = 45686.000000000000000000
+      Time = 0.829977719906310100
+      TabOrder = 3
     end
   end
   object PViewItensPedido: TPanel
     Left = 0
-    Top = 329
+    Top = 361
     Width = 641
     Height = 105
     Align = alBottom
     TabOrder = 3
+    ExplicitTop = 329
     object DBGViewItens: TDBGrid
       Left = 1
       Top = 1

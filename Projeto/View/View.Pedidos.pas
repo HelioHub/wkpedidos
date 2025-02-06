@@ -12,7 +12,7 @@ uses
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Menus,
   Controller.PedidoController,
   Controller.ItemPedidoController,
-  WKConst, Winapi.ShellAPI;
+  WKConst, Winapi.ShellAPI, Vcl.ComCtrls;
 
 type
   TFViewPedidos = class(TForm)
@@ -56,6 +56,12 @@ type
     BBProdutoMaisVendido: TBitBtn;
     ItensMemTableDescricaoProdutos: TStringField;
     BBRelatorio: TBitBtn;
+    DTPDEIni: TDateTimePicker;
+    LDT: TLabel;
+    Label1: TLabel;
+    DTPDEFin: TDateTimePicker;
+    SBClearPedido: TSpeedButton;
+    SBClearNomeCliente: TSpeedButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BBSairClick(Sender: TObject);
     procedure BBIncluirClick(Sender: TObject);
@@ -72,6 +78,8 @@ type
     procedure PMProdutoMaisVendidoClick(Sender: TObject);
     procedure BBProdutoMaisVendidoClick(Sender: TObject);
     procedure BBRelatorioClick(Sender: TObject);
+    procedure SBClearPedidoClick(Sender: TObject);
+    procedure SBClearNomeClienteClick(Sender: TObject);
   private
     { Private declarations }
     FPedidoController: TPedidoController;
@@ -98,7 +106,7 @@ implementation
 
 {$R *.dfm}
 
-uses View.Dados.Pedidos, View.Show.MaisVendido;
+uses View.Dados.Pedidos, View.Show.MaisVendido, Utils.DMUtils;
 
 constructor TFViewPedidos.Create(AOwner: TComponent);
 begin
@@ -116,6 +124,8 @@ end;
 
 procedure TFViewPedidos.FormShow(Sender: TObject);
 begin
+  DTPDEIni.DateTime := Date-1;
+  DTPDEFin.DateTime := Date;
   pAtualizacao;
 end;
 
@@ -193,7 +203,7 @@ var
   HTML: string;
   FileName: string;
 begin
-   HTML := FItemPedidoController.GerarRelatorioHTML;
+   HTML := FItemPedidoController.GerarRelatorioHTML(DTPDEIni.Date, DTPDEFin.Date);
 
   // Salva o HTML em um arquivo temporário
   FileName := ExtractFilePath(Application.ExeName) + 'relatorio_pedido.html';
@@ -266,7 +276,9 @@ begin
   FPedidoController.CarregarDadosPedidos(PedidosMemTable,
     LEFiltroNumeroPedido.Text,
     LEFiltroNomeCliente.Text,
-    ENR.Text);
+    ENR.Text,
+    DTPDEIni.Date,
+    DTPDEFin.Date);
 end;
 
 procedure TFViewPedidos.pValorTotaldoPedido;
@@ -277,7 +289,7 @@ begin
   // Obtém o ID do pedido
   IdPedido := DSViewPedidos.DataSet.FieldByName('NumeroPedidos').AsInteger;
 
-  if IdPedido > 0 then
+  if IdPedido > cZero then
   begin
     // Calcula o total dos itens do pedido
     TotalItens := FItemPedidoController.CalcularTotalItens(IdPedido);
@@ -287,6 +299,16 @@ begin
   end
   else
     ShowMessage('Id do Pedido inválido.');
+end;
+
+procedure TFViewPedidos.SBClearNomeClienteClick(Sender: TObject);
+begin
+  LEFiltroNomeCliente.Clear;
+end;
+
+procedure TFViewPedidos.SBClearPedidoClick(Sender: TObject);
+begin
+  LEFiltroNumeroPedido.Clear;
 end;
 
 procedure TFViewPedidos.CallProdutoMaisVendido;

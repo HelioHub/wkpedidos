@@ -47,19 +47,24 @@ object FDadosPedidos: TFDadosPedidos
       OnClick = BBSairClick
     end
     object BBGravar: TBitBtn
-      Left = 430
+      Left = 384
       Top = 6
-      Width = 75
+      Width = 121
       Height = 25
+      Hint = 'Grava Pedido e seus Itens.'
       Anchors = [akRight]
-      Caption = '&Gravar'
+      Caption = '&Gravar Pedido'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
+      ImageIndex = 5
+      Images = DMUtils.ILImagensSystem
       NumGlyphs = 2
       ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 0
       OnClick = BBGravarClick
     end
@@ -178,10 +183,10 @@ object FDadosPedidos: TFDadosPedidos
     object BBInc: TBitBtn
       Left = 10
       Top = 2
-      Width = 75
+      Width = 79
       Height = 22
       Anchors = [akRight]
-      Caption = '&Incluir'
+      Caption = '&Incluir Item'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -195,10 +200,10 @@ object FDadosPedidos: TFDadosPedidos
     object BBAlt: TBitBtn
       Left = 91
       Top = 2
-      Width = 75
+      Width = 79
       Height = 22
       Anchors = [akRight]
-      Caption = '&Alterar'
+      Caption = '&Alterar Item'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -212,10 +217,10 @@ object FDadosPedidos: TFDadosPedidos
     object BBExc: TBitBtn
       Left = 172
       Top = 2
-      Width = 75
+      Width = 79
       Height = 22
       Anchors = [akRight]
-      Caption = '&Excluir'
+      Caption = '&Excluir Item'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -232,11 +237,24 @@ object FDadosPedidos: TFDadosPedidos
       Width = 97
       Height = 21
       Alignment = taRightJustify
-      EditLabel.Width = 78
+      Color = clRed
+      EditLabel.Width = 90
       EditLabel.Height = 21
       EditLabel.Caption = 'Total do Pedido:'
+      EditLabel.Font.Charset = DEFAULT_CHARSET
+      EditLabel.Font.Color = clWindowText
+      EditLabel.Font.Height = -11
+      EditLabel.Font.Name = 'Tahoma'
+      EditLabel.Font.Style = [fsBold]
+      EditLabel.ParentFont = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
       LabelPosition = lpLeft
       NumbersOnly = True
+      ParentFont = False
       ReadOnly = True
       TabOrder = 3
       Text = ''

@@ -17,7 +17,7 @@ type
     function SalvarItemPedido(AItemPedido: IItemPedido): Boolean;
     function ExcluirItemPedido(const AId: Integer): Boolean;
     function CalcularTotalItens(const AIdPedido: Integer): Double;
-    function GerarRelatorioHTML: string;
+    function GerarRelatorioHTML(const pDtIni, pDtFin: TDate): string;
 
     procedure CarregarDadosItensPedido(const AFDMemTable: TFDMemTable; pPedido: String);
     procedure MaisVendido(const AFDMemTable: TFDMemTable); // Método Mais Vendido dos Pedidos.
@@ -40,9 +40,9 @@ begin
   inherited;
 end;
 
-function TItemPedidoController.GerarRelatorioHTML: string;
+function TItemPedidoController.GerarRelatorioHTML(const pDtIni, pDtFin: TDate): string;
 begin
-  result := FItemPedido.GerarRelatorioHTML;
+  result := FItemPedido.GerarRelatorioHTML(pDtIni, pDtFin);
 end;
 
 function TItemPedidoController.GetItemPedido: IItemPedido;

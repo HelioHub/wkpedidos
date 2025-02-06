@@ -36,7 +36,8 @@ type
     function Salvar: Boolean; // Implementação do método Salvar
     function Excluir(const AId: Integer): Boolean; // Implementação do método Excluir
     procedure CarregarDados(const AFDMemTable: TFDMemTable;
-      pNumeroPedido, pNomeCliente, pLimite: String); // Implementação do método CarregarDados
+      pNumeroPedido, pNomeCliente, pLimite: String;
+      pDtIni, pDtFin : TDate); // Implementação do método CarregarDados
   end;
 
 implementation
@@ -172,7 +173,8 @@ begin
 end;
 
 procedure TPedido.CarregarDados(const AFDMemTable: TFDMemTable;
-  pNumeroPedido, pNomeCliente, pLimite: String);
+  pNumeroPedido, pNomeCliente, pLimite: String;
+  pDtIni, pDtFin : TDate);
 begin
   try
     // Prepara a query para selecionar os dados
@@ -190,7 +192,7 @@ begin
     FQuery.SQL.Add('		WKPedidos.Pedidos p  ');
     FQuery.SQL.Add('	JOIN                   ');
     FQuery.SQL.Add('		WKPedidos.Clientes c ON p.ClientePedidos = c.CodigoClientes');
-    FQuery.SQL.Add('	WHERE 1=1 ');
+    FQuery.SQL.Add('	WHERE p.DataEmissaoPedidos BETWEEN :pDtIni AND :pDtFin ');
     if Not pNumeroPedido.IsEmpty then
       FQuery.SQL.Add('	AND p.NumeroPedidos = '+pNumeroPedido);
     if Not pNomeCliente.IsEmpty then
@@ -199,6 +201,8 @@ begin
     FQuery.SQL.Add('		p.DataEmissaoPedidos DESC');
     if Not pLimite.IsEmpty then
       FQuery.SQL.Add('	LIMIT '+pLimite+' OFFSET 0 ');
+    FQuery.ParamByName('pDtIni').AsDate := pDtIni;
+    FQuery.ParamByName('pDtFin').AsDate := pDtFin+1;
     FQuery.Open;
 
     if FQuery.RecordCount > 0 then

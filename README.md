@@ -93,12 +93,13 @@ utilizando ao máximo o seu potencial.
 	  `ValorTotalPedidos` DECIMAL(17,3) NULL,
 	  PRIMARY KEY (`NumeroPedidos`),
 	  INDEX `FK_CLIENTE_idx` (`ClientePedidos` ASC),
+	  INDEX `INDEX_DATAEMISSAO` (`DataEmissaoPedidos` ASC),
 	  CONSTRAINT `FK_CLIENTE`
 		FOREIGN KEY (`ClientePedidos`)
 		REFERENCES `WKPedidos`.`Clientes` (`CodigoClientes`)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION)
-	ENGINE = InnoDB;
+	ENGINE = InnoDB;	
 
 	CREATE TABLE IF NOT EXISTS `WKPedidos`.`ItensPedido` (
 	  `idItensPedido` INT NOT NULL AUTO_INCREMENT,
@@ -611,6 +612,29 @@ utilizando ao máximo o seu potencial.
 	inner join clientes c on c.CodigoClientes = a.ClientePedidos
 	inner join produtos d on d.CodigoProdutos = b.ProdutoItensPedido
 	order by a.NumeroPedidos
+	
+## Criação do Filtro por Data de Emissão da Tela de Pedidos e Index para performar melhor no Banco:
+
+	````
+	Atende a Tela de Pedido e Relatório.
+	````
+	
+	CREATE TABLE IF NOT EXISTS `WKPedidos`.`Pedidos` (
+	  `NumeroPedidos` INT NOT NULL AUTO_INCREMENT,
+	  `DataEmissaoPedidos` DATETIME NULL,
+	  `ClientePedidos` INT NULL,
+	  `ValorTotalPedidos` DECIMAL(17,3) NULL,
+	  PRIMARY KEY (`NumeroPedidos`),
+	  INDEX `FK_CLIENTE_idx` (`ClientePedidos` ASC),
+	  INDEX `INDEX_DATAEMISSAO` (`DataEmissaoPedidos` ASC),
+	  CONSTRAINT `FK_CLIENTE`
+		FOREIGN KEY (`ClientePedidos`)
+		REFERENCES `WKPedidos`.`Clientes` (`CodigoClientes`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION)
+	ENGINE = InnoDB;	
+
+![## Tela Filtro WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/FiltroDataEmissao.png)
 
 
 
