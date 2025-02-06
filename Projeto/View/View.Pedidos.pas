@@ -62,6 +62,7 @@ type
     DTPDEFin: TDateTimePicker;
     SBClearPedido: TSpeedButton;
     SBClearNomeCliente: TSpeedButton;
+    BBGrafico: TBitBtn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BBSairClick(Sender: TObject);
     procedure BBIncluirClick(Sender: TObject);
@@ -80,6 +81,7 @@ type
     procedure BBRelatorioClick(Sender: TObject);
     procedure SBClearPedidoClick(Sender: TObject);
     procedure SBClearNomeClienteClick(Sender: TObject);
+    procedure BBGraficoClick(Sender: TObject);
   private
     { Private declarations }
     FPedidoController: TPedidoController;
@@ -91,6 +93,7 @@ type
     procedure CallProdutoMaisVendido;
     procedure pValorTotaldoPedido;
     procedure GerarEExibirRelatorio;
+    procedure GerarGraficoHTML;
 
   public
     { Public declarations }
@@ -147,6 +150,11 @@ end;
 procedure TFViewPedidos.BBExcluirClick(Sender: TObject);
 begin
   TratarDelete;
+end;
+
+procedure TFViewPedidos.BBGraficoClick(Sender: TObject);
+begin
+  GerarGraficoHTML;
 end;
 
 procedure TFViewPedidos.BBAtualizarClick(Sender: TObject);
@@ -207,6 +215,27 @@ begin
 
   // Salva o HTML em um arquivo temporário
   FileName := ExtractFilePath(Application.ExeName) + 'relatorio_pedido.html';
+  with TStringList.Create do
+  try
+    Text := HTML;
+    SaveToFile(FileName);
+  finally
+    Free;
+  end;
+
+  // Abre o arquivo no navegador padrão
+  ShellExecute(0, 'open', PChar(FileName), nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TFViewPedidos.GerarGraficoHTML;
+var
+  HTML: string;
+  FileName: string;
+begin
+   HTML := FItemPedidoController.GerarGraficoHTML('');
+
+  // Salva o HTML em um arquivo temporário
+  FileName := ExtractFilePath(Application.ExeName) + 'grafico_maisvendido.html';
   with TStringList.Create do
   try
     Text := HTML;

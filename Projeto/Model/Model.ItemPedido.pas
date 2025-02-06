@@ -34,6 +34,7 @@ type
     function GerarCabecalhoPedido: string;
     function GerarDetalhesItensPedido(pPedido : Integer): string;
     function GerarRodapePedido(pTotalPedido : Double): string;
+    function GerarGraficoHTML(const FileName: string): string;
   public
     constructor Create;
     destructor Destroy; override;
@@ -427,7 +428,78 @@ begin
 
     Result := HTML.Text;
   finally
-    FQuery.Close;
+    HTML.Free;
+  end;
+end;
+
+
+function TItemPedido.GerarGraficoHTML(const FileName: string): String;
+var
+  HTML: TStringList;
+  MaxTotalVendido: Integer;
+begin
+  FQuery.SQL.Text :=
+    'SELECT pr.CodigoProdutos, pr.DescricaoProdutos, SUM(ip.QuantidadeItensPedido) AS TotalVendido ' +
+    'FROM WKPedidos.ItensPedido ip ' +
+    'JOIN WKPedidos.Produtos pr ON ip.ProdutoItensPedido = pr.CodigoProdutos ' +
+    'GROUP BY pr.CodigoProdutos, pr.DescricaoProdutos ' +
+    'ORDER BY TotalVendido DESC';
+  FQuery.Open;
+
+  // Criar o HTML
+  HTML := TStringList.Create;
+  try
+    // Início do HTML
+    HTML.Add('<html>');
+    HTML.Add('<head>');
+    HTML.Add('<style>');
+    HTML.Add('  .bar-container { width: 80%; margin: auto; }');
+    HTML.Add('  .bar { background-color: #4CAF50; color: white; padding: 10px; margin: 5px 0; text-align: right; }');
+    HTML.Add('  .bar-label { float: left; }');
+    HTML.Add('</style>');
+    HTML.Add('</head>');
+    HTML.Add('<body>');
+
+    HTML.Add('<div class="cabecalho">' +
+        '  <h1>Gráfico dos Itens mais Vendidos</h1>' +
+        '  <p><strong>Hélio Marques</strong></p>' +
+        '</div>');
+
+    HTML.Add('<div class="bar-container">');
+
+    // Encontrar o valor máximo para normalizar as barras
+    MaxTotalVendido := 0;
+    FQuery.First;
+    while not FQuery.Eof do
+    begin
+      if FQuery.FieldByName('TotalVendido').AsInteger > MaxTotalVendido then
+        MaxTotalVendido := FQuery.FieldByName('TotalVendido').AsInteger;
+      FQuery.Next;
+    end;
+
+    // Gerar as barras
+    FQuery.First;
+    while not FQuery.Eof do
+    begin
+      HTML.Add(Format(
+        '<div class="bar" style="width: %d%%;">' +
+        '<span class="bar-label">%s</span>' +
+        '%d unidades' +
+        '</div>',
+        [Round((FQuery.FieldByName('TotalVendido').AsInteger / MaxTotalVendido) * 100),
+         FQuery.FieldByName('DescricaoProdutos').AsString,
+         FQuery.FieldByName('TotalVendido').AsInteger]
+      ));
+      FQuery.Next;
+    end;
+
+    // Fechar o HTML
+    HTML.Add('</div>');
+    HTML.Add('</body>');
+    HTML.Add('</html>');
+
+    Result := HTML.Text;
+  finally
     HTML.Free;
   end;
 end;

@@ -637,6 +637,14 @@ utilizando ao máximo o seu potencial.
 ![## Tela Filtro WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/FiltroDataEmissao.png)
 
 
+## Gráfico do mais Vendidos:
+
+	````
+	Usando HTML/CSS/JS
+	````
+![## Gráfico WK](https://github.com/HelioHub/wkpedidos/blob/main/Imagens/Grafico1.png)
+
+
 ## CheckList Final:
 
 	````

@@ -27,7 +27,7 @@ object FViewPedidos: TFViewPedidos
       641
       44)
     object LNR: TLabel
-      Left = 517
+      Left = 527
       Top = 16
       Width = 73
       Height = 13
@@ -41,9 +41,9 @@ object FViewPedidos: TFViewPedidos
       ParentFont = False
     end
     object BBIncluir: TBitBtn
-      Left = 8
+      Left = 5
       Top = 8
-      Width = 69
+      Width = 62
       Height = 30
       Hint = 'Incluir Pedido'
       Caption = '&Incluir'
@@ -61,9 +61,9 @@ object FViewPedidos: TFViewPedidos
       OnClick = BBIncluirClick
     end
     object BBAlterar: TBitBtn
-      Left = 80
+      Left = 69
       Top = 8
-      Width = 69
+      Width = 62
       Height = 30
       Hint = 'Alterar Pedido'
       Caption = '&Alterar'
@@ -81,9 +81,9 @@ object FViewPedidos: TFViewPedidos
       OnClick = BBAlterarClick
     end
     object BBExcluir: TBitBtn
-      Left = 152
+      Left = 133
       Top = 8
-      Width = 69
+      Width = 62
       Height = 30
       Hint = 'Cancela o Pedido e seus Itens deletandos'
       Caption = '&Excluir'
@@ -101,9 +101,9 @@ object FViewPedidos: TFViewPedidos
       OnClick = BBExcluirClick
     end
     object BBSair: TBitBtn
-      Left = 224
+      Left = 197
       Top = 8
-      Width = 69
+      Width = 62
       Height = 30
       Hint = 'Fechar tela de Pedidos'
       Cancel = True
@@ -123,9 +123,9 @@ object FViewPedidos: TFViewPedidos
       OnClick = BBSairClick
     end
     object ENR: TEdit
-      Left = 591
+      Left = 602
       Top = 13
-      Width = 44
+      Width = 33
       Height = 21
       Hint = 'Limite de registros da Consulta. Colocando zero desconsidera.'
       Alignment = taRightJustify
@@ -141,9 +141,9 @@ object FViewPedidos: TFViewPedidos
       Text = '100'
     end
     object BBProdutoMaisVendido: TBitBtn
-      Left = 325
+      Left = 276
       Top = 8
-      Width = 83
+      Width = 81
       Height = 30
       Hint = 'Visualiza os Produtos mais Vendidos.'
       Cancel = True
@@ -163,9 +163,9 @@ object FViewPedidos: TFViewPedidos
       OnClick = BBProdutoMaisVendidoClick
     end
     object BBRelatorio: TBitBtn
-      Left = 414
+      Left = 442
       Top = 8
-      Width = 83
+      Width = 80
       Height = 30
       Hint = 
         'Gera Relat'#243'rio em HTML dos Pedidos. Considera o Filtro Data de E' +
@@ -185,6 +185,28 @@ object FViewPedidos: TFViewPedidos
       ShowHint = True
       TabOrder = 5
       OnClick = BBRelatorioClick
+    end
+    object BBGrafico: TBitBtn
+      Left = 359
+      Top = 8
+      Width = 81
+      Height = 30
+      Hint = 'Visualiza os Produtos mais Vendidos em Formato de Gr'#225'fico.'
+      Cancel = True
+      Caption = '+ &Gr'#225'fico'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ImageIndex = 6
+      Images = DMUtils.ILImagensSystem
+      NumGlyphs = 2
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 7
+      OnClick = BBGraficoClick
     end
   end
   object PRodape: TPanel
