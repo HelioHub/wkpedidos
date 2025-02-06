@@ -43,7 +43,7 @@ object FViewPedidos: TFViewPedidos
     object BBIncluir: TBitBtn
       Left = 5
       Top = 8
-      Width = 62
+      Width = 63
       Height = 30
       Hint = 'Incluir Pedido'
       Caption = '&Incluir'
@@ -63,7 +63,7 @@ object FViewPedidos: TFViewPedidos
     object BBAlterar: TBitBtn
       Left = 69
       Top = 8
-      Width = 62
+      Width = 63
       Height = 30
       Hint = 'Alterar Pedido'
       Caption = '&Alterar'
@@ -83,7 +83,7 @@ object FViewPedidos: TFViewPedidos
     object BBExcluir: TBitBtn
       Left = 133
       Top = 8
-      Width = 62
+      Width = 63
       Height = 30
       Hint = 'Cancela o Pedido e seus Itens deletandos'
       Caption = '&Excluir'
@@ -103,7 +103,7 @@ object FViewPedidos: TFViewPedidos
     object BBSair: TBitBtn
       Left = 197
       Top = 8
-      Width = 62
+      Width = 63
       Height = 30
       Hint = 'Fechar tela de Pedidos'
       Cancel = True
@@ -598,6 +598,24 @@ object FViewPedidos: TFViewPedidos
     object ItensMemTableDescricaoProdutos: TStringField
       FieldName = 'DescricaoProdutos'
       Size = 80
+    end
+  end
+  object PMGrafico: TPopupMenu
+    Left = 440
+    Top = 159
+    object MIGraficoBarra: TMenuItem
+      Caption = 'Gr'#225'fico de Barra'
+      OnClick = MIGraficoBarraClick
+    end
+    object MenuItem2: TMenuItem
+      Caption = '-'
+    end
+    object MIGraficoPizza: TMenuItem
+      Caption = 'Gr'#225'fico de Pizza'
+      OnClick = MIGraficoPizzaClick
+    end
+    object MenuItem4: TMenuItem
+      Caption = '-'
     end
   end
 end

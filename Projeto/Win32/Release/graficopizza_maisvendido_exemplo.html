@@ -1,0 +1,56 @@
+<html>
+<head>
+  <title>Gráfico de Pizza - Produtos Mais Vendidos</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .cabecalho {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="cabecalho">
+    <h1>Gráfico dos Itens mais Vendidos de Pizza</h1>
+    <p><strong>Hélio Marques</strong></p>
+  </div>
+  <div style="width: 75%; margin: auto;">
+    <canvas id="graficoPizza"></canvas>
+  </div>
+  <script>
+    const ctx = document.getElementById("graficoPizza").getContext("2d");
+    const graficoPizza = new Chart(ctx, {
+      type: "pie",
+      data: {
+        labels: [
+          "CPU i9", "Pad-Mouse", "Processador i5", "Mouse", "Camera HD", 
+          "Gabinete Y", "CPU Intel i5", "Monitor 14p", "Placa-Vídeo X", 
+          "Gabinete W", "Teclado", "Processador i9", "Placa-Vídeo W", "Gabinete X"
+        ],
+        datasets: [{
+          label: "Total Vendido",
+          data: [37, 37, 32, 27, 26, 25, 25, 16, 10, 10, 10, 10, 7, 5],
+          backgroundColor: [
+            "rgba(200, 188, 8, 0.6)", "rgba(141, 77, 27, 0.6)", "rgba(35, 59, 252, 0.6)", 
+            "rgba(162, 250, 169, 0.6)", "rgba(134, 75, 194, 0.6)", "rgba(65, 117, 173, 0.6)", 
+            "rgba(158, 122, 228, 0.6)", "rgba(253, 232, 76, 0.6)", "rgba(126, 148, 241, 0.6)", 
+            "rgba(226, 179, 63, 0.6)", "rgba(179, 244, 31, 0.6)", "rgba(216, 40, 119, 0.6)", 
+            "rgba(160, 19, 72, 0.6)", "rgba(131, 164, 103, 0.6)"
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: "top" },
+          title: {
+            display: true,
+            text: "Produtos Mais Vendidos"
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

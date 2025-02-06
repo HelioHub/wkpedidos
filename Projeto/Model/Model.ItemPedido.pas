@@ -35,6 +35,7 @@ type
     function GerarDetalhesItensPedido(pPedido : Integer): string;
     function GerarRodapePedido(pTotalPedido : Double): string;
     function GerarGraficoHTML(const FileName: string): string;
+    function GerarGraficoPizzaHTML(const FileName: string): String;
   public
     constructor Create;
     destructor Destroy; override;
@@ -461,7 +462,7 @@ begin
     HTML.Add('<body>');
 
     HTML.Add('<div class="cabecalho">' +
-        '  <h1>Gráfico dos Itens mais Vendidos</h1>' +
+        '  <h1>Gráfico dos Itens mais Vendidos de Barra</h1>' +
         '  <p><strong>Hélio Marques</strong></p>' +
         '</div>');
 
@@ -504,4 +505,96 @@ begin
   end;
 end;
 
+function TItemPedido.GerarGraficoPizzaHTML(const FileName: string): String;
+var
+  HTML: TStringList;
+  Labels, Data, Colors: TStringList;
+  i: Integer;
+begin
+    FQuery.SQL.Text :=
+      'SELECT pr.CodigoProdutos, pr.DescricaoProdutos, SUM(ip.QuantidadeItensPedido) AS TotalVendido ' +
+      'FROM WKPedidos.ItensPedido ip ' +
+      'JOIN WKPedidos.Produtos pr ON ip.ProdutoItensPedido = pr.CodigoProdutos ' +
+      'GROUP BY pr.CodigoProdutos, pr.DescricaoProdutos ' +
+      'ORDER BY TotalVendido DESC';
+    FQuery.Open;
+
+    // Criar listas para armazenar labels, dados e cores
+    Labels := TStringList.Create;
+    Data := TStringList.Create;
+    Colors := TStringList.Create;
+    try
+      // Preencher as listas com os dados da query
+      FQuery.First;
+      while not FQuery.Eof do
+      begin
+        Labels.Add('"' + StringReplace(FQuery.FieldByName('DescricaoProdutos').AsString, '"', '""', [rfReplaceAll]) + '"');
+        Data.Add(FQuery.FieldByName('TotalVendido').AsString);
+        Colors.Add('"rgba(' + IntToStr(Random(256)) + ', ' + IntToStr(Random(256)) + ', ' + IntToStr(Random(256)) + ', 0.6)"');
+        FQuery.Next;
+      end;
+
+      // Criar o HTML
+      HTML := TStringList.Create;
+      try
+        // Início do HTML
+        HTML.Add('<html>');
+        HTML.Add('<head>');
+        HTML.Add('<title>Gráfico de Pizza - Produtos Mais Vendidos</title>');
+        HTML.Add('<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>');
+        HTML.Add('<style>');
+        HTML.Add('  .cabecalho { text-align: center; margin-bottom: 20px; }');
+        HTML.Add('</style>');
+        HTML.Add('</head>');
+        HTML.Add('<body>');
+
+        HTML.Add('<div class="cabecalho">');
+        HTML.Add('  <h1>Gráfico dos Itens mais Vendidos de Pizza</h1>');
+        HTML.Add('  <p><strong>Hélio Marques</strong></p>');
+        HTML.Add('</div>');
+        HTML.Add('<div style="width: 75%; margin: auto;">');
+        HTML.Add('  <canvas id="graficoPizza"></canvas>');
+        HTML.Add('</div>');
+
+        // Script para gerar o gráfico
+        HTML.Add('<script>');
+        HTML.Add('const ctx = document.getElementById("graficoPizza").getContext("2d");');
+        HTML.Add('const graficoPizza = new Chart(ctx, {');
+        HTML.Add('  type: "pie",');
+        HTML.Add('  data: {');
+        HTML.Add('    labels: [' + Labels.DelimitedText + '],');
+        HTML.Add('    datasets: [{');
+        HTML.Add('      label: "Total Vendido",');
+        HTML.Add('      data: [' + Data.DelimitedText + '],');
+        HTML.Add('      backgroundColor: [' + Colors.DelimitedText + '],');
+        HTML.Add('      borderWidth: 1');
+        HTML.Add('    }]');
+        HTML.Add('  },');
+        HTML.Add('  options: {');
+        HTML.Add('    responsive: true,');
+        HTML.Add('    plugins: {');
+        HTML.Add('      legend: { position: "top" },');
+        HTML.Add('      title: {');
+        HTML.Add('        display: true,');
+        HTML.Add('        text: "Produtos Mais Vendidos"');
+        HTML.Add('      }');
+        HTML.Add('    }');
+        HTML.Add('  }');
+        HTML.Add('});');
+        HTML.Add('</script>');
+
+        // Fechar o HTML
+        HTML.Add('</body>');
+        HTML.Add('</html>');
+
+        Result := HTML.Text;
+      finally
+        HTML.Free;
+      end;
+    finally
+      Labels.Free;
+      Data.Free;
+      Colors.Free;
+    end;
+end;
 end.

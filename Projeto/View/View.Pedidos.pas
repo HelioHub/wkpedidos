@@ -63,6 +63,11 @@ type
     SBClearPedido: TSpeedButton;
     SBClearNomeCliente: TSpeedButton;
     BBGrafico: TBitBtn;
+    PMGrafico: TPopupMenu;
+    MIGraficoBarra: TMenuItem;
+    MenuItem2: TMenuItem;
+    MIGraficoPizza: TMenuItem;
+    MenuItem4: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BBSairClick(Sender: TObject);
     procedure BBIncluirClick(Sender: TObject);
@@ -82,6 +87,8 @@ type
     procedure SBClearPedidoClick(Sender: TObject);
     procedure SBClearNomeClienteClick(Sender: TObject);
     procedure BBGraficoClick(Sender: TObject);
+    procedure MIGraficoBarraClick(Sender: TObject);
+    procedure MIGraficoPizzaClick(Sender: TObject);
   private
     { Private declarations }
     FPedidoController: TPedidoController;
@@ -94,6 +101,7 @@ type
     procedure pValorTotaldoPedido;
     procedure GerarEExibirRelatorio;
     procedure GerarGraficoHTML;
+    procedure GerarGraficoPizzaHTML;
 
   public
     { Public declarations }
@@ -153,8 +161,14 @@ begin
 end;
 
 procedure TFViewPedidos.BBGraficoClick(Sender: TObject);
+var
+  P: TPoint;
 begin
-  GerarGraficoHTML;
+  // Obter a posição do botão na tela
+  P := BBGrafico.ClientToScreen(Point(0, BBGrafico.Height));
+
+  // Exibir o PopupMenu na posição do botão
+  PMGrafico.Popup(P.X, P.Y);
 end;
 
 procedure TFViewPedidos.BBAtualizarClick(Sender: TObject);
@@ -246,6 +260,37 @@ begin
 
   // Abre o arquivo no navegador padrão
   ShellExecute(0, 'open', PChar(FileName), nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TFViewPedidos.GerarGraficoPizzaHTML;
+var
+  HTML: string;
+  FileName: string;
+begin
+   HTML := FItemPedidoController.GerarGraficoPizzaHTML('');
+
+  // Salva o HTML em um arquivo temporário
+  FileName := ExtractFilePath(Application.ExeName) + 'graficopizza_maisvendido.html';
+  with TStringList.Create do
+  try
+    Text := HTML;
+    SaveToFile(FileName);
+  finally
+    Free;
+  end;
+
+  // Abre o arquivo no navegador padrão
+  ShellExecute(0, 'open', PChar(FileName), nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TFViewPedidos.MIGraficoBarraClick(Sender: TObject);
+begin
+  GerarGraficoHTML;
+end;
+
+procedure TFViewPedidos.MIGraficoPizzaClick(Sender: TObject);
+begin
+  GerarGraficoPizzaHTML;
 end;
 
 procedure TFViewPedidos.pCRUD(pAcao: TAcao);
